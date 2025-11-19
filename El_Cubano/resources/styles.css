@@ -1,0 +1,81 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+
+:root {
+  --color-primary: #F25C54;      /* Primary brand color — use for headers, buttons, and key highlights */
+  --color-secondary: #3BB273;    /* Secondary accent — great for call-to-action buttons, badges, or icons */
+  --color-accent: #00A8C6;       /* Tropical accent — use for links, hover states, or decorative elements */
+  --color-highlight: #F9C80E;    /* Highlight color — perfect for promotions, special offers, or kids' sections */
+  --color-background: #FFF5E1;   /* Main background — apply to body, sections, and cards for a warm, inviting feel */
+  --color-text: #3E3E3E;         /* Base text color — use for paragraphs, menus, and general content */
+}
+/* color scheme
+to use a color: var(color name)
+*/
+
+*{margin:0;
+padding:0;
+font-family:'Open Sans',sans-serif;
+}
+
+.page{
+    background-color:var(--color-background);
+    min-height:2000px;                             /* temporary until content added to page */
+}
+
+.header{
+    display:flex;
+    flex-direction:row;
+    position:fixed;
+    width:100%;
+    background-color:var(--color-primary);
+    padding:10px;
+}
+
+.header_child{
+    display:flex;
+    flex-direction:row;                 /*Name, and nav side by side*/
+}
+
+.header_child img{
+     width: 50px;                       /*logo size */
+}
+
+.header_child h1{
+    margin:auto auto auto 10px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-background);    
+}
+
+.header_child nav ul{
+    display:flex;
+    flex-direction:row;
+    gap:10px;
+    list-style-type:none;
+}
+
+.header_child_2{
+    margin:auto 35px auto auto;      /*sets the distance the nav items from the right side*/
+}
+
+.nav_item a{
+    color: var(--color-background);  /* Default link color in header */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease; 
+}
+
+nav a:hover {
+    color: var(--color-highlight);                /* Mango yellow on hover for energy */
+}
+
+.current_tab a{                                 /*color of current tab*/
+    background-color: var(--color-accent);      /* Caribbean turquoise for contrast */
+    color: var(--color-background);               /* Light text on bold accent */
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;              
+}
+
