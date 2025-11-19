@@ -22,60 +22,111 @@ font-family:'Open Sans',sans-serif;
 
 .page{
     background-color:var(--color-background);
-    min-height:2000px;                             /* temporary until content added to page */
+    min-height:2000px;                           /* temporary until content added to page */
+}
+
+.logo{
+    width: 100px;
+    height:100px;
+    background-image:url("images/el_cubano_restaurant_logo.png")  ;
+    background-size:cover;  
 }
 
 .header{
     display:flex;
     flex-direction:row;
-    position:fixed;
-    width:100%;
+    gap:5px;
+    position:sticky;
+    top:0px;
+    width:auto;
     background-color:var(--color-primary);
-    padding:10px;
+    padding:10px 20px;
 }
 
-.header_child{
-    display:flex;
-    flex-direction:row;                 /*Name, and nav side by side*/
-}
 
-.header_child img{
-     width: 50px;                       /*logo size */
-}
 
-.header_child h1{
-    margin:auto auto auto 10px;
+.header_child_1 h1{
+    margin:auto auto auto 0px;
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--color-background);    
 }
 
-.header_child nav ul{
+.header_line_break{
+    display:none;
+    margin:5px auto;
+    color:var(--color-background);
+    width:90px;
+    border-style:solid;
+}
+
+.header_child_2{
+    margin:auto 0px auto auto;                  /*sets the distance the nav items from the right side*/
+}
+
+.header_child_2 nav ul{
     display:flex;
     flex-direction:row;
     gap:10px;
     list-style-type:none;
 }
 
-.header_child_2{
-    margin:auto 35px auto auto;      /*sets the distance the nav items from the right side*/
-}
-
 .nav_item a{
-    color: var(--color-background);  /* Default link color in header */
+    color: var(--color-background);              /* Default link color in header */
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease; 
+    text-wrap:nowrap;
 }
 
 nav a:hover {
-    color: var(--color-highlight);                /* Mango yellow on hover for energy */
+    color: var(--color-highlight);               /* Mango yellow on hover for energy */
 }
 
-.current_tab a{                                 /*color of current tab*/
-    background-color: var(--color-accent);      /* Caribbean turquoise for contrast */
-    color: var(--color-background);               /* Light text on bold accent */
+.current_tab a{                                  /*color of current tab*/
+    background-color: var(--color-accent);       /* Caribbean turquoise for contrast */
+    color: var(--color-background);              /* Light text on bold accent */
     padding: 0.4rem 0.8rem;
-    border-radius: 6px;              
+    border-radius: 6px;
+               
 }
 
+.main_page_content{
+    margin:auto;                                 /*Placeholder line*/
+}
+
+
+@media (max-width:800px){
+    .header{
+        flex-direction:column;
+        margin:0 auto;
+        padding-bottom:15px;
+    }
+    .header_line_break{
+        display:inline;
+        margin-bottom:10px;
+    }
+    .header_child_1,.header_child_2{
+        margin:0 auto;text-align:center;
+    }
+    
+}
+
+@media (max-width:550px){
+    .header{
+        padding-bottom:10px;
+    }
+    .header_line_break{
+        margin-bottom:5px;
+    }
+    .header_child_2 nav ul{
+        flex-direction:column;
+    }
+    .nav_item{
+        margin:0 auto;
+    }
+    .current_tab a{
+        margin:0;
+        display:block;
+    }
+}
