@@ -1,14 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    const header_child_1 = document.getElementsByClassName("header_child_1")[0]
+    const header_child_3 = document.getElementsByClassName("header_child_3")[0]
+    const header = document.getElementsByClassName("header")[0]
+    var currentMode=''
     const button = document.getElementById('header_child_3_menu_btn');
     const menu = document.getElementById('header_child_2');
     let isOpen = false;
     let midFrame = 0;
     let total = 0;
-   
+    const menu_button_color="#000000ff"
     const isIndexPage = window.location.pathname.endsWith('index.html');
-    let animationPath = (isIndexPage)  ? 'resources/icons/menu.json':'../resources/icons/menu.json'
+    const animationPath = isIndexPage ? 'resources/icons/menu.json' : '../resources/icons/menu.json';
+    const width = window.innerWidth;
 
-    let animation = lottie.loadAnimation({
+    const animation = lottie.loadAnimation({
         container: button,
         renderer: 'svg',
         loop: false,
@@ -19,25 +25,111 @@ document.addEventListener('DOMContentLoaded', () => {
     animation.addEventListener('DOMLoaded', () => {
         total = animation.totalFrames;
         midFrame = total / 2;
-        animation.goToAndStop(0, true); // Start at hamburger
+        animation.goToAndStop(0, true);                              // Start at hamburger
+    });
+
+    // Force menu_button_color stroke on every frame
+    animation.addEventListener('enterFrame', () => {
+        const svgContainer = button.querySelector('svg');
+        if (svgContainer) {
+            const paths = svgContainer.querySelectorAll('path, rect, circle, line, polygon');
+            paths.forEach(path => {
+                path.setAttribute('stroke', menu_button_color);
+            });
+        }
     });
 
     button.addEventListener('click', () => {
-        if (!animation || total === 0) return;
-
         isOpen = !isOpen;
 
+        if (!currentMode=='tablet'){
+            header.style.paddingBottom = '10px';
+        }
         if (isOpen) {
-            animation.playSegments([0, midFrame], true); // hamburger → X
+            animation.playSegments([0, midFrame], true);             // hamburger → X
             menu.classList.add('open');
+            if(currentMode=='tablet'){
+                header.style.paddingBottom = '15px';    
+            }
+            
         } 
         else {
-            animation.playSegments([midFrame, total], true); // X → hamburger
+            animation.playSegments([midFrame, total], true);         // X → hamburger
             menu.classList.remove('open');
+            if(currentMode=='tablet'){
+                header.style.paddingBottom = '10px';    
+            }
         }
 
         button.setAttribute('aria-expanded', isOpen.toString());
     });
 
+    function phoneMenu(){
+        header_child_3.style.display="block"
+        header_child_3.style.position="relative"
+        header_child_3.style.top="0px"
+        header_child_3.style.right="0px"
+        header.style.paddingBottom = '10px';
+        header_child_3.remove()
+        header.appendChild(header_child_3)
+        //console.log(header_child_3)
+    }
 
+    function tabletMenu(){
+        header_child_3.style.display="inline-block"
+        header_child_3.style.position="absolute"
+        header_child_3.style.top="20px"
+        header_child_3.style.right="20px"
+        if (isOpen) {
+            header.style.paddingBottom = '15px';    
+        }
+        header_child_3.remove()
+        header_child_1.appendChild(header_child_3)
+    }
+
+    function desktopMenu(){
+        header_child_3.style.display="none"
+        header.style.paddingBottom = '10px';
+        if (isOpen){
+            animation.playSegments([midFrame, total], true);
+        }    
+        isOpen = false
+        menu.classList.remove('open');
+    }
+
+    if (width <= 500) {
+        phoneMenu()
+        currentMode='phone'
+        console.log('Initially in phone mode');
+    } 
+    else if (width <= 800) {
+        tabletMenu()
+        currentMode='tablet'
+        console.log('Initially in tablet mode');
+    } 
+    else {
+        desktopMenu()
+        currentMode='desktop'
+        console.log('Initially in desktop mode');
+    }
+
+    window.addEventListener('resize',()=>{
+        const width= window.innerWidth
+
+        if (width <= 500) {
+            phoneMenu()
+            currentMode='phone'
+            console.log('Phone mode');
+        } 
+        else if (width <= 800) {
+            tabletMenu()
+            currentMode='tablet'
+            console.log('Tablet mode');
+        } 
+        else {
+            desktopMenu()
+            currentMode='desktop'
+            console.log('Desktop mode');
+        }
+    });
 });
