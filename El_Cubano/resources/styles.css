@@ -21,8 +21,7 @@ font-family:'Open Sans',sans-serif;
 }
 
 .page{
-    background-color:var(--color-background);
-    min-height:2000px;                           /* temporary until content added to page */
+    background-color:var(--color-background);                    
 }
 
 .logo{
@@ -91,8 +90,22 @@ nav a:hover {
                
 }
 
+.header_child_3{
+    display:none
+}
+
+#header_child_3_menu_btn{
+    display:block;
+    margin:0 auto;
+}
+
+#header_child_3_menu_btn{
+    width:20px;
+}
+
 .main_page_content{
-    margin:auto;                                 /*Placeholder line*/
+    margin:auto;                                
+    height:1500px;                               /*Placeholder line*/
 }
 
 
@@ -109,12 +122,19 @@ nav a:hover {
     .header_child_1,.header_child_2{
         margin:0 auto;text-align:center;
     }
-    
 }
 
-@media (max-width:550px){
+
+/* @media (min-width:501px){
+    .header_child_2{
+        display:block;
+    }
+} */
+
+@media (max-width:500px){
     .header{
         padding-bottom:10px;
+        position: relative;
     }
     .header_line_break{
         margin-bottom:5px;
@@ -122,11 +142,21 @@ nav a:hover {
     .header_child_2 nav ul{
         flex-direction:column;
     }
+    #header_child_2{
+        display:none;
+    }
+
+    #header_child_2.open{
+        display:flex;
+    }
     .nav_item{
         margin:0 auto;
     }
     .current_tab a{
         margin:0;
+        display:block;
+    }
+    .header_child_3{
         display:block;
     }
 }
