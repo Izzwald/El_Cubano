@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Cubano</title>
     <link rel="stylesheet" href="resources/styles.css">
+
+
+
 </head>
 <body id="page" class="page">
     <header class="header">
@@ -29,10 +32,73 @@
         </div>
     </header>
 
-    <div class="main_page_content">
-
-    </div>
     
+    <div class="main_page_content_index">
+        <div id="main_container1">
+            <div id="landing_display">
+
+                <img id="logo" src="resources/images/el_cubano_restaurant_logo.png">
+                <button id="btn_order">Order Now!</button>
+                <h1>Daily Special includes:</h1>
+                
+                <div class="special-container">
+            <!-- Container for daily specials -->
+                    <div id="special-display">
+            <!-- Content will be inserted here by JS -->
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <div id="main_container2">
+            
+            <h2>Top Sellers:</h2>
+
+            <div id="top_sellers_container">
+                
+            
+                <div class="top_seller1 top_sellers">
+                    <img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
+                    <h3>Beef and Cheese Empanada</h3>
+                    <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua. 
+                    </p>
+                    <h4>Price: $3.50</h4>
+                </div>
+                
+                <div class="top_seller2 top_sellers">
+                    <h3>*Item Name*</h3>
+                    <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua. 
+                    </p>
+                    <p>Price: $3.50</p>
+                </div>
+
+                <div class="top_seller3 top_sellers">
+                    <h3>*Item Name*</h3>
+                    <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua. 
+                    </p>
+                    <p>Price: $3.50</p>
+                </div>
+
+                <div class="top_seller4 top_sellers">
+                    <h3>*Item Name*</h3>
+                    <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua. 
+                    </p>
+                    <p>Price: $3.50</p>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    
+
+
+
     <footer class="footer">
         <div class="footer_content">
             <div class="footer_child footer_child_1">
@@ -66,6 +132,47 @@
 
     <button id="backToTop"></button>
     
+
+    <script id="daily_special_script">
+        // Store specials in an array of objects
+        const specials = [
+            { day: 'Monday', name: 'Cicken/Beef Combo', description: '$2 off any combos with either chicken or beef.' },
+            { day: 'Tuesday', name: 'Smoothie Tuesday', description: '$4 Smoothie Tuesdays' },
+            { day: 'Wednesday', name: 'Half-Price Desserts', description: 'Get all desserts half price, all day long.' },
+            { day: 'Thursday', name: 'Half-Price Empanadas', description: 'Get all empanadas half price, all day long.' },
+            { day: 'Friday', name: 'Fish and Chips Special', description: 'Crispy beer-battered fish with fries and fried pickles.' },
+            { day: 'Saturday', name: 'Chef\'s Special', description: 'Seasoned Pork Chops with your choice of two sides.' },
+            { day: 'Sunday', name: 'Soup Sunday', description: 'Enjoy Soup on a stay-at-home Sunday.' }
+        ];
+
+        const today = new Date();
+        const currentDay = today.toLocaleDateString('en-US', { weekday: 'long' });
+
+        function displaySpecial() {
+            // Find the special for the current day
+            const special = specials.find(s => s.day === currentDay);
+            
+            // Get the HTML element where we want to display the information
+            const specialDisplay = document.getElementById('special-display'); // Assumes an element with this ID
+
+            if (special) {
+                // If a special is found, update the HTML
+                specialDisplay.innerHTML = `
+                    <h2>Today's Special:</h2>
+                    <br>
+                    <h3>${special.name}!</h3>
+                    <br>
+                    <p>${special.description}</p>
+                `;
+            } else {
+                // If no special is found (e.g., a typo in the data), display a fallback message
+                specialDisplay.innerHTML = '<p>No special available today.</p>';
+            }
+        }
+
+        // Call the function to display the special when the page loads
+        displaySpecial();
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
     <script src="logic/navigation.js"></script>
 </body>
