@@ -7,7 +7,47 @@
     <link rel="stylesheet" href="resources/styles.css">
 
 
+<style>
+    .card {
+    width: 200px;
+    height: 250px;
+    perspective: 1000px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    gap: 20px; /* Adds 20px space between all flex items (both row and column) */
+}
 
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+
+        
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    backface-visibility: hidden;  
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+}
+
+.card-back {
+    padding:15px;
+    transform: rotateY(180deg);
+}
+</style>
 </head>
 <body id="page" class="page">
     <header class="header">
@@ -59,37 +99,56 @@
             <div id="top_sellers_container">
                 
             
-                <div class="top_seller1 top_sellers">
-                    <img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
-                    <h3>Beef and Cheese Empanada</h3>
-                    <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                <div class="top_seller1 top_sellers card">
+                    <div class="card-inner">
+                        <div class="card-front"><img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
+                        <h3>Beef and Cheese Empanada</h3>
+                    </div>
+                        <div class="card-back"><h3>Beef and Cheese Empanada</h3>
+                        <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                         ut labore et dolore magna aliqua. 
                     </p>
-                    <h4>Price: $3.50</h4>
+                    <h4>Price: $3.50</h4></div>
+                    </div>
                 </div>
                 
-                <div class="top_seller2 top_sellers">
-                    <h3>*Item Name*</h3>
-                    <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                <div class="top_seller1 top_sellers card">
+                    <div class="card-inner">
+                        <div class="card-front"><img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
+                        <h3>Beef and Cheese Empanada</h3>
+                    </div>
+                        <div class="card-back"><h3>Beef and Cheese Empanada</h3>
+                        <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                         ut labore et dolore magna aliqua. 
                     </p>
-                    <p>Price: $3.50</p>
+                    <h4>Price: $3.50</h4></div>
+                    </div>
                 </div>
 
-                <div class="top_seller3 top_sellers">
-                    <h3>*Item Name*</h3>
-                    <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                <div class="top_seller1 top_sellers card">
+                    <div class="card-inner">
+                        <div class="card-front"><img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
+                        <h3>Beef and Cheese Empanada</h3>
+                    </div>
+                        <div class="card-back"><h3>Beef and Cheese Empanada</h3>
+                        <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                         ut labore et dolore magna aliqua. 
                     </p>
-                    <p>Price: $3.50</p>
+                    <h4>Price: $3.50</h4></div>
+                    </div>
                 </div>
 
-                <div class="top_seller4 top_sellers">
-                    <h3>*Item Name*</h3>
-                    <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+                <div class="top_seller1 top_sellers card">
+                    <div class="card-inner">
+                        <div class="card-front"><img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
+                        <h3>Beef and Cheese Empanada</h3>
+                    </div>
+                        <div class="card-back"><h3>Beef and Cheese Empanada</h3>
+                        <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
                         ut labore et dolore magna aliqua. 
                     </p>
-                    <p>Price: $3.50</p>
+                    <h4>Price: $3.50</h4></div>
+                    </div>
                 </div>
             </div>
         </div>
