@@ -113,9 +113,29 @@ nav a:hover {
 
 .main_page_content{
     margin:auto;                                
-    height:1500px;                               /*Placeholder line*/
+    height:2500px;                               /*Placeholder line*/
 }
 
+#backToTop{
+    background-image:url("icons/up.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    display:none;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background-color:rgba(0,0,0,.05);
+    border:none;
+    padding:11px 3.176px;
+    border-radius:50%;
+    transition: background-color 0.3s ease;
+    width:35px;
+    height:35px;
+}
+
+#backToTop:hover {
+    background-color:rgba(0,0,0,.15);
+}
 
 @media (max-width:800px){
     .header{

@@ -11,8 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let total = 0;
     const menu_button_color="#000000ff"
     const isIndexPage = window.location.pathname.endsWith('index.html');
-    const animationPath = isIndexPage ? 'resources/icons/menu.json' : '../resources/icons/menu.json';
-    const width = window.innerWidth;
+    const animationPath = isIndexPage ? 'resources/icons/menu.json' : '../resources/icons/menu.json';        //changes menu icon path depending on current page loaded
+    const width = window.innerWidth;                                                                         //used as a inital media width query
+    const backToTopDist = 300                                                                                //Distance needed to scroll until back to top button appears
+    const backToTopBtn = document.getElementById("backToTop");
 
     const animation = lottie.loadAnimation({
         container: button,
@@ -100,17 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (width <= 500) {
         phoneMenu()
         currentMode='phone'
-        console.log('Initially in phone mode');
+        //console.log('Initially in phone mode');
     } 
     else if (width <= 800) {
         tabletMenu()
         currentMode='tablet'
-        console.log('Initially in tablet mode');
+        //console.log('Initially in tablet mode');
     } 
     else {
         desktopMenu()
         currentMode='desktop'
-        console.log('Initially in desktop mode');
+        //console.log('Initially in desktop mode');
     }
 
     window.addEventListener('resize',()=>{
@@ -119,17 +121,36 @@ document.addEventListener('DOMContentLoaded', () => {
         if (width <= 500) {
             phoneMenu()
             currentMode='phone'
-            console.log('Phone mode');
+            //console.log('Phone mode');
         } 
         else if (width <= 800) {
             tabletMenu()
             currentMode='tablet'
-            console.log('Tablet mode');
+            //console.log('Tablet mode');
         } 
         else {
             desktopMenu()
             currentMode='desktop'
-            console.log('Desktop mode');
+            //console.log('Desktop mode');
         }
     });
+
+    // Show button after scrolling backToTopDist
+    window.addEventListener("scroll", () => {
+        if (document.documentElement.scrollTop > backToTopDist) {
+            backToTopBtn.style.display = "block";
+        } 
+        else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+
+    // Scroll smoothly to top when clicked
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+        });
+    });
+
 });
