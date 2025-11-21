@@ -1,15 +1,14 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 
-
-:root {
-  --color-primary: #F25C54;      /* Primary brand color — use for headers, buttons, and key highlights */
-  --color-secondary: #3BB273;    /* Secondary accent — great for call-to-action buttons, badges, or icons */
-  --color-accent: #00A8C6;       /* Tropical accent — use for links, hover states, or decorative elements */
-  --color-highlight: #F9C80E;    /* Highlight color — perfect for promotions, special offers, or kids' sections */
-  --color-background: #FFF5E1;   /* Main background — apply to body, sections, and cards for a warm, inviting feel */
-  --color-text: #3E3E3E;         /* Base text color — use for paragraphs, menus, and general content */
+:root{
+    --color-primary:     #F25C54;         /* Primary brand color — use for headers, buttons, and key highlights */
+    --color-secondary:   #3BB273;         /* Secondary accent — great for call-to-action buttons, badges, or icons */
+    --color-accent:      #00A8C6;         /* Tropical accent — use for links, hover states, or decorative elements */
+    --color-highlight:   #F9C80E;         /* Highlight color — perfect for promotions, special offers, or kids' sections */
+    --color-background:  #FFF5E1;         /* Main background — apply to body, sections, and cards for a warm, inviting feel */
+    --color-text:        #3E3E3E;         /* Base text color — use for paragraphs, menus, and general content */
+    --color-footer-legal:rgba(255,255,255,.7);
 }
 /* color scheme
 to use a color: var(color name)
@@ -42,9 +41,8 @@ font-family:'Open Sans',sans-serif;
     padding:10px 20px;
 }
 
-
-
 .header_child_1 h1{
+    display:inline-block;
     margin:auto auto auto 0px;
     font-size: 1.8rem;
     font-weight: bold;
@@ -60,7 +58,7 @@ font-family:'Open Sans',sans-serif;
 }
 
 .header_child_2{
-    margin:auto 0px auto auto;                  /*sets the distance the nav items from the right side*/
+    margin:auto 0px auto auto;                   /*sets the distance the nav items from the right side*/
 }
 
 .header_child_2 nav ul{
@@ -78,7 +76,7 @@ font-family:'Open Sans',sans-serif;
     text-wrap:nowrap;
 }
 
-nav a:hover {
+nav a:hover{
     color: var(--color-highlight);               /* Mango yellow on hover for energy */
 }
 
@@ -95,25 +93,112 @@ nav a:hover {
 }
 
 #header_child_3_menu_btn{
+    background-color: transparent;
+    border:none;
     display:block;
     margin:0 auto;
+    width:25px;
+    height:25px;
 }
 
-#header_child_3_menu_btn{
-    width:20px;
+#header_child_3_menu_btn svg{
+    width:100%;
+    height:100%;
 }
 
 .main_page_content{
     margin:auto;                                
-    height:1500px;                               /*Placeholder line*/
+    height:2500px;                               /*Placeholder line*/
 }
 
+.footer{
+    background-color: var(--color-text);         /* Dark anchor */
+}
+
+.footer_content{
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    justify-content:space-evenly;
+    color: var(--color-background);              /* Light text */
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.footer_child_item_list{
+    display:flex;
+    flex-direction:column;
+    list-style-type: none;
+}
+
+.footer_child{
+    display:block;
+}
+
+.footer_child_heading{
+    text-wrap:nowrap;
+}
+
+.footer_link{
+    color: var(--color-accent);                  /* Tropical accent for links */
+    text-decoration: none;
+}
+
+.footer a:hover{
+    color: var(--color-highlight);               /* Playful hover */
+}
+
+.footer_child_1{
+    display:flex;
+    align-items:center;
+}
+
+.credits{
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);                /* Muted for subtlety */
+}
+
+.social_media_svg{
+    width: 40px;
+    height: 40px;
+}
+
+.social_media_link{
+    color:var(--color-secondary);
+    transition: fill 0.3s ease;
+}
+
+.social_media_link:hover{
+    color: var(--color-primary);                 /* hover color */
+}
+
+#backToTop{
+    background-image:url("icons/up.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    display:none;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background-color:rgba(0,0,0,.05);
+    border:none;
+    padding:11px 3.176px;
+    border-radius:50%;
+    transition: background-color 0.3s ease;
+    width:35px;
+    height:35px;
+}
+
+#backToTop:hover{
+    background-color:rgba(0,0,0,.15);
+}
 
 @media (max-width:800px){
     .header{
+        position: relative;
         flex-direction:column;
         margin:0 auto;
-        padding-bottom:15px;
+        padding-bottom:10px;
     }
     .header_line_break{
         display:inline;
@@ -122,19 +207,41 @@ nav a:hover {
     .header_child_1,.header_child_2{
         margin:0 auto;text-align:center;
     }
-}
-
-
-/* @media (min-width:501px){
-    .header_child_2{
+    .header_child_2 nav ul{
+        flex-direction:row;
+    }
+    #header_child_2{
+        display:none;
+    }
+    #header_child_2.open{
+        display:flex;
+    }
+    .header_child_3{
         display:block;
     }
-} */
+    .footer_content{
+        flex-direction:column;
+        justify-content:space-between;
+        gap:10px;
+    }
+    .footer_child{
+        word-wrap: break-word;
+    }
+    .footer_child_1{
+        order:3;
+        display:block;
+    }
+    .footer_child_2{
+        order:1;
+    }
+    .footer_child_3{
+        order:2;
+    }
+}
 
 @media (max-width:500px){
     .header{
         padding-bottom:10px;
-        position: relative;
     }
     .header_line_break{
         margin-bottom:5px;
@@ -145,7 +252,6 @@ nav a:hover {
     #header_child_2{
         display:none;
     }
-
     #header_child_2.open{
         display:flex;
     }
@@ -154,9 +260,6 @@ nav a:hover {
     }
     .current_tab a{
         margin:0;
-        display:block;
-    }
-    .header_child_3{
         display:block;
     }
 }
