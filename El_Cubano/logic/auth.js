@@ -78,8 +78,9 @@ class Employee {
     }
 
     fireEmployee() {
-        employees = employees.filter(emp => emp.id !== this.id);
-        saveEmployees();
+        if (this.type!="admin")   
+            employees = employees.filter(emp => emp.id !== this.id);
+            saveEmployees();
     }
 }
 
@@ -103,15 +104,16 @@ function loadEmployees() {
 // -------------------- INITIALIZATION --------------------
 let customers = loadCustomers();
 if (customers.length === 0) {
-    customers = [new Customer("Aizaer", "aizaer@gmail.com", "1234")];
+    customers = [new Customer("Owen", "Owen12@gmail.com", "Owen<3Juan")];
     saveCustomers();
 }
 
 let employees = loadEmployees();
 if (employees.length === 0) {
     employees = [
-        new Employee("Kaden", "Grisafi", "1234", "manager"),
-        new Employee("Israel", "Acosta", "1234", "employee")
+        new Employee("Kaden", "Grisafi", "1234", "admin"),
+        new Employee("Israel", "Acosta", "1234", "manager"),
+        new Employee("Aizer", "Portalatin", "1234", "employee")
     ];
     saveEmployees();
 }
@@ -164,9 +166,20 @@ function isValidPassword(password) {
     return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
 }
 
+function isUniqueUserName(name){
+    let isUnique=true
+    for (let customer of customers){
+        if (customer.username===name){
+            isUnique=false
+            break
+        }
+    }
+    return isUnique
+}
+
 // -------------------- EXPORTS --------------------
 export {
     getUsers, employees, customers, Employee, Customer, newCustomer,
     getActiveType, getSignedIn, setSignedIn, getActiveUser, setActiveUser,
-    login, logout, isValidPassword
+    login, logout, isValidPassword, isUniqueUserName
 };
