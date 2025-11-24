@@ -8,7 +8,7 @@
 </head>
 <body id="page" class="page">
     <header class="header">
-        <div class="header_child header_child_1">            
+        <div class="header_child header_child_1">
             <h1>El Cubano Restaurant</h1>
         </div>
         <hr class="header_line_break">
@@ -18,11 +18,9 @@
                     <li class="nav_item"><a href="../index.html">Home</a></li>
                     <li class="nav_item"><a href="menu.html">Menu</a></li>
                     <li id="menu_management_link" class="nav_item"><a href="management.html">Management</a></li>
-                    <li id="menu_orders_link" class="nav_item"><a href="orders.html">Orders</a></li>
-                    <li id="menu_cart_link" class="nav_item"><a href="cart.html">Order Now</a></li>                    
-                    <li id="menu_about_link" class="nav_item"><a href="about.html">About</a></li>
+                    <li id="menu_orders_link" class="nav_item current_tab"><a href="#page">Orders</a></li>
                     <li class="nav_item"><a href="account.html">Account</a></li>
-                    <li id="login_menu_link" class="nav_item current_tab"><a href="#page">Login</a></li>
+                    <li id="login_menu_link" class="nav_item"><a href="login.html">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -32,33 +30,7 @@
     </header>
 
     <div class="main_page_content">
-        <div class="maincontent_child_container">
-            <div id="login_container" class="maincontent_child login_signup login">
-                <h1 class="login_signup_child login_signup_title">Login</h1>
-                <form class="login_signup_child login_signup_form" id="login">
-                    <label for="username">Username:</label><br>
-                    <input type="text" id="username" name="username" required><br><br>
-                    <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password" required><br><br>
-                    <input class="button" type="submit" value="Login">
-                </form>
-                <button class="login_switcher">Click here to Sign Up</button>
-            </div>
 
-            <div id="signup_container" class="maincontent_child login_signup signup">
-                <h1 class="login_signup_child login_signup_title">Sign Up</h1>
-                <form class="login_signup_child login_signup_form" id="signup">
-                    <label for="name">Name:</label><br>
-                    <input type="text" id="name" name="name" required><br><br>
-                    <label for="new_username">Username:</label><br>
-                    <input type="text" id="new_username" name="new_username" required><br><br>
-                    <label for="new_password">Password:</label><br>
-                    <input type="password" id="new_password" name="new_password" required><br><br>
-                    <input class="button" type="submit" value="Sign Up">
-                </form>
-                <button class="login_switcher">Click here to Sign In</button>
-            </div>
-        </div>   
     </div>
 
     <footer class="footer">
@@ -91,12 +63,11 @@
             </div>
         </div>
     </footer>
-    
-    <button id="backToTop"></button>
 
+    <button id="backToTop"></button>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
     <script type="module" src="../logic/ui.js"></script>
     <script type="module" src="../logic/tempUserTracker.js"></script>
-    <script type="module" src="../logic/login.js"></script>
 </body>
 </html>

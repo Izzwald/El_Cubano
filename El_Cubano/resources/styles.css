@@ -105,6 +105,14 @@ nav button:hover{
                
 }
 
+#menu_orders_link{
+    display:none;
+}
+
+#menu_management_link{
+    display:none;
+}
+
 .header_child_3{
     display:none
 }

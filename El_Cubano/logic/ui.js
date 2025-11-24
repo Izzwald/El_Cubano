@@ -2,6 +2,7 @@ import * as Auth from "./auth.js";
 
 function signOut(){
     Auth.logout()
+    customerSignedIn() //removes any employee page access still applies to guest
     let isIndexPage = window.location.pathname.endsWith('index.html');
     window.location.href = isIndexPage ? '#page' : '../index.html';
     setMenutoLogin()
@@ -12,6 +13,7 @@ function setMenutoLogin(){
     let aTag = document.createElement("a");
     let isIndexPage = window.location.pathname.endsWith('index.html');
     let isLoginPage = window.location.pathname.endsWith('login.html');
+    
     let aTagPath=isIndexPage ? 'pages/login.html' : isLoginPage ? '#page' : 'login.html';
     aTag.href=aTagPath
     aTag.textContent="Login"
@@ -31,6 +33,33 @@ function setMenutoLogout(){
     loginLink.appendChild(logoutBtn);
 }
 
+function customerSignedIn(){                                            //removes any employee page access
+    let cartLink=document.getElementById("menu_cart_link")
+    let aboutLink=document.getElementById("menu_about_link")
+    let ordersLink=document.getElementById("menu_orders_link")
+    let management_link=document.getElementById("menu_management_link")
+    if (aboutLink) aboutLink.style.display="block"
+    if (cartLink) cartLink.style.display="block"
+    if (ordersLink) ordersLink.style.display="none"
+    if (management_link) management_link.style.display="none"
+}
+
+function employeeSignedIn(){
+    let cartLink=document.getElementById("menu_cart_link")
+    let aboutLink=document.getElementById("menu_about_link")
+    let ordersLink=document.getElementById("menu_orders_link")
+    let management_link=document.getElementById("menu_management_link")
+    if (aboutLink) aboutLink.style.display="none"
+    if (cartLink) cartLink.style.display="none"
+    if (ordersLink) ordersLink.style.display="block"
+    if (management_link) management_link.style.display="none"
+}
+
+function managerSingedIn(){
+    let management_link=document.getElementById("menu_management_link")
+    if (management_link) management_link.style.display="block"
+}
+
 export{signOut,setMenutoLogin,setMenutoLogout}
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -48,10 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let total = 0;
     const menu_button_color="#000000ff"
     const isIndexPage = window.location.pathname.endsWith('index.html');
-    const animationPath = isIndexPage ? 'resources/icons/menu.json' : '../resources/icons/menu.json';        //changes menu icon path depending on current page loaded
+    let isAccountPage = window.location.pathname.endsWith('account.html');
+    let isOrderPage = window.location.pathname.endsWith('cart.html');
+    const isOrdersPage = window.location.pathname.endsWith('orders.html');
+    const animationPath = isIndexPage ? 'resources/icons/menu.json' : '../resources/icons/menu.json';         //changes menu icon path depending on current page loaded
     const width = window.innerWidth; 
     const height = window.innerHeight;                                                                        //used as a inital media width query
-    const backToTopDist = 300                                                                                //Distance needed to scroll until back to top button appears
+    const backToTopDist = 300                                                                                 //Distance needed to scroll until back to top button appears
     const backToTopBtn = document.getElementById("backToTop");
 
     const animation = lottie.loadAnimation({
@@ -218,8 +250,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isSignedIn){
         setMenutoLogout()
+        if (Auth.getActiveType()!='customer'){
+            employeeSignedIn()
+            if (Auth.getActiveType()!='employee'){
+                managerSingedIn()
+            }
+        }
+        else{
+            customerSignedIn()
+        }
     }
     else {
         setMenutoLogin()
+        if (isAccountPage||isOrderPage){
+            window.location.href='login.html'
+        }
     }
 });
