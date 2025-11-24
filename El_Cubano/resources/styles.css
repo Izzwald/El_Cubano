@@ -2,13 +2,14 @@
 
 
 :root{
-    --color-primary:     #F25C54;         /* Primary brand color — use for headers, buttons, and key highlights */
-    --color-secondary:   #3BB273;         /* Secondary accent — great for call-to-action buttons, badges, or icons */
-    --color-accent:      #00A8C6;         /* Tropical accent — use for links, hover states, or decorative elements */
-    --color-highlight:   #F9C80E;         /* Highlight color — perfect for promotions, special offers, or kids' sections */
-    --color-background:  #FFF5E1;         /* Main background — apply to body, sections, and cards for a warm, inviting feel */
-    --color-text:        #3E3E3E;         /* Base text color — use for paragraphs, menus, and general content */
-    --color-footer-legal:rgba(255,255,255,.7);
+    --color-primary:         #F25C54;         /* Primary brand color — use for headers, buttons, and key highlights */
+    --color-secondary:       #3BB273;         /* Secondary accent — great for call-to-action buttons, badges, or icons */
+    --color-accent:          #00A8C6;         /* Tropical accent — use for links, hover states, or decorative elements */
+    --color-highlight:       #F9C80E;         /* Highlight color — perfect for promotions, special offers, or kids' sections */
+    --color-background:      #FFF5E1;         /* Main background — apply to body, sections, and cards for a warm, inviting feel */
+    --color-text:            #3E3E3E;         /* Base text color — use for paragraphs, menus, and general content */
+    --color-footer-legal:    rgba(255,255,255,.7);
+    --color-login-background:#FAD4D1;
 }
 /* color scheme
 to use a color: var(color name)
@@ -20,7 +21,8 @@ font-family:'Open Sans',sans-serif;
 }
 
 .page{
-    background-color:var(--color-background);                    
+    background-color:var(--color-background);     
+    min-height:100vh;                 
 }
 
 .logo{
@@ -76,7 +78,22 @@ font-family:'Open Sans',sans-serif;
     text-wrap:nowrap;
 }
 
+.nav_item button{
+    color: var(--color-background);             
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease; 
+    text-wrap:nowrap;
+    background:none;
+    border:none;
+    font-size:100%;
+}
+
 nav a:hover{
+    color: var(--color-highlight);               /* Mango yellow on hover for energy */
+}
+
+nav button:hover{
     color: var(--color-highlight);               /* Mango yellow on hover for energy */
 }
 
@@ -106,10 +123,89 @@ nav a:hover{
     height:100%;
 }
 
-.main_page_content{
-    margin:auto;                                
-    height:2500px;                               /*Placeholder line*/
+.main_page_content{  
+    display: flex;
+    justify-content: center;  
+    align-items: center;
 }
+
+.maincontent_child_container{
+    display:flex;  
+    justify-content:center;
+    height:fit-content;
+    padding:20px 0;
+}
+
+.maincontent_child{
+    height:fit-content;
+    width:fit-content;
+}
+
+
+.login_signup{
+    background-color:var(--color-login-background);
+    color: var(--color-text);
+    padding:20px;
+    border-radius:8px;
+    
+}
+
+/* .login{
+    
+} */
+.signup{
+    display:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .footer{
     background-color: var(--color-text);         /* Dark anchor */

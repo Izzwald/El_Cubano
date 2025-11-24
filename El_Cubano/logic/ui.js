@@ -1,8 +1,45 @@
-document.addEventListener('DOMContentLoaded', () => {
+import * as Auth from "./auth.js";
 
+function signOut(){
+    Auth.logout()
+    let isIndexPage = window.location.pathname.endsWith('index.html');
+    window.location.href = isIndexPage ? '#page' : '../index.html';
+    setMenutoLogin()
+}
+    
+function setMenutoLogin(){
+    let loginLink = document.getElementById("login_menu_link");
+    let aTag = document.createElement("a");
+    let isIndexPage = window.location.pathname.endsWith('index.html');
+    let isLoginPage = window.location.pathname.endsWith('login.html');
+    let aTagPath=isIndexPage ? 'pages/login.html' : isLoginPage ? '#page' : 'login.html';
+    aTag.href=aTagPath
+    aTag.textContent="Login"
+    loginLink.innerHTML = "";
+    loginLink.appendChild(aTag);
+}
+
+function setMenutoLogout(){
+    let loginLink = document.getElementById("login_menu_link");
+    let logoutBtn = document.createElement("button");
+    logoutBtn.textContent = "Logout";
+    logoutBtn.onclick = function() {
+        signOut()
+        console.log("logged out");
+    };
+    loginLink.innerHTML = "";
+    loginLink.appendChild(logoutBtn);
+}
+
+export{signOut,setMenutoLogin,setMenutoLogout}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const isSignedIn=Auth.getSignedIn()
     const header_child_1 = document.getElementsByClassName("header_child_1")[0]
     const header_child_3 = document.getElementsByClassName("header_child_3")[0]
     const header = document.getElementsByClassName("header")[0]
+    const main_content = document.getElementsByClassName("main_page_content")[0]
+    const footer = document.getElementsByClassName("footer")[0]
     var currentMode=''
     const button = document.getElementById('header_child_3_menu_btn');
     const menu = document.getElementById('header_child_2');
@@ -12,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu_button_color="#000000ff"
     const isIndexPage = window.location.pathname.endsWith('index.html');
     const animationPath = isIndexPage ? 'resources/icons/menu.json' : '../resources/icons/menu.json';        //changes menu icon path depending on current page loaded
-    const width = window.innerWidth;                                                                         //used as a inital media width query
+    const width = window.innerWidth; 
+    const height = window.innerHeight;                                                                        //used as a inital media width query
     const backToTopDist = 300                                                                                //Distance needed to scroll until back to top button appears
     const backToTopBtn = document.getElementById("backToTop");
 
@@ -41,10 +79,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const initalmainheight=main_content.offsetHeight
+    function fixpageheight(){
+        let headheight=header.offsetHeight
+        let mainheight=main_content.offsetHeight
+        let footheight=footer.offsetHeight
+        let headerfooter_height=headheight+footheight
+        let currentcontent_height=headerfooter_height+mainheight
+        let prevcontent_height=headerfooter_height+initalmainheight
+        
+
+        if (height>(currentcontent_height)){
+            //console.log("main content height set")
+            main_content.style.height=(height-(headerfooter_height))+"px"
+        }
+        else if (height>(prevcontent_height)){
+            main_content.style.height=(height-(headerfooter_height))+"px"
+        }
+    }
+
     button.addEventListener('click', () => {
         isOpen = !isOpen;
 
-        if (!currentMode=='tablet'){
+        if (currentMode!='tablet'){
             header.style.paddingBottom = '10px';
         }
         if (isOpen) {
@@ -53,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if(currentMode=='tablet'){
                 header.style.paddingBottom = '15px';    
             }
-            
         } 
         else {
             animation.playSegments([midFrame, total], true);         // X → hamburger
@@ -62,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 header.style.paddingBottom = '10px';    
             }
         }
-
+        fixpageheight()
         button.setAttribute('aria-expanded', isOpen.toString());
     });
 
@@ -99,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.classList.remove('open');
     }
 
+    //changes menu appearance based on initail window width
     if (width <= 500) {
         phoneMenu()
         currentMode='phone'
@@ -115,8 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
         //console.log('Initially in desktop mode');
     }
 
+    fixpageheight()
+
     window.addEventListener('resize',()=>{
+        //changes menu appearance based on window width during resizes
         const width= window.innerWidth
+        const height=window.innerHeight
 
         if (width <= 500) {
             phoneMenu()
@@ -133,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
             currentMode='desktop'
             //console.log('Desktop mode');
         }
+
+        fixpageheight()
     });
 
     // Show button after scrolling backToTopDist
@@ -153,4 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    if (isSignedIn){
+        setMenutoLogout()
+    }
+    else {
+        setMenutoLogin()
+    }
 });
