@@ -7,11 +7,12 @@ document.querySelectorAll(".login_switcher").forEach(btn => {
   btn.addEventListener("click", () => {
     // Toggle visibility
     if (loginContainer.style.display !== "none") {
-      loginContainer.style.display = "none";
-      signupContainer.style.display = "block";
-    } else {
-      loginContainer.style.display = "block";
-      signupContainer.style.display = "none";
+        loginContainer.style.display = "none";
+        signupContainer.style.display = "block";
+    } 
+    else {
+        loginContainer.style.display = "block";
+        signupContainer.style.display = "none";
     }
   });
 });
@@ -50,6 +51,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         console.log("Signup submitted:", { name, newUsername, newPassword });
-        // TODO: Add your signup logic (e.g., API call)
     });
 });

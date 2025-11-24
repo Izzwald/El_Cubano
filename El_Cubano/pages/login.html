@@ -31,7 +31,7 @@
 
     <div class="main_page_content">
         <div class="maincontent_child_container">
-            <div class="maincontent_child login_signup login">
+            <div id="login_container" class="maincontent_child login_signup login">
                 <h1 class="login_signup_child login_signup_title">Login</h1>
                 <form class="login_signup_child login_signup_form" id="login">
                     <label for="username">Username:</label><br>
@@ -40,17 +40,21 @@
                     <input type="password" id="password" name="password" required><br><br>
                     <input class="button" type="submit" value="Login">
                 </form>
+                <button class="login_switcher">Click here to Sign Up</button>
             </div>
 
-            <div class="maincontent_child login_signup signup">
+            <div id="signup_container" class="maincontent_child login_signup signup">
                 <h1 class="login_signup_child login_signup_title">Sign Up</h1>
                 <form class="login_signup_child login_signup_form" id="signup">
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name" required><br><br>
                     <label for="new_username">Username:</label><br>
                     <input type="text" id="new_username" name="new_username" required><br><br>
                     <label for="new_password">Password:</label><br>
                     <input type="password" id="new_password" name="new_password" required><br><br>
                     <input class="button" type="submit" value="Sign Up">
                 </form>
+                <button class="login_switcher">Click here to Sign In</button>
             </div>
         </div>   
     </div>
@@ -90,5 +94,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
     <script src="../logic/ui.js"></script>
+    <script type="module" src="../logic/login.js"></script>
+    <script type="module" src="../logic/tempUserTracker.js"></script>
 </body>
 </html>
