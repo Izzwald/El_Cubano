@@ -103,15 +103,16 @@ function loadEmployees() {
 // -------------------- INITIALIZATION --------------------
 let customers = loadCustomers();
 if (customers.length === 0) {
-    customers = [new Customer("Aizaer", "aizaer@gmail.com", "1234")];
+    customers = [new Customer("Owen", "Owen12@gmail.com", "Owen<3Juan")];
     saveCustomers();
 }
 
 let employees = loadEmployees();
 if (employees.length === 0) {
     employees = [
-        new Employee("Kaden", "Grisafi", "1234", "manager"),
-        new Employee("Israel", "Acosta", "1234", "employee")
+        new Employee("Kaden", "Grisafi", "1234", "admin"),
+        new Employee("Israel", "Acosta", "1234", "manager"),
+        new Employee("Aizer", "Portalatin", "1234", "employee")
     ];
     saveEmployees();
 }
