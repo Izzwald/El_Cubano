@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
-        console.log("Login submitted:", { username, password });
+        //console.log("Login submitted:", { username, password });
         let status=Auth.login(username,password)
         if (!status) alert("Wrong username or password entered")
         else{
@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     signupForm.addEventListener("submit", (event) => {
         event.preventDefault(); // Prevent page reload
         let name = document.getElementById("name").value;
+        let username = document.getElementById("new_username")
         let newUsername = document.getElementById("new_username").value;
         let password = document.getElementById("new_password")
         let newPassword = password.value;
@@ -47,6 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!Auth.isValidPassword(newPassword)){
             password.value=""
             alert("Password too weak, please create a stronger password")
+        }
+        else if(!Auth.isUniqueUserName(newUsername)){
+            username.value=""
+            alert("Username already exists")
         }
         else{
             let newcustomer=Auth.newCustomer(name,newUsername,newPassword)
@@ -56,6 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "../index.html";
         }
 
-        console.log("Signup submitted:", { name, newUsername, newPassword });
+        //console.log("Signup submitted:", { name, newUsername, newPassword });
     });
 });

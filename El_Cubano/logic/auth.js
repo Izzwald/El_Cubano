@@ -164,9 +164,20 @@ function isValidPassword(password) {
     return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
 }
 
+function isUniqueUserName(name){
+    let isUnique=true
+    for (let customer of customers){
+        if (customer.username===name){
+            isUnique=false
+            break
+        }
+    }
+    return isUnique
+}
+
 // -------------------- EXPORTS --------------------
 export {
     getUsers, employees, customers, Employee, Customer, newCustomer,
     getActiveType, getSignedIn, setSignedIn, getActiveUser, setActiveUser,
-    login, logout, isValidPassword
+    login, logout, isValidPassword, isUniqueUserName
 };
