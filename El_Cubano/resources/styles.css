@@ -78,7 +78,22 @@ font-family:'Open Sans',sans-serif;
     text-wrap:nowrap;
 }
 
+.nav_item button{
+    color: var(--color-background);             
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease; 
+    text-wrap:nowrap;
+    background:none;
+    border:none;
+    font-size:100%;
+}
+
 nav a:hover{
+    color: var(--color-highlight);               /* Mango yellow on hover for energy */
+}
+
+nav button:hover{
     color: var(--color-highlight);               /* Mango yellow on hover for energy */
 }
 

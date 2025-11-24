@@ -1,8 +1,9 @@
 import * as Auth from "./auth.js";
+import * as Ui from "./ui.js";
 const loginContainer = document.getElementById("login_container");
 const signupContainer = document.getElementById("signup_container");
 
-// Attach one listener to all switcher buttons
+// switch from login to signup 
 document.querySelectorAll(".login_switcher").forEach(btn => {
   btn.addEventListener("click", () => {
     // Toggle visibility
@@ -28,6 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Login submitted:", { username, password });
         let status=Auth.login(username,password)
         if (!status) alert("Wrong username or password entered")
+        else{
+            Ui.setMenutoLogout()
+            window.location.href = "../index.html";
+        } 
     });
 
     // Signup form submission
@@ -48,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Auth.setActiveUser(newcustomer)
             Auth.setSignedIn(true)
             alert("Account succesfully created!")
+            window.location.href = "../index.html";
         }
 
         console.log("Signup submitted:", { name, newUsername, newPassword });

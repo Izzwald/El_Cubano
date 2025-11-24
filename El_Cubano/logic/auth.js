@@ -1,5 +1,3 @@
-
-
 let signedIn = false;
 let activeUser = "guest";
 let currentEmployeeNum = 100;

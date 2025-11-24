@@ -1,7 +1,40 @@
+import * as Auth from "./auth.js";
+
+function signOut(){
+    Auth.logout()
+    let isIndexPage = window.location.pathname.endsWith('index.html');
+    window.location.href = isIndexPage ? '#page' : '../index.html';
+    setMenutoLogin()
+}
+    
+function setMenutoLogin(){
+    let loginLink = document.getElementById("login_menu_link");
+    let aTag = document.createElement("a");
+    let isIndexPage = window.location.pathname.endsWith('index.html');
+    let isLoginPage = window.location.pathname.endsWith('login.html');
+    let aTagPath=isIndexPage ? 'pages/login.html' : isLoginPage ? '#page' : 'login.html';
+    aTag.href=aTagPath
+    aTag.textContent="Login"
+    loginLink.innerHTML = "";
+    loginLink.appendChild(aTag);
+}
+
+function setMenutoLogout(){
+    let loginLink = document.getElementById("login_menu_link");
+    let logoutBtn = document.createElement("button");
+    logoutBtn.textContent = "Logout";
+    logoutBtn.onclick = function() {
+        signOut()
+        console.log("logged out");
+    };
+    loginLink.innerHTML = "";
+    loginLink.appendChild(logoutBtn);
+}
+
+export{signOut,setMenutoLogin,setMenutoLogout}
 
 document.addEventListener('DOMContentLoaded', () => {
-
-
+    const isSignedIn=Auth.getSignedIn()
     const header_child_1 = document.getElementsByClassName("header_child_1")[0]
     const header_child_3 = document.getElementsByClassName("header_child_3")[0]
     const header = document.getElementsByClassName("header")[0]
@@ -68,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
         isOpen = !isOpen;
 
-        if (!currentMode=='tablet'){
+        if (currentMode!='tablet'){
             header.style.paddingBottom = '10px';
         }
         if (isOpen) {
@@ -183,4 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    if (isSignedIn){
+        setMenutoLogout()
+    }
+    else {
+        setMenutoLogin()
+    }
 });
