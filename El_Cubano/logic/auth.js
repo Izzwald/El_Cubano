@@ -78,8 +78,9 @@ class Employee {
     }
 
     fireEmployee() {
-        employees = employees.filter(emp => emp.id !== this.id);
-        saveEmployees();
+        if (this.type!="admin")   
+            employees = employees.filter(emp => emp.id !== this.id);
+            saveEmployees();
     }
 }
 
