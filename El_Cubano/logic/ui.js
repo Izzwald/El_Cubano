@@ -1,4 +1,5 @@
 import * as Auth from "./auth.js";
+import * as Message from "./message.js";
 
 function signOut(){
     Auth.logout()
@@ -7,7 +8,7 @@ function signOut(){
     window.location.href = isIndexPage ? '#page' : '../index.html';
     setMenutoLogin()
 }
-    
+
 function setMenutoLogin(){
     let loginLink = document.getElementById("login_menu_link");
     let aTag = document.createElement("a");
@@ -63,6 +64,7 @@ function managerSingedIn(){
 export{signOut,setMenutoLogin,setMenutoLogout}
 
 document.addEventListener('DOMContentLoaded', () => {
+    const stored_message = localStorage.getItem("bannerMessage");
     const isSignedIn=Auth.getSignedIn()
     const header_child_1 = document.getElementsByClassName("header_child_1")[0]
     const header_child_3 = document.getElementsByClassName("header_child_3")[0]
@@ -263,7 +265,23 @@ document.addEventListener('DOMContentLoaded', () => {
     else {
         setMenutoLogin()
         if (isAccountPage||isOrderPage){
+            const bannerData = {message: `Please sign in to continue`,type:'warning',duration: 5000,position:'top'};
+            localStorage.setItem("bannerMessage", JSON.stringify(bannerData));
             window.location.href='login.html'
         }
+    }
+    
+    if (stored_message) {
+        const data = JSON.parse(stored_message); // convert back to object
+
+        // Show the banner using your Message.showBanner function
+        Message.showBanner(data.message, {
+        type: data.type,
+        duration: data.duration,
+        position: data.position
+        });
+
+        // Clear it so it doesn’t show again on refresh
+        localStorage.removeItem("bannerMessage");
     }
 });
