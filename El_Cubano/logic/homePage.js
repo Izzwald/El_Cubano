@@ -71,6 +71,9 @@ function prevImage() {
     currentIndex = (currentIndex - 1 + topSellers.length) % topSellers.length;
     updateGallery();
 }
+window.nextImage = nextImage;
+window.prevImage = prevImage;
+
 
 document.addEventListener("DOMContentLoaded", updateGallery);
 
