@@ -16,13 +16,15 @@
         <hr class="header_line_break">
         <div class="header_child header_child_2" id="header_child_2">
             <nav>
-                <ul>
+                <ul id="menu_link_ul">
                     <li class="nav_item current_tab"><a href="#page">Home</a></li>
                     <li class="nav_item"><a href="pages/menu.html">Menu</a></li>
-                    <li class="nav_item"><a href="pages/cart.html">Order Now</a></li>
-                    <li class="nav_item"><a href="pages/login.html">Login</a></li>
-                    <li class="nav_item"><a href="pages/about.html">About</a></li>
-                    <li class="nav_item"><a href="pages/contact.html">Contact</a></li>
+                    <li id="menu_management_link" class="nav_item"><a href="pages/management.html">Management</a></li>
+                    <li id="menu_orders_link" class="nav_item"><a href="pages/orders.html">Orders</a></li>
+                    <li id="menu_cart_link" class="nav_item"><a href="pages/cart.html">Order Now</a></li>
+                    <li id="menu_about_link" class="nav_item"><a href="pages/about.html">About</a></li>
+                    <li class="nav_item"><a href="pages/account.html">Account</a></li>
+                    <li id="login_menu_link" class="nav_item"><a href="pages/login.html">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,13 +33,18 @@
         </div>
     </header>
 
+
+    <div class="main_page_content" style="display: none;"></div><!--Set to hidden for test-->
     
     <div class="main_page_content_index">
         <div id="main_container1">
             <div id="landing_display">
 
                 <img id="logo" src="resources/images/el_cubano_restaurant_logo.png">
-                <button id="btn_order">Order Now!</button>
+                
+                <!-- <h2 id="authOutput"></h2> Should call for the user's name-->
+
+                <button id="btn_order"><a href="pages/cart.html">Order Now!</a></button>
                 <h1>Daily Special includes:</h1>
                 
                 <div class="special-container">
@@ -53,71 +60,41 @@
 
         <div id="main_container2">
             
-            <h2>Top Sellers:</h2>
+           <h1>Top Sellers</h1>
 
-            <div id="top_sellers_container">
-                
-            
-                <div class="top_seller1 top_sellers card">
-                    <div class="card-inner">
-                        <div class="card-front"><img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
-                        <h3>Beef and Cheese Empanada</h3>
-                    </div>
-                        <div class="card-back"><h3>Beef and Cheese Empanada</h3>
-                        <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                        ut labore et dolore magna aliqua. 
-                    </p>
-                    <h4>Price: $3.50</h4></div>
-                    </div>
-                </div>
-                
-                <div class="top_seller2 top_sellers card">
-                    <div class="card-inner">
-                        <div class="card-front"><img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
-                        <h3>Beef and Cheese Empanada</h3>
-                    </div>
-                        <div class="card-back"><h3>Beef and Cheese Empanada</h3>
-                        <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                        ut labore et dolore magna aliqua. 
-                    </p>
-                    <h4>Price: $3.50</h4></div>
-                    </div>
+
+            <div class="gallery-wrapper">
+
+                <!-- MOBILE GALLERY -->
+                <div class="gallery-container mobile-gallery">
+                    <button class="arrow left" onclick="prevImage()">&#10094;</button>
+                    <img id="gallery-top-sellers" src="" alt="Gallery Image">
+                    <button class="arrow right" onclick="nextImage()">&#10095;</button>
                 </div>
 
-                <div class="top_seller3 top_sellers card">
-                    <div class="card-inner">
-                        <div class="card-front"><img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
-                        <h3>Beef and Cheese Empanada</h3>
-                    </div>
-                        <div class="card-back"><h3>Beef and Cheese Empanada</h3>
-                        <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                        ut labore et dolore magna aliqua. 
-                    </p>
-                    <h4>Price: $3.50</h4></div>
-                    </div>
+                <!-- DESKTOP GALLERY -->
+                <div class="desktop-gallery">
+                    <button class="arrow left" onclick="prevImage()">&#10094;</button>
+                    <img id="gallery-desktop-image" src="" alt="Large Gallery Image">
+                    <button class="arrow right" onclick="nextImage()">&#10095;</button>
                 </div>
 
-                <div class="top_seller4 top_sellers card">
-                    <div class="card-inner">
-                        <div class="card-front"><img src="resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg">
-                        <h3>Beef and Cheese Empanada</h3>
-                    </div>
-                        <div class="card-back"><h3>Beef and Cheese Empanada</h3>
-                        <p>Item Discription: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                        ut labore et dolore magna aliqua. 
-                    </p>
-                    <h4>Price: $3.50</h4></div>
-                    </div>
+                <div class="gallery-description">
+                    <h3 id="gallery-title"></h3>
+                    <p id="gallery-text"></p>
+                    <h4 id="gallery-price"></h4>
                 </div>
 
-                <div class="top_sellers" id="btn_view_menu"> 
-                    <div><a href="/El_Cubano/pages/menu.html"><span>View Entire Menu <i class="arrow right"></i></span></a></div>
+        </div>
+
+            <div class="top_sellers" id="btn_view_menu"> 
+                    <div><a href="pages/menu.html">View Entire Menu <i class="menu_arrow_right"></i></a></div>
                 </div>
-                
-            </div>
+
         </div>
     </div>
- 
+
+
     
 
 
@@ -156,47 +133,10 @@
     <button id="backToTop"></button>
     
 
-    <script id="daily_special_script">
-        // Store specials in an array of objects
-        const specials = [
-            { day: 'Monday', name: 'Cicken/Beef Combo', description: '$2 off any combos with either chicken or beef.' },
-            { day: 'Tuesday', name: 'Smoothie Tuesday', description: '$4 Smoothie Tuesdays' },
-            { day: 'Wednesday', name: 'Half-Price Desserts', description: 'Get all desserts half price, all day long.' },
-            { day: 'Thursday', name: 'Half-Price Empanadas', description: 'Get all empanadas half price, all day long.' },
-            { day: 'Friday', name: 'Fish and Chips Special', description: 'Crispy beer-battered fish with fries and fried pickles.' },
-            { day: 'Saturday', name: 'Chef\'s Special', description: 'Seasoned Pork Chops with your choice of two sides.' },
-            { day: 'Sunday', name: 'Soup Sunday', description: 'Enjoy Soup on a stay-at-home Sunday.' }
-        ];
-
-        const today = new Date();
-        const currentDay = today.toLocaleDateString('en-US', { weekday: 'long' });
-
-        function displaySpecial() {
-            // Find the special for the current day
-            const special = specials.find(s => s.day === currentDay);
-            
-            // Get the HTML element where we want to display the information
-            const specialDisplay = document.getElementById('special-display'); // Assumes an element with this ID
-
-            if (special) {
-                // If a special is found, update the HTML
-                specialDisplay.innerHTML = `
-                    <h2>Today's Special:</h2>
-                    <br>
-                    <h3>${special.name}!</h3>
-                    <br>
-                    <p>${special.description}</p>
-                `;
-            } else {
-                // If no special is found (e.g., a typo in the data), display a fallback message
-                specialDisplay.innerHTML = '<p>No special available today.</p>';
-            }
-        }
-
-        // Call the function to display the special when the page loads
-        displaySpecial();
-    </script>
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
-    <script src="logic/navigation.js"></script>
+    <script type="module" src="logic/ui.js"></script>
+    <script type="module" src="logic/tempUserTracker.js"></script>
+    <script type="module" src="logic/homePage.js"></script>
 </body>
 </html>
