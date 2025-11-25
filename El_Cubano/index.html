@@ -31,9 +31,68 @@
         </div>
     </header>
 
-    <div class="main_page_content">
 
+    <div class="main_page_content" style="display: none;"></div><!--Set to hidden for test-->
+    
+    <div class="main_page_content_index">
+        <div id="main_container1">
+            <div id="landing_display">
+
+                <img id="logo" src="resources/images/el_cubano_restaurant_logo.png">
+                
+                <!-- <h2 id="authOutput"></h2> Should call for the user's name-->
+
+                <button id="btn_order"><a href="/pages/menu.html">Order Now!</a></button>
+                <h1>Daily Special includes:</h1>
+                
+                <div class="special-container">
+            <!-- Container for daily specials -->
+                    <div id="special-display">
+            <!-- Content will be inserted here by JS -->
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <div id="main_container2">
+            
+           <h1>Top Sellers</h1>
+
+
+            <div class="gallery-wrapper">
+
+                <!-- MOBILE GALLERY -->
+                <div class="gallery-container mobile-gallery">
+                    <button class="arrow left" onclick="prevImage()">&#10094;</button>
+                    <img id="gallery-top-sellers" src="" alt="Gallery Image">
+                    <button class="arrow right" onclick="nextImage()">&#10095;</button>
+                </div>
+
+                <!-- DESKTOP GALLERY -->
+                <div class="desktop-gallery">
+                    <button class="arrow left" onclick="prevImage()">&#10094;</button>
+                    <img id="gallery-desktop-image" src="" alt="Large Gallery Image">
+                    <button class="arrow right" onclick="nextImage()">&#10095;</button>
+                </div>
+
+                <div class="gallery-description">
+                    <h3 id="gallery-title"></h3>
+                    <p id="gallery-text"></p>
+                    <h4 id="gallery-price"></h4>
+                </div>
+
+        </div>
+
+            <div class="top_sellers" id="btn_view_menu"> 
+                    <div><a href="/pages/menu.html">View Entire Menu <i class="menu_arrow_right"></i></a></div>
+                </div>
+
+        </div>
     </div>
+
+
     
     <footer class="footer">
         <div class="footer_content">
@@ -71,5 +130,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
     <script type="module" src="logic/ui.js"></script>
     <script type="module" src="logic/tempUserTracker.js"></script>
+    <script type="module" src="/logic/homePage.js"></script>
 </body>
 </html>
