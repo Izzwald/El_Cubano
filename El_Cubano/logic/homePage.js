@@ -37,7 +37,7 @@ const topSellers = [
     {
         img: "resources/images/menu_items/entrees/cuban_pizza.jpg",
         title: "Cuban Pizza",
-        text: "Delicious pizza with shredded beef and olives.",
+        text: "Traditional cuban pizza with shredded beef and olives baked under a blend of mozzarella and gouda cheese.",
         price: "$9.50"
     }
 ];
