@@ -20,11 +20,14 @@ padding:0;
 font-family:'Open Sans',sans-serif;
 }
 
-.page{
+/* .page{
     background-color:var(--color-background);     
     min-height:100vh;                 
-}
-
+} */
+#logo{
+    width: 200px;
+    padding-bottom: 20px;
+        }
 .logo{
     width: 100px;
     height:100px;
@@ -131,11 +134,144 @@ nav button:hover{
     height:100%;
 }
 
+/*had to change this class on index.html to be class="main_page_content_index" because it was breaking my div*/
 .main_page_content{  
     display: flex;
     justify-content: center;  
     align-items: center;
 }
+
+#main_container1{
+    padding-top: 120px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), 
+                        url("images/location_1_crop.JPEG");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;                   
+}
+#landing_display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    width: 350px;
+    min-height: 400px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: #FFF5E1;
+}
+.special-container{
+    padding: 20px;
+    }
+#btn_order{
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #3BB273;
+    margin-bottom: 15px;
+    }
+#btn_order:hover{
+    color:#F9C80E;
+}
+#main_container2{
+    width: 100%;
+    height:100%;
+    background-color: #FFF5E1;
+    margin: 0 auto;
+    padding: 25px 0;
+    text-align: center;
+}
+#top_sellers_container{
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+    }
+.top_sellers{
+    width: 10%;
+    min-height: 200px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 0 20px;
+    padding: 5px;
+    border-radius: 25px;
+    background-color: #FAD4D1;
+}
+.top_sellers img{
+    width:100%;
+    border-radius: 25px;
+}
+
+    .card {
+    width: 200px;
+    height: 250px;
+    perspective: 1000px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    gap: 20px; /* Adds 20px space between all flex items (both row and column) */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+
+        
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    backface-visibility: hidden;  
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+}
+
+.card-back {
+    padding:15px;
+    transform: rotateY(180deg);
+}
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+#btn_view_menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    
+}
+#btn_view_menu a:link{
+    text-decoration: none;
+    color: black;
+}
+#btn_view_menu a:hover{
+    color: black;
+}
+#btn_view_menu a:visited{
+    text-decoration: none;
+    color: black;
+}
+   
 
 .maincontent_child_container{
     display:flex;  
