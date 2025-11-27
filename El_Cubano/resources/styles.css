@@ -45,6 +45,7 @@ font-family:'Open Sans',sans-serif;
     width:auto;
     background-color:var(--color-primary);
     padding:10px 20px;
+    z-index: 1000;
 }
 
 .header_child_1 h1{
@@ -385,17 +386,16 @@ nav button:hover{
 }
 
 .menu_collapse{
-    background-image:url("icons/up.png");
+    background-image:url("icons/dropdown.png");
     background-repeat:no-repeat;
     background-position:center;
+    background-size:25px;
     background-color:rgba(0,0,0,.05);
     border:none;
-    padding:11px 3.176px;
     border-radius:50%;
     transition: background-color 0.3s ease, transform 0.3s ease;
     width:35px;
     height:35px;
-    transform:rotate(90deg);
     margin-right:0px;
     margin-left:20px;                        /*sets the min distance between the longest span element and the buttons; all buttons will be horizontally aligned. */
 }
@@ -405,7 +405,8 @@ nav button:hover{
 }
 
 .menu_collapse.active{
-    transform: rotate(180deg);
+    transform: rotate(90deg);
+    background-color:rgba(0,0,0,.15);
 }
 
 .menu_section_content{
