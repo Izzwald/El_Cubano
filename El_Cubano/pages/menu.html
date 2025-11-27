@@ -31,10 +31,136 @@
         </div>
     </header>
 
-    <div class="main_page_content">
+    <div class="main_page_content"><!--Set to hidden to maintain menu button functionality-->
 
+    <div class="menu_container">
+        <!-- <h2>Menu</h2> -->
+        <ul id="menu" class="menupage_menu">
+            <li class="menu_section">
+                <div class="menu_section_header">
+                    <span class="menu_section_title"><strong>Entrees</strong></span>
+                    <button id="entree_menu_section_button" class="menu_collapse"></button>
+                </div>
+                <ul id="entree_menu_section" class="menu_section_content">
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li class="menu_section_divider"><hr></li>
+                </ul>
+                
+            </li>
+            <li class="menu_section">
+                <div class="menu_section_header">
+                    <span class="menu_section_title"><strong>Sides</strong></span>
+                    <button id="side_menu_section_button" class="menu_collapse"></button>
+                </div>    
+                <ul id="side_menu_section" class="menu_section_content">
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li class="menu_section_divider"><hr></li>
+                </ul>
+            </li>
+            <li class="menu_section">
+                <div class="menu_section_header">
+                    <span class="menu_section_title"><strong>Desserts</strong></span>
+                    <button id="dessert_menu_section_button" class="menu_collapse"></button>
+                </div>    
+                <ul id="dessert_menu_section" class="menu_section_content">
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li class="menu_section_divider"><hr></li>
+                </ul>
+            </li>
+            <li class="menu_section">
+                <div class="menu_section_header">    
+                    <span class="menu_section_title"><strong>Drinks</strong></span>
+                    <button id="drink_menu_section_button" class="menu_collapse"></button>
+                </div>    
+                <ul id="drink_menu_section" class="menu_section_content">
+                    <li class="menu_subsection">
+                        <div class="menu_section_header">
+                            <span class="menu_section_title">Alcohol Free</span>
+                            <button id="alcohol_free_menu_section_button" class="menu_collapse"></button>
+                        </div>        
+                        <ul id="alcohol_free_menu_section" class="menu_section_content">
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li class="menu_section_divider"><hr></li>
+                        </ul>
+                    </li>
+                    <li class="menu_subsection">
+                        <div class="menu_section_header">
+                            <span class="menu_section_title">Alcohol</span>
+                            <button id="alcohol_menu_section_button" class="menu_collapse"></button>
+                        </div>    
+                        <ul id="alcohol_menu_section" class="menu_section_content">
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                            <li>Test Item</li>
+                        </ul>
+                    </li>
+                    <li class="menu_section_divider"><hr></li>
+                </ul>
+            </li>
+            <li class="menu_section">
+                <div class="menu_section_header">
+                    <span class="menu_section_title"><strong>Kids Menu</strong></span>
+                    <button id="kid_menu_section_button" class="menu_collapse"></button>
+                </div>    
+                <ul id="kid_menu_section" class="menu_section_content">
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                    <li>Test Item</li>
+                </ul>
+            </li>
+        </ul>
     </div>
-
+</div>
     <footer class="footer">
         <div class="footer_content">
             <div class="footer_child footer_child_1">
@@ -71,5 +197,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
     <script type="module" src="../logic/ui.js"></script>
     <script type="module" src="../logic/tempUserTracker.js"></script>
+    <script type="module" src="../logic/displayMenu.js"></script>
 </body>
 </html>

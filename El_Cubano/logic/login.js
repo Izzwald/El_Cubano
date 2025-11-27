@@ -1,5 +1,7 @@
 import * as Auth from "./auth.js";
 import * as Ui from "./ui.js";
+import * as Message from "./message.js";
+
 const loginContainer = document.getElementById("login_container");
 const signupContainer = document.getElementById("signup_container");
 
@@ -25,12 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault(); // Prevent page reload
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-
-        //console.log("Login submitted:", { username, password });
         let status=Auth.login(username,password)
-        if (!status) alert("Wrong username or password entered")
+        if (!status) Message.showBanner("Wrong username or password entered",{ type:'error', duration:3000, position:'top' })
         else{
             Ui.setMenutoLogout()
+            const bannerData = {message: `Welcome back ${(Auth.getActiveUser()).firstname}`,type:'success',duration: 3000,position:'top'};
+            localStorage.setItem("bannerMessage", JSON.stringify(bannerData));
             window.location.href = "../index.html";
         } 
     });
@@ -47,20 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!Auth.isValidPassword(newPassword)){
             password.value=""
-            alert("Password too weak, please create a stronger password")
+            Message.showBanner("Password must be at least 8 characters long, have 1 special character, 1 number, 1 uppercase letter, and 1 lowecase letter",{type:'error',duration:10000,position:'top'})
         }
         else if(!Auth.isUniqueUserName(newUsername)){
             username.value=""
-            alert("Username already exists")
+            Message.showBanner("Username already exists, please choose something different",{type:'warning',duration:5000,position:'top'})
         }
         else{
             let newcustomer=Auth.newCustomer(name,newUsername,newPassword)
             Auth.setActiveUser(newcustomer)
             Auth.setSignedIn(true)
-            alert("Account succesfully created!")
+            const bannerData = {message: `Account created succesfully`,type:'success',duration: 5000,position:'top'};
+            localStorage.setItem("bannerMessage", JSON.stringify(bannerData));
             window.location.href = "../index.html";
         }
-
-        //console.log("Signup submitted:", { name, newUsername, newPassword });
     });
 });
