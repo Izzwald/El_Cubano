@@ -65,6 +65,7 @@ export{signOut,setMenutoLogin,setMenutoLogout}
 
 document.addEventListener('DOMContentLoaded', () => {
     const stored_message = localStorage.getItem("bannerMessage");
+    const page_refresh = localStorage.getItem("pageRefresh");
     const isSignedIn=Auth.getSignedIn()
     const header_child_1 = document.getElementsByClassName("header_child_1")[0]
     const header_child_3 = document.getElementsByClassName("header_child_3")[0]
@@ -81,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const isIndexPage = window.location.pathname.endsWith('index.html');
     let isAccountPage = window.location.pathname.endsWith('account.html');
     let isOrderPage = window.location.pathname.endsWith('cart.html');
+    let isLoginPage = window.location.pathname.endsWith('login.html');
     const isOrdersPage = window.location.pathname.endsWith('orders.html');
     const animationPath = isIndexPage ? 'resources/icons/menu.json' : '../resources/icons/menu.json';         //changes menu icon path depending on current page loaded
     const width = window.innerWidth; 
@@ -267,10 +269,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isAccountPage||isOrderPage){
             const bannerData = {message: `Please sign in to continue`,type:'warning',duration: 5000,position:'top'};
             localStorage.setItem("bannerMessage", JSON.stringify(bannerData));
+            localStorage.setItem("pageRefresh",true)
             window.location.href='login.html'
         }
     }
-    
+
+    if (page_refresh) {
+        window.location.reload();
+        localStorage.removeItem("pageRefresh")
+    }
+
     if (stored_message) {
         const data = JSON.parse(stored_message); // convert back to object
 
@@ -281,7 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
         position: data.position
         });
 
-        // Clear it so it doesn’t show again on refresh
-        localStorage.removeItem("bannerMessage");
+        if(!page_refresh){
+            // Clear it so it doesn’t show again
+            localStorage.removeItem("bannerMessage");
+        }    
     }
 });
