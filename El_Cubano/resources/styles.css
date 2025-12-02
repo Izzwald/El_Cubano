@@ -356,14 +356,24 @@ nav button:hover{
 
 .menu_container{
     padding:20px;
+    border:solid;
+    border-width:2px;
+    border-radius:10px;
+    border-color:var(--color-primary);
+    background-color:var(--color-login-background);
+    margin:20px 0px;
+    height:fit-content;
 }
 
 .menupage_menu{
     display:flex;
     flex-direction:column;
     gap:5px;
-    width:160px;
+    /* width:160px; */
     list-style-type: none;
+    /* width:fit-content; */
+    height:max-content;
+    
 }
 
 .menu_section{
@@ -379,6 +389,10 @@ nav button:hover{
     display: flex;
     justify-content: space-between;         /* span left, button right */
     align-items: center;
+}
+
+.menu_section_header span{                  /* sets color to menu item section header title */
+    color:var(--color-accent)
 }
 
 .menu_section_title{
@@ -412,13 +426,15 @@ nav button:hover{
 .menu_section_content{
     display:none;
     max-height: 0;              /* collapsed */
-    overflow: hidden;           /* hide content */
+    overflow: visible;           
     margin-left:10px;
+    min-height:fit-content;
     /* transition: max-height 5s ease;  */
 }
 
 .menu_section_divider{
     line-height: 0;
+    list-style-type: none;
 }
 
 .menu_section_divider hr{
@@ -433,7 +449,23 @@ nav button:hover{
     max-height: 1000px;           /*expanded (pick a value larger than content height)  */
 }
 
+.Menu_Item_Header{
+    display:flex;
+    flex-direction:row;
+    text-wrap:break-word;
+    justify-content: space-between;
+    margin-bottom:5px;
+}
 
+.Menu_Item_Price{
+    margin-left:10px;
+}
+
+.menu_Item{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:10px;
+}
 
 
 /* To Here */
@@ -619,8 +651,11 @@ nav button:hover{
         border-radius: 10px;
     }
 
-
-
+    /* Adjust menu width to fit screens better */
+    /* .menupage_menu{
+        min-width: 1px;
+        width:95%;
+    } */
 
     .footer_content{
         flex-direction:column;
