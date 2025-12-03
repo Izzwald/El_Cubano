@@ -108,8 +108,8 @@ document.addEventListener("DOMContentLoaded", updateGallery);
             if (special) {
                 // If a special is found, update the HTML
                 specialDisplay.innerHTML = `
-                    <h2>Today's Special:</h2>
-                    <br>
+                    
+                    
                     <h3>${special.name}!</h3>
                     <br>
                     <p>${special.description}</p>
