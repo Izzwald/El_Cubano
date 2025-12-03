@@ -36,6 +36,7 @@ class Customer {
         if (this.validatePassword(oldPassword)) {
             this.password = newPassword;
             saveCustomers();
+            setActiveUser(this);
             return true;
         }
     }
@@ -59,6 +60,7 @@ class Employee {
         if (this.validatePassword(oldPassword)) {
             this.password = newPassword;
             saveEmployees();
+            setActiveUser(this);
             return true;
         }
     }
