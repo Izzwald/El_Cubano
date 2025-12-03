@@ -5,130 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Cubano</title>
     <link rel="stylesheet" href="../resources/styles.css">
-    <style>
-        .cart-header {
-    font-weight: bold;
-    color: #333;
-}
-.cart_container{
-    position: sticky;
-    top: 75px;              /* stick to top */
-    align-self: flex-start;
-    margin-left: auto;   /* push it to the right inside a flex container */
-    width: 25%;
-}
-.cart_container .btn{
-    padding: 10px;
-}
-.cart-column {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid black;
-    margin-right: 1.5em;
-    padding-bottom: 10px;
-    margin-top: 10px;
-}
-
-.cart-row {
-    display: flex;
-}
-
-.cart-item {
-    width: 45%;
-}
-
-.cart-price {
-    width: 20%;
-    font-size: 1.2em;
-    color: #333;
-}
-
-.cart-quantity {
-    width: 35%;
-}
-
-.cart-item-title {
-    color: #333;
-    margin-left: .5em;
-    font-size: 1.2em;
-}
-
-.cart-item-image {
-    width: 75px;
-    height: auto;
-    border-radius: 10px;
-}
-
-.btn-purchase{
-    border-radius: 5px;
-}
-.btn-danger {
-    color: white;
-    background-color: #EB5757;
-    border: none;
-    border-radius: .3em;
-    font-weight: bold;
-}
-
-.btn-danger:hover {
-    background-color: #CC4C4C;
-}
-
-.cart-quantity-input {
-    height: 34px;
-    width: 50px;
-    border-radius: 5px;
-    border: 1px solid #56CCF2;
-    background-color: #eee;
-    color: #333;
-    padding: 0;
-    text-align: center;
-    font-size: 1.2em;
-    margin-right: 25px;
-}
-
-.cart-row:last-child {
-    border-bottom: 1px solid black;
-}
-
-.cart-row:last-child .cart-column {
-    border: none;
-}
-
-.cart-total {
-    text-align: end;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-.cart-total-title {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: black;
-    margin-right: 20px;
-}
-
-.cart-total-price {
-    color: #333;
-    font-size: 1.1em;
-}
-
-.btn-purchase {
-    display: block;
-    margin: 40px auto 80px auto;
-    font-size: 18px;
-}
-.btn-purchase:hover{
-    color: rgb(172, 182, 0);
-}
-.formContainer{
-    width: 60%;
-    margin: auto;
-    border: 1px solid black;
-    padding: 10px;
-}
-    </style>
 </head>
+
 <body id="page" class="page">
     <header class="header">
         <div class="header_child header_child_1">
@@ -152,152 +30,156 @@
         </div>
     </header>
 
-    <div class="main_page_content"><!--Set to hidden to maintain menu button functionality-->
-    <div class="menu_container">
-        <!-- <h2>Menu</h2> -->
-        <ul id="menu" class="menupage_menu">
-            <li class="menu_section">
-                <div class="menu_section_header">
-                    <span class="menu_section_title"><strong>Entrees</strong></span>
-                    <button id="entree_menu_section_button" class="menu_collapse"></button>
-                </div>
-                <ul id="entree_menu_section" class="menu_section_content">
-                    <li class="menu_section_divider"><hr></li>
-                </ul>
-                
-            </li>
-            <li class="menu_section">
-                <div class="menu_section_header">
-                    <span class="menu_section_title"><strong>Sides</strong></span>
-                    <button id="side_menu_section_button" class="menu_collapse"></button>
-                </div>    
-                <ul id="side_menu_section" class="menu_section_content">
-                    <li class="menu_section_divider"><hr></li>
-                </ul>
-            </li>
-            <li class="menu_section">
-                <div class="menu_section_header">
-                    <span class="menu_section_title"><strong>Desserts</strong></span>
-                    <button id="dessert_menu_section_button" class="menu_collapse"></button>
-                </div>    
-                <ul id="dessert_menu_section" class="menu_section_content">
-                    <li class="menu_section_divider"><hr></li>
-                </ul>
-            </li>
-            <li class="menu_section">
-                <div class="menu_section_header">    
-                    <span class="menu_section_title"><strong>Drinks</strong></span>
-                    <button id="drink_menu_section_button" class="menu_collapse"></button>
-                </div>    
-                <ul id="drink_menu_section" class="menu_section_content">
-                    <li class="menu_subsection">
-                        <div class="menu_section_header">
-                            <span class="menu_section_title">Alcohol Free</span>
-                            <button id="alcohol_free_menu_section_button" class="menu_collapse"></button>
-                        </div>        
-                        <ul id="alcohol_free_menu_section" class="menu_section_content">
-                            <li class="menu_section_divider"><hr></li>
-                        </ul>
-                    </li>
-                    <li class="menu_subsection">
-                        <div class="menu_section_header">
-                            <span class="menu_section_title">Alcohol</span>
-                            <button id="alcohol_menu_section_button" class="menu_collapse"></button>
-                        </div>    
-                        <ul id="alcohol_menu_section" class="menu_section_content">
-                        </ul>
-                    </li>
-                    <li class="menu_section_divider"><hr></li>
-                </ul>
-            </li>
-            <li class="menu_section">
-                <div class="menu_section_header">
-                    <span class="menu_section_title"><strong>Kids Menu</strong></span>
-                    <button id="kid_menu_section_button" class="menu_collapse"></button>
-                </div>    
-                <ul id="kid_menu_section" class="menu_section_content">
-                </ul>
-            </li>
-        </ul>
-    </div>
+    <div class="main_page_content" style="display: none;"></div><!--Set to hidden to maintain menu button functionality-->
 
-
-    <div class="cart_container">
-            <h2 class="section-header">CART</h2>
-            <div class="cart-row">
-                <span class="cart-item cart-header cart-column">ITEM</span>
-                <span class="cart-price cart-header cart-column">PRICE</span>
-                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-            </div>
-            <div class="cart-items">
-                <div class="cart-row">
-                    <div class="cart-item cart-column">
-                        <span class="cart-item-title">Empty</span>
+    <div class="cart_page">
+        <div class="menu_container">
+            <!-- <h2>Menu</h2> -->
+            <ul id="menu" class="menupage_menu">
+                <li class="menu_section">
+                    <div class="menu_section_header">
+                        <span class="menu_section_title"><strong>Entrees</strong></span>
+                        <button id="entree_menu_section_button" class="menu_collapse"></button>
                     </div>
-                    <span class="cart-price cart-column">-</span>                   
-                </div>
-            </div>
-            <div class="cart-total">
-                <strong class="cart-total-title">Total:</strong>
-                <span class="cart-total-price">-</span>
-            </div>
-            <button class="btn btn-primary btn-purchase" type="button">Place Order</button>
-            
-            
-            <!-- Form for payment method -->
-            
-            <div class="formContainer">
-                <form action="" method="POST" enctype="text/plain" class="paymentForm">
-                    <div class="formRow formRow0">
-                        <div class="labels">
-                            <label>Order for delivery?</label>
-                        </div>
-
-                        <div class="inputs">
-                            <input type="checkbox"></input>
-                        </div>
-                    </div>
-                    <div class="formRow">
-                        <div class="labels">
-                            <label>Name</label>
-                        </div>
-
-                        <div class="inputs">
-                            <input type="text"></input>
-                        </div>
-                    </div>
-
-                    <div class="formRow formRow0">
-                        <div class="labels">
-                            <label>Email</label>
-                        </div>
-
-                        <div class="inputs">
-                            <input type="email"></input>
-                        </div>
-                    </div>
-
-                    <div class="formRow">
-                        <div class="labels">
-                            <label>What is your prefered payment method?</label>
-                        </div>
-
-                        <div class="inputs">
-                            <select type="dropdown">
-                                <option value="Cash">Cash (in-person) </option>
-                                <option value="Credit Card">Credit Card</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="formRow">
-                        <input type="submit" class="btn" value="Confirm order">    
-                    </div>
-                </form>
-            </div>
+                    <ul id="entree_menu_section" class="menu_section_content">
+                        <li class="menu_section_divider"><hr></li>
+                    </ul>
+                    
+                </li>
+                <li class="menu_section">
+                    <div class="menu_section_header">
+                        <span class="menu_section_title"><strong>Sides</strong></span>
+                        <button id="side_menu_section_button" class="menu_collapse"></button>
+                    </div>    
+                    <ul id="side_menu_section" class="menu_section_content">
+                        <li class="menu_section_divider"><hr></li>
+                    </ul>
+                </li>
+                <li class="menu_section">
+                    <div class="menu_section_header">
+                        <span class="menu_section_title"><strong>Desserts</strong></span>
+                        <button id="dessert_menu_section_button" class="menu_collapse"></button>
+                    </div>    
+                    <ul id="dessert_menu_section" class="menu_section_content">
+                        <li class="menu_section_divider"><hr></li>
+                    </ul>
+                </li>
+                <li class="menu_section">
+                    <div class="menu_section_header">    
+                        <span class="menu_section_title"><strong>Drinks</strong></span>
+                        <button id="drink_menu_section_button" class="menu_collapse"></button>
+                    </div>    
+                    <ul id="drink_menu_section" class="menu_section_content">
+                        <li class="menu_subsection">
+                            <div class="menu_section_header">
+                                <span class="menu_section_title">Alcohol Free</span>
+                                <button id="alcohol_free_menu_section_button" class="menu_collapse"></button>
+                            </div>        
+                            <ul id="alcohol_free_menu_section" class="menu_section_content">
+                                <li class="menu_section_divider"><hr></li>
+                            </ul>
+                        </li>
+                        <li class="menu_subsection">
+                            <div class="menu_section_header">
+                                <span class="menu_section_title">Alcohol</span>
+                                <button id="alcohol_menu_section_button" class="menu_collapse"></button>
+                            </div>    
+                            <ul id="alcohol_menu_section" class="menu_section_content">
+                            </ul>
+                        </li>
+                        <li class="menu_section_divider"><hr></li>
+                    </ul>
+                </li>
+                <li class="menu_section">
+                    <div class="menu_section_header">
+                        <span class="menu_section_title"><strong>Kids Menu</strong></span>
+                        <button id="kid_menu_section_button" class="menu_collapse"></button>
+                    </div>    
+                    <ul id="kid_menu_section" class="menu_section_content">
+                    </ul>
+                </li>
+            </ul>
         </div>
 
-</div>
+
+        <div class="cart_container">
+            <div class="cart_contents">
+                <h2 class="section-header">CART</h2>
+                <div class="cart-row">
+                    <span class="cart-item cart-header cart-column">ITEM</span>
+                    <span class="cart-price cart-header cart-column">PRICE</span>
+                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                </div>
+                <div class="cart-items">
+                    <div class="cart-row">
+                        <div class="cart-item cart-column">
+                            <span class="cart-item-title">Empty</span>
+                        </div>
+                        <span class="cart-price cart-column">-</span>                   
+                    </div>
+                </div>
+                <div class="cart-total">
+                    <strong class="cart-total-title">Total:</strong>
+                    <span class="cart-total-price">-</span>
+                </div>
+                <button class="btn btn-primary btn-purchase" type="button">Place Order</button>
+                    
+                    
+                    <!-- Form for payment method -->
+                    
+                <div class="formContainer">
+                    <form action="" method="POST" enctype="text/plain" class="paymentForm">
+                        <div class="formRow formRow0">
+                            <div class="labels">
+                                <label>Order for delivery?</label>
+                            </div>
+
+                            <div class="inputs">
+                                <input type="checkbox"></input>
+                            </div>
+                        </div>
+                        <div class="formRow">
+                            <div class="labels">
+                                <label>Name</label>
+                            </div>
+
+                            <div class="inputs">
+                                <input type="text"></input>
+                            </div>
+                        </div>
+
+                        <div class="formRow formRow0">
+                            <div class="labels">
+                                <label>Email</label>
+                            </div>
+
+                            <div class="inputs">
+                                <input type="email"></input>
+                            </div>
+                        </div>
+
+                        <div class="formRow">
+                            <div class="labels">
+                                <label>What is your prefered payment method?</label>
+                            </div>
+
+                            <div class="inputs">
+                                <select type="dropdown">
+                                    <option value="Cash">Cash (in-person) </option>
+                                    <option value="Credit Card">Credit Card</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="formRow">
+                            <input type="submit" class="btn" value="Confirm order">    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="footer_content">
             <div class="footer_child footer_child_1">
@@ -332,6 +214,7 @@
     <button id="backToTop"></button>
     <script type="module" src="../logic/cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+    <script type="module" src="../logic/displayMenu.js"></script>
     <script type="module" src="../logic/ui.js"></script>
     <script type="module" src="../logic/tempUserTracker.js"></script>
 </body>
