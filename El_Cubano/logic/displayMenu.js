@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
     // Select all buttons with the class 'menu_collapse'
     const buttons = document.querySelectorAll('.menu_collapse');
 
@@ -116,13 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuContainer.style.width=`${cartPage.offsetWidth-54}px`
             }
         } 
-
         else if (width > 800) {
             console.log("desktop")
             if (isMenuPage){
                 menuContainer.style.width="565px"
+                menuContainer.style.margin="15px"
             }
             else if (isCartPage){
+                menuContainer.style.maxWidth="565px"
+                menuContainer.style.margin="0 auto"
                 menuContainer.style.width="50%"
             }
         }

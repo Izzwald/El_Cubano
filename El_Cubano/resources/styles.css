@@ -379,6 +379,7 @@ nav button:hover{
 .menu_subsection{
     color:var(--color-text);
     margin-top:5px;
+    list-style-type: none;
 }
 
 .menu_section_header{
@@ -480,7 +481,21 @@ nav button:hover{
     display:flex;
     flex-direction:row;
     justify-content:space-between;
-    max-width:100%;
+    width:100%;
+}
+
+.addToCart{
+    margin:10px auto 0px auto;
+    padding:5px;
+    width:fit-content;
+    border-radius:5px;
+    border:none;
+    color:var(--color-background);
+    background-color:var(--color-accent);
+}
+
+.addToCart:hover{
+    color:var(--color-highlight)
 }
 
 .cart_container{
@@ -524,18 +539,6 @@ nav button:hover{
 
 .cart-quantity {
     width: 35%;
-}
-
-.cart-item-title {
-    color: #333;
-    margin-left: .5em;
-    font-size: 1.2em;
-}
-
-.cart-item-image {
-    width: 75px;
-    height: auto;
-    border-radius: 10px;
 }
 
 .btn-purchase{
@@ -798,6 +801,10 @@ nav button:hover{
         flex-direction: column;
         gap:10px;
     }
+    .cart_container{
+        width:100%;
+    }
+
 
     .footer_content{
         flex-direction:column;
