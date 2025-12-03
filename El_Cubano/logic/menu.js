@@ -81,7 +81,7 @@ function loadMenuItems() {
 
 const defaultItems = [
     // Entrees
-    new MenuItem("Beef Empanadas", "Savory pastry filled with seasoned ground beef and cheese", "Entree", 3.50, 1),
+    new MenuItem("Beef Empanadas", "Savory pastry filled with seasoned ground beef and cheese", "Entree", 3.50, 1,"../resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg"),
     new MenuItem("Chicken Empanadas", "Savory pastry filled with shredded chicken and cheese", "Entree", 3.50, 1),
     new MenuItem("Friscase de Pollo", "Cuban style chicken fricassee in tomato-based sauce", "Entree", 8.99, 1),
     new MenuItem("Cerdo Asado", "Roast pork marinated in citrus juices, garlic, Cuban spices", "Entree", 11.99, 1),

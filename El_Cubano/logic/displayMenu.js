@@ -17,18 +17,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let menuItem of Menu.menuItems){
 
-        //console.log(menuItem.type)
         let newItem=document.createElement("li")
         newItem.classList.add("menu_Item")
         newItem.classList.add(String(menuItem.type))
-        newItem.innerHTML=`
-        <div class="Menu_Item_Header">
-            <h3>${menuItem.name}</h3>
-            <h3 class="Menu_Item_Price">$${menuItem.price.toFixed(2)}</h3>
-        </div>
-        <p>${menuItem.description}</p>
-        `;
 
+        if (menuItem.imgSrc){
+            let alt=menuItem.name+" image"
+            newItem.innerHTML=`
+            <div class="Menu_Item_Header">
+                <h3>${menuItem.name}</h3>
+                <h3 class="Menu_Item_Price">$${menuItem.price.toFixed(2)}</h3>
+            </div>
+            <p>${menuItem.description}</p>
+            <img class="Menu_Item_Image"src="${menuItem.imgSrc}" alt="${alt}"></img>`;
+        }
+        else{
+            newItem.innerHTML=`
+            <div class="Menu_Item_Header">
+                <h3>${menuItem.name}</h3>
+                <h3 class="Menu_Item_Price">$${menuItem.price.toFixed(2)}</h3>
+            </div>
+            <p>${menuItem.description}</p>`;
+        }
 
         if (menuItem.type=="Entree"){
             entreeSection.appendChild(newItem)
@@ -86,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
         else {
-           if (isMenuPage){
+            if (isMenuPage){
                 menuContainer.style.width="565px"
             }
         }
