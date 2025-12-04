@@ -32,7 +32,24 @@
     </header>
 
     <div class="main_page_content">
+        <div class="account_item change_password">
+            <form action="/change-password" method="POST">
+                <h2>Change Your Password</h2>
 
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" name="password" required>
+
+                <!-- New password field -->
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" name="new-password" required minlength="8">
+
+                <!-- Confirm password field -->
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required minlength="8">
+
+                <button type="submit">Change Password</button>
+            </form>
+        </div>
     </div>
     
     <footer class="footer">
@@ -68,6 +85,7 @@
 
     <button id="backToTop"></button>
 
+    <script type="module" src="../logic/account.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
     <script type="module" src="../logic/ui.js"></script>
     <script type="module" src="../logic/tempUserTracker.js"></script>
