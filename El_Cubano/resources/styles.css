@@ -156,18 +156,32 @@ nav button:hover{
     width:fit-content;
 }
 
-
 .login_signup{
     background-color:var(--color-login-background);
     color: var(--color-text);
     padding:20px;
     border-radius:8px;
-    
+    border: 2px solid var(--color-primary);  
 }
-
-/* .login{
-    
-} */
+.login_signup .button, .login_switcher{
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 156px;
+    background-color: var(--color-accent);
+    box-shadow: none;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+}
+#login_container button, .login_switcher{
+    background-color: var(--color-secondary);
+}
+.login_signup .button:hover, .login_switcher:hover{
+    color: var(--color-highlight);
+    cursor:pointer;
+}
 .signup{
     display:none;
 }
@@ -541,6 +555,11 @@ nav button:hover{
     width: 35%;
 }
 
+.cart-header {
+    font-weight: bold;
+    color: #333;
+}
+
 .btn-purchase{
     border-radius: 5px;
 }
@@ -595,6 +614,10 @@ nav button:hover{
     font-size: 1.1em;
 }
 
+.cart_container button{
+    padding: 7px;
+}
+
 .btn-purchase {
     display: block;
     margin: 40px auto 80px auto;
@@ -604,12 +627,11 @@ nav button:hover{
     color: rgb(172, 182, 0);
 }
 .formContainer{
-    width: 60%;
+    width: fit-content;
     margin: auto;
-    border: 1px solid black;
     padding: 10px;
+    display: none;
 }
-
 
 
 .footer{

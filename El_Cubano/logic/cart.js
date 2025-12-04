@@ -4,8 +4,8 @@ import * as Message from "./message.js";
 document.addEventListener('DOMContentLoaded', () => {
     const removeCartItemButtons = document.getElementsByClassName('btn-danger');
     const quantityInputs = document.getElementsByClassName('cart-quantity-input');
-    const addToCartButtons = document.getElementsByClassName('shop-item-button');
-    const purchaseButton = document.getElementsByClassName('btn-purchase')[0];
+    const purchaseButton = document.getElementsByClassName('getInfo')[0];
+    const confirmPurchase = document.getElementsByClassName('confirmInfo')[0];
 
     // Remove item buttons
     for (let button of removeCartItemButtons) {
@@ -17,15 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('change', quantityChanged);
     }
 
-    // Add to cart buttons
-    for (let button of addToCartButtons) {
-        button.addEventListener('click', addToCartClicked);
-    }
-
-    // Purchase button
+    // PURCHASE button
     if (purchaseButton) {
         purchaseButton.addEventListener('click', purchaseClicked);
     }
+    if (confirmPurchase) {
+        confirmPurchase.addEventListener('click', purchaseSuccess);
+    }
+
+    // Event delegation for Add to Cart buttons (works for existing and future buttons)
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('addToCart')) {
+            addToCartClicked(event);
+        }
+    });
 });
 
 // REMOVE ITEM
@@ -59,15 +64,19 @@ function quantityChanged(event) {
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1;
     }
+    if (input.value > 99) {
+        input.value = 99;
+    }
     updateCartTotal();
 }
 
 // ADD TO CART CLICKED
 function addToCartClicked(event) {
     const button = event.target;
-    const shopItem = button.closest('.shop-item');
-    const title = shopItem.querySelector('.shop-item-title').innerText;
-    const price = shopItem.querySelector('.shop-item-price').innerText;
+
+    // Use data attributes on the button for reliability
+    const title = button.dataset.item;         // e.g., "Beef Empanadas"
+    const price = `$${parseFloat(button.dataset.price).toFixed(2)}`; // e.g., "$3.50"
 
     addItemToCart(title, price);
     updateCartTotal();
@@ -77,24 +86,29 @@ function addToCartClicked(event) {
 function addItemToCart(title, price) {
     const cartItems = document.getElementsByClassName('cart-items')[0];
 
-    // Remove "Empty" placeholder if it's there
-    if (cartItems.children.length === 1 && cartItems.children[0].querySelector('.cart-item-title').innerText === 'Empty') {
+    // Remove "Empty" placeholder
+    if (
+        cartItems.children.length === 1 &&
+        cartItems.children[0].querySelector('.cart-item-title')?.innerText === 'Empty'
+    ) {
         cartItems.innerHTML = '';
     }
 
-    // Check if the item is already in the cart
+    // Check duplicates (FIXED)
     const cartItemNames = cartItems.getElementsByClassName('cart-item-title');
     for (let i = 0; i < cartItemNames.length; i++) {
         if (cartItemNames[i].innerText === title) {
-            // Increment quantity
-            const quantityInput = cartItemNames[i].closest('.cart-row').querySelector('.cart-quantity-input');
-            quantityInput.value = parseInt(quantityInput.value) + 1;
+            const quantityInput = cartItemNames[i]
+                .closest('.cart-row')
+                .querySelector('.cart-quantity-input');
+            
+            quantityInput.value = Math.min(parseInt(quantityInput.value) + 1, 99);
             updateCartTotal();
             return;
         }
     }
 
-    // Create a new cart row without image
+    // Add new cart row
     const cartRow = document.createElement('div');
     cartRow.classList.add('cart-row');
     cartRow.innerHTML = `
@@ -103,16 +117,18 @@ function addItemToCart(title, price) {
         </div>
         <span class="cart-price cart-column">${price}</span>
         <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
+            <input class="cart-quantity-input" type="number" value="1" max="99">
             <button class="btn btn-danger" type="button">REMOVE</button>
         </div>
     `;
+
     cartItems.append(cartRow);
 
-    // Add event listeners for the new row
+    // Events
     cartRow.querySelector('.btn-danger').addEventListener('click', removeCartItem);
     cartRow.querySelector('.cart-quantity-input').addEventListener('change', quantityChanged);
 }
+
 
 // UPDATE CART TOTAL
 function updateCartTotal() {
@@ -137,14 +153,38 @@ function updateCartTotal() {
 
 // PURCHASE CLICKED
 function purchaseClicked() {
-    
+    const form = document.querySelector('.formContainer');
+    if (form) {
+        form.style.display = 'block'; // Show the form
+    }
 }
 
-
-function purchaseSuccess(){
-    Message.showBanner("Thank you for your purchase!",{type:'success',duration:4000,position:'top'})
+// PURCHASE Prossessed
+function purchaseSuccess() {
+    Message.showBanner("Thank you for your purchase!",{type:'success',duration:3000,position:'top'})
     const cartItems = document.getElementsByClassName('cart-items')[0];
     cartItems.innerHTML = '';
     checkEmptyCart();
     updateCartTotal();
-}
+    const form = document.querySelector('.formContainer');
+    if (form) {
+        form.style.display = 'none'; // hide the form
+    }
+};
+
+
+
+
+
+
+/* Order confirmation delivery/payment display*/
+
+document.getElementById("delivery").addEventListener("change", function() {
+    document.getElementById("addressRow").style.display =
+        this.checked ? "block" : "none";
+});
+
+document.getElementById("payment").addEventListener("change", function() {
+    document.getElementById("cardFields").style.display =
+        this.value === "Card" ? "block" : "none";
+});

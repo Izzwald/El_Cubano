@@ -104,79 +104,117 @@
 
         <div class="cart_container">
             <div class="cart_contents">
-                <h2 class="section-header">CART</h2>
+            <h2 class="section-header">CART</h2>
+            <div class="cart-row">
+                <span class="cart-item cart-header cart-column">ITEM</span>
+                <span class="cart-price cart-header cart-column">PRICE</span>
+                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+            </div>
+            <div class="cart-items">
                 <div class="cart-row">
-                    <span class="cart-item cart-header cart-column">ITEM</span>
-                    <span class="cart-price cart-header cart-column">PRICE</span>
-                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-                </div>
-                <div class="cart-items">
-                    <div class="cart-row">
-                        <div class="cart-item cart-column">
-                            <span class="cart-item-title">Empty</span>
-                        </div>
-                        <span class="cart-price cart-column">-</span>                   
+                    <div class="cart-item cart-column">
+                        <span class="cart-item-title">Empty</span>
                     </div>
-                </div>
-                <div class="cart-total">
-                    <strong class="cart-total-title">Total:</strong>
-                    <span class="cart-total-price">-</span>
-                </div>
-                <button class="btn btn-primary btn-purchase" type="button">Place Order</button>
-                    
-                    
-                    <!-- Form for payment method -->
-                    
-                <div class="formContainer">
-                    <form action="" method="POST" enctype="text/plain" class="paymentForm">
-                        <div class="formRow formRow0">
-                            <div class="labels">
-                                <label>Order for delivery?</label>
-                            </div>
-
-                            <div class="inputs">
-                                <input type="checkbox"></input>
-                            </div>
-                        </div>
-                        <div class="formRow">
-                            <div class="labels">
-                                <label>Name</label>
-                            </div>
-
-                            <div class="inputs">
-                                <input type="text"></input>
-                            </div>
-                        </div>
-
-                        <div class="formRow formRow0">
-                            <div class="labels">
-                                <label>Email</label>
-                            </div>
-
-                            <div class="inputs">
-                                <input type="email"></input>
-                            </div>
-                        </div>
-
-                        <div class="formRow">
-                            <div class="labels">
-                                <label>What is your prefered payment method?</label>
-                            </div>
-
-                            <div class="inputs">
-                                <select type="dropdown">
-                                    <option value="Cash">Cash (in-person) </option>
-                                    <option value="Credit Card">Credit Card</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="formRow">
-                            <input type="submit" class="btn" value="Confirm order">    
-                        </div>
-                    </form>
+                    <span class="cart-price cart-column">-</span>                   
                 </div>
             </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total:</strong>
+                <span class="cart-total-price">-</span>
+            </div>
+            <button class="btn btn-purchase getInfo" type="button">Place Order</button>
+            
+            
+            <!-- Form for payment method -->
+            
+            <div class="formContainer">
+                <form action="" method="POST" class="paymentForm" autocomplete="off">
+
+                    <div class="formRow formRow0">
+                        <div class="labels">
+                            <label for="delivery">Order for delivery?</label>
+                        </div>
+                        <div class="inputs">
+                            <input id="delivery" name="delivery" type="checkbox">
+                        </div>
+                    </div>
+
+                    <div class="formRow">
+                        <div class="labels">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="inputs">
+                            <input id="name" name="name" type="text">
+                        </div>
+                    </div>
+
+                    <div class="formRow formRow0">
+                        <div class="labels">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="inputs">
+                            <input id="email" name="email" type="email">
+                        </div>
+                    </div>
+
+                    <div class="formRow" id="addressRow" style="display:none;">
+                        <div class="labels">
+                            <label for="address">Address <em>(only if delivery)</em></label>
+                        </div>
+                        <div class="inputs">
+                            <input id="address" name="address" type="text">
+                        </div>
+                    </div>
+
+                    <div class="formRow">
+                        <div class="labels">
+                            <label for="payment">What is your preferred payment method?</label>
+                        </div>
+                        <div class="inputs">
+                            <select id="payment" name="payment">
+                                <option value="Cash">Cash (in-person)</option>
+                                <option value="Card">Credit Card</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="cardFields" style="display:none;">
+                        <div class="formRow">
+                            <div class="labels">
+                                <label for="cardNumber">Card Number</label>
+                            </div>
+                            <div class="inputs">
+                                <input id="cardNumber" name="cardNumber" type="text" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="formRow">
+                            <div class="labels">
+                                <label for="exp">Exp Date</label>
+                            </div>
+                            <div class="inputs">
+                                <input id="exp" name="exp" type="text" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="formRow">
+                            <div class="labels">
+                                <label for="cvc">CVC</label>
+                            </div>
+                            <div class="inputs">
+                                <input id="cvc" name="cvc" type="text" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formRow">
+                        <button class="btn btn-purchase confirmInfo" type="button">Confirm order</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
         </div>
     </div>
 
@@ -221,3 +259,11 @@
     <script type="module" src="../logic/tempUserTracker.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+ 
