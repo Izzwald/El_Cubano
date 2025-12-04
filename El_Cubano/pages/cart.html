@@ -6,6 +6,7 @@
     <title>El Cubano</title>
     <link rel="stylesheet" href="../resources/styles.css">
 </head>
+
 <body id="page" class="page">
     <header class="header">
         <div class="header_child header_child_1">
@@ -30,7 +31,225 @@
     </header>
 
     <div class="main_page_content">
+        <div class="cart_page">
+            <!-- Menu HTML -->
+            <div class="menu_container">
+                <ul id="menu" class="menupage_menu">
 
+                    <li class="menu_section">
+                        <div class="menu_section_header">
+                            <span class="menu_section_title"><strong>Entrees</strong></span>
+                            <button id="entree_menu_section_button" class="menu_collapse"></button>
+                        </div>
+                        <ul id="entree_menu_section" class="menu_section_content">
+                            <li class="menu_section_divider"><hr></li>
+                            <li class="menu_subsection">
+                                <div class="menu_section_header">
+                                    <span class="menu_section_title">Sandwiches</span>
+                                    <button id="sandwiches_menu_section_button" class="menu_collapse"></button>
+                                </div>        
+                                <ul id="sandwiches_menu_section" class="menu_section_content">
+                                    <li class="menu_section_divider"><hr></li>
+                                </ul>
+                            </li>
+                            <li class="menu_subsection">
+                                <div class="menu_section_header">
+                                    <span class="menu_section_title">Meats</span>
+                                    <button id="meats_menu_section_button" class="menu_collapse"></button>
+                                </div>    
+                                <ul id="meats_menu_section" class="menu_section_content">
+                                    <li class="menu_section_divider"><hr></li>
+                                </ul>
+                            </li>
+                            <li class="menu_subsection">
+                                <div class="menu_section_header">
+                                    <span class="menu_section_title">Empanadas</span>
+                                    <button id="empanadas_menu_section_button" class="menu_collapse"></button>
+                                </div>        
+                                <ul id="empanadas_menu_section" class="menu_section_content">
+                                    <li class="menu_section_divider"><hr></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        
+                    </li>
+
+                    <li class="menu_section">
+                        <div class="menu_section_header">
+                            <span class="menu_section_title"><strong>Sides</strong></span>
+                            <button id="side_menu_section_button" class="menu_collapse"></button>
+                        </div>    
+                        <ul id="side_menu_section" class="menu_section_content">
+                            <li class="menu_section_divider"><hr></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu_section">
+                        <div class="menu_section_header">
+                            <span class="menu_section_title"><strong>Desserts</strong></span>
+                            <button id="dessert_menu_section_button" class="menu_collapse"></button>
+                        </div>    
+                        <ul id="dessert_menu_section" class="menu_section_content">
+                            <li class="menu_section_divider"><hr></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu_section">
+                        <div class="menu_section_header">    
+                            <span class="menu_section_title"><strong>Drinks</strong></span>
+                            <button id="drink_menu_section_button" class="menu_collapse"></button>
+                        </div>    
+                        <ul id="drink_menu_section" class="menu_section_content">
+                            <li class="menu_section_divider"><hr></li>
+                            <li class="menu_subsection">
+                                <div class="menu_section_header">
+                                    <span class="menu_section_title">Alcohol Free</span>
+                                    <button id="alcohol_free_menu_section_button" class="menu_collapse"></button>
+                                </div>        
+                                <ul id="alcohol_free_menu_section" class="menu_section_content">
+                                    <li class="menu_section_divider"><hr></li>
+                                </ul>
+                            </li>
+                            <li class="menu_subsection">
+                                <div class="menu_section_header">
+                                    <span class="menu_section_title">Alcohol</span>
+                                    <button id="alcohol_menu_section_button" class="menu_collapse"></button>
+                                </div>    
+                                <ul id="alcohol_menu_section" class="menu_section_content">
+                                    <li class="menu_section_divider"><hr></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu_section">
+                        <div class="menu_section_header">
+                            <span class="menu_section_title"><strong>Kids Menu</strong></span>
+                            <button id="kid_menu_section_button" class="menu_collapse"></button>
+                        </div>    
+                        <ul id="kid_menu_section" class="menu_section_content">
+                            <li class="menu_section_divider"><hr></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- Cart HTML -->
+            <div class="cart_container">
+                <div class="cart_contents">
+                    <h2 class="section-header">CART</h2>
+                    <div class="cart-row">
+                        <span class="cart-item cart-header cart-column">ITEM</span>
+                        <span class="cart-price cart-header cart-column">PRICE</span>
+                        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                    </div>
+                    <div class="cart-items">
+                        <div class="cart-row">
+                            <div class="cart-item cart-column">
+                                <span class="cart-item-title">Empty</span>
+                            </div>
+                            <span class="cart-price cart-column">-</span>                   
+                        </div>
+                    </div>
+                    <div class="cart-total">
+                        <strong class="cart-total-title">Total:</strong>
+                        <span class="cart-total-price">-</span>
+                    </div>
+                    <button class="btn btn-purchase getInfo" type="button">Place Order</button>
+                    
+                    
+                    <!-- Form for payment method -->
+                    
+                    <div class="formContainer">
+                        <form action="" method="POST" class="paymentForm" autocomplete="off">
+
+                            <div class="formRow formRow0">
+                                <div class="labels">
+                                    <label for="delivery">Order for delivery?</label>
+                                </div>
+                                <div class="inputs">
+                                    <input id="delivery" name="delivery" type="checkbox">
+                                </div>
+                            </div>
+
+                            <div class="formRow">
+                                <div class="labels">
+                                    <label for="name">Name</label>
+                                </div>
+                                <div class="inputs">
+                                    <input id="name" name="name" type="text">
+                                </div>
+                            </div>
+
+                            <div class="formRow formRow0">
+                                <div class="labels">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="inputs">
+                                    <input id="email" name="email" type="email">
+                                </div>
+                            </div>
+
+                            <div class="formRow" id="addressRow" style="display:none;">
+                                <div class="labels">
+                                    <label for="address">Address <em>(only if delivery)</em></label>
+                                </div>
+                                <div class="inputs">
+                                    <input id="address" name="address" type="text">
+                                </div>
+                            </div>
+
+                            <div class="formRow">
+                                <div class="labels">
+                                    <label for="payment">What is your preferred payment method?</label>
+                                </div>
+                                <div class="inputs">
+                                    <select id="payment" name="payment">
+                                        <option value="Cash">Cash (in-person)</option>
+                                        <option value="Card">Credit Card</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="cardFields" style="display:none;">
+                                <div class="formRow">
+                                    <div class="labels">
+                                        <label for="cardNumber">Card Number</label>
+                                    </div>
+                                    <div class="inputs">
+                                        <input id="cardNumber" name="cardNumber" type="text" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="formRow">
+                                    <div class="labels">
+                                        <label for="exp">Exp Date</label>
+                                    </div>
+                                    <div class="inputs">
+                                        <input id="exp" name="exp" type="text" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="formRow">
+                                    <div class="labels">
+                                        <label for="cvc">CVC</label>
+                                    </div>
+                                    <div class="inputs">
+                                        <input id="cvc" name="cvc" type="text" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="formRow">
+                                <button class="btn btn-purchase confirmInfo" type="button">Confirm order</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <footer class="footer">
@@ -65,9 +284,18 @@
     </footer>
 
     <button id="backToTop"></button>
-
+    <script type="module" src="../logic/cart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+    <script type="module" src="../logic/displayMenu.js"></script>
     <script type="module" src="../logic/ui.js"></script>
     <script type="module" src="../logic/tempUserTracker.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+ 

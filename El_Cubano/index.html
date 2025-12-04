@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Cubano</title>
     <link rel="stylesheet" href="resources/styles.css">
-
 </head>
 <body id="page" class="page">
     <header class="header">
@@ -36,24 +35,26 @@
     
     <div class="main_page_content_index">
         <div id="main_container1">
-            <div id="landing_display">
 
-                <img id="logo" src="resources/images/el_cubano_restaurant_logo.png">
-                
-                <!-- <h2 id="authOutput"></h2> Should call for the user's name-->
+            <div id="landing_display_container">
+                <div id="landing_display">
 
-                <button id="btn_order"><a href="pages/cart.html">Order Now!</a></button>
-                <h1>Daily Special includes:</h1>
-                
-                <div class="special-container">
-            <!-- Container for daily specials -->
-                    <div id="special-display">
-            <!-- Content will be inserted here by JS -->
-                    </div>
+                    <img id="logo" src="resources/images/el_cubano_restaurant_logo.png">
+                    
+                    <!-- <h2 id="authOutput"></h2> Should call for the user's name-->
+
+                    <button id="btn_order"><a href="pages/cart.html">Order Now!</a></button>
+                    <h1>Daily Special:</h1>
+                    
+                    <div class="special-container">
+                <!-- Container for daily specials -->
+                        <div id="special-display">
+                <!-- Content will be inserted here by JS -->
+                        </div>
+                    </div> 
                 </div>
-
-                
             </div>
+            
         </div>
 
         <div id="main_container2">
@@ -63,7 +64,7 @@
             <div class="gallery-wrapper">
 
                 <!-- MOBILE GALLERY -->
-                <div class="gallery-container mobile-gallery">
+                <div class="gallery-container">
                     <button class="arrow left" onclick="prevImage()">&#10094;</button>
                     <img id="gallery-top-sellers" src="" alt="Gallery Image">
                     <button class="arrow right" onclick="nextImage()">&#10095;</button>
@@ -83,18 +84,13 @@
                 </div>
 
         </div>
-
             <div class="top_sellers" id="btn_view_menu"> 
-                    <div><a href="pages/menu.html">View Entire Menu <i class="menu_arrow_right"></i></a></div>
+                <div>
+                    <a href="pages/menu.html">View Entire Menu <i class="menu_arrow_right"></i></a>
                 </div>
-
+            </div>
         </div>
     </div>
-
-
-    
-
-
 
     <footer class="footer">
         <div class="footer_content">

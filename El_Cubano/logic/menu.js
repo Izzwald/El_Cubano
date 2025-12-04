@@ -80,45 +80,94 @@ function loadMenuItems() {
 }
 
 const defaultItems = [
-    // Appetizers
-    new MenuItem("Beef Empanadas", 3.50,"Savory pastry filled with seasoned ground beef and cheese"),
-    new MenuItem("Chicken Empanadas", 3.50,"Savory pastry filled with shredded chicken and cheese"),
-    new MenuItem("Fried Yucca", 3.50, "With garlic sauce on the side"),
-    new MenuItem("Stuffed Yucca (2 pcs)", 8.99, "Breaded yucca stuffed with ground beef"),
-    new MenuItem("Tamales (2 pcs)", 8.99, "Corn tamales stuffed with pork"),
-    new MenuItem("Chicken Wings (6 pcs)", 11.99, "Choice of cilantro, BBQ or hot sauce"),
-    new MenuItem("Empanadas (3 pcs)", 11.99, "Choice of beef or chicken"),
-    new MenuItem("Steamed Yucca (6 pcs)", 9.99, "Topped with garlic sauce and raw onions"),
-    new MenuItem("Potato Balls (2 pcs)", 8.99, "Breaded mashed potatoes stuffed with ground beef"),
-    new MenuItem("Croquettes (4 pcs)", 7.99, "Ham & cheese croquettes"),
-    new MenuItem("Cuban Sampler", 18.99, "Mix of croquettes, fried yucca, chicken wings, fried pork chunks"),
+    //Entrees      new MenuItem("","","Entree",,1,"../resources/images/menu_items/entrees/.jpg"),
 
-    // Salads & Soups
-    new MenuItem("Chicken Salad", 16.99, "Mixed greens, tomatoes, onions"),
-    new MenuItem("Salmon Salad", 20.99, "Mixed greens, tomatoes, onions"),
-    new MenuItem("Shrimp Salad", 20.99, "Mixed greens, tomatoes, onions"),
-    new MenuItem("Sweet Plantains Plate", 14.99, "Served with choice of side"),
+    //Sandwiches
+    new MenuItem("Cuban Sandwich","Roast pork, mustard, pickles, ham, and Swiss cheese panini pressed in our Cuban bread","Entree_Sandwich",12.50,1,"../resources/images/menu_items/entrees/cuban_sandwich.jpg"),
+    new MenuItem("Midnight Sandwich","Roast pork, mustard, pickles, ham, and Swiss cheese panini pressed in sweet bread","Entree_Sandwich",13.50,1,"../resources/images/menu_items/entrees/midnight_sandwich.jpg"),
+    new MenuItem("Steak Sandwich","Comes with tomato, lettuce, onions and mayo","Entree_Sandwich",12.00,1,"../resources/images/menu_items/entrees/steak_sandwich.jpg"),
+    new MenuItem("Chicken Sandwich","Chicken, mustard, pickles, ham, and Swiss cheese panini pressed in our Cuban bread","Entree_Sandwich",12.00,1),
+    new MenuItem("Ham and Cheese Sandwich","","Entree_Sandwich",8.00,1),
+    new MenuItem("Pork Sandwich","","Entree_Sandwich",8.00,1),
+    new MenuItem("Croquette Sandwich","Comes with mayo and tomato","Entree_Sandwich",8.00,1),
 
-    // Meat Entrées
-    new MenuItem("Friscase de Pollo", 9.00, "Cuban style chicken fricassee in tomato-based sauce"),
-    new MenuItem("Cerdo Asado", 12.00, "Roast pork marinated in citrus juices, garlic, Cuban spices"),
-    new MenuItem("Bistec de Res", 12.00, "Beef steak marinated with spices, topped with onions"),
-    new MenuItem("Ropa Vieja", 12.00, "Shredded beef stew simmered in tomato sauce"),
-    new MenuItem("Bistec Uruguayo estilo Cubano", 15.00, "Uruguayan steak Cuban-style"),
-    new MenuItem("Filete de Cerdo Empanizado", 15.00, "Breaded pork filet stuffed with ham & Swiss cheese"),
-    new MenuItem("Costillas de Cerdo Fritas", 12.00, "Fried pork ribs"),
+    //Meats
+    new MenuItem("Beef Stew","Shredded beef simmered in Spanish sauce with a variety of seasonings","Entree_Meat",10.00,1,"../resources/images/menu_items/entrees/beef_stew.jpg"),
+    new MenuItem("Beef Steak","Beef steak marinated with spices and slow-cooked and topped off with onions","Entree_Meat",10.00,1,"../resources/images/menu_items/entrees/beef_steak.jpg"),
+    new MenuItem("Roast Pork","Cuban pork marinated in citrus juices garlic cuban spices and slow roasted for hours","Entree_Meat",10.00,1,"../resources/images/menu_items/entrees/roast_pork.jpg"),
+    new MenuItem("Fried Chicken","Boneless breaded chicken thighs","Entree_Meat",8.00,1,"../resources/images/menu_items/entrees/fried_chicken.jpg"),
+    new MenuItem("Chicken Fricassee","Cuban-style chicken simmered in Spanish sauce","Entree_Meat",8.00,1,"../resources/images/menu_items/entrees/chicken_fricassee.jpg"),
+    new MenuItem("Fried Pork Ribs","","Entree_Meat",10.00,1,"../resources/images/menu_items/entrees/fried_pork_ribs.jpg"),
+    new MenuItem("Fried Chicken Wings","Accompanied with any rice,any side with green salad included","Entree_Meat",8.00,1),
+    new MenuItem("Cuban Style Uruguayan Steak","Breaded pork filet stuffed with ham and swiss cheese","Entree_Meat",12.00,1,"../resources/images/menu_items/entrees/cuban_style_uruguayan_steak.jpg"),
+  
+    //Empanadas
+    new MenuItem("Beef Empanadas", "Savory pastry filled with seasoned ground beef and cheese", "Entree_Empanada",3.50, 1,"../resources/images/menu_items/entrees/beef_and_cheese_empanada.jpg"),
+    new MenuItem("Chicken Empanadas", "Savory pastry filled with shredded chicken and cheese", "Entree_Empanada",3.50, 1,"../resources/images/menu_items/entrees/chicken_and_cheese_empanada.jpg"),
+    new MenuItem("Pizza Empanadas","Savory pastry filled with pizza sauce and cheese","Entree_Empanada",3.50,1,"../resources/images/menu_items/entrees/pizza_empanada.jpg"),
+    new MenuItem("Jamaican Beef","Savory pastry filled with shredded seasoned Jamaican beef","Entree_Empanada",3.25,1),
 
-    // Sandwiches
-    new MenuItem("Sandwich Cubano", 10.99, "Classic Cuban sandwich with roast pork, ham, Swiss, pickles, mustard"),
-    new MenuItem("Jamaican Beef Patty", 4.99, "Spicy beef pastry"),
-    new MenuItem("Cuban Pizza", 12.99, "Authentic Cuban-style pizza"),
+   
+    //Sides        new MenuItem("","","Side",,1,"../resources/images/menu_items/sides/.jpg"),
 
-    // Drinks & Desserts
-    new MenuItem("Batido de Mango", 5.99, "Fresh mango milkshake"),
-    new MenuItem("Batido de Guava", 5.99, "Guava milkshake"),
-    new MenuItem("Flan", 4.99, "Traditional Cuban caramel custard"),
-    new MenuItem("Tres Leches Cake", 5.99, "Moist sponge cake soaked in three milks")
-]
+    new MenuItem("Stuffed Potato Ball","Smashed potato ball stuffed with beef","Side",3.50,1,"../resources/images/menu_items/sides/stuffed_potato_ball.jpg"),
+    
+    //Plantains 
+    new MenuItem("Sweet Fried Plantains","","Side",3.50,1,"../resources/images/menu_items/sides/sweet_fried_plantains.jpg"),
+    new MenuItem("Fried Plantains","","Side",3.50,1,"../resources/images/menu_items/sides/fried_plantains.jpg"),
+
+    //Rice
+    new MenuItem("Yellow Rice","Rice with pigeon peas and meats.","Side",4.00,1,"../resources/images/menu_items/sides/yellow_rice_and_beans.jpg"),
+    new MenuItem("Cuban Rice","Cuban style rice mixed with beans","Side",4.00,1,"../resources/images/menu_items/sides/cuban_rice_and_beans.jpg"),
+
+    //Soup
+    new MenuItem("Black Bean Soup","","Side",6.00,1,"../resources/images/menu_items/sides/black_bean_soup.jpg"),
+    new MenuItem("Red Bean Soup","","Side",6.00,1,"../resources/images/menu_items/sides/red_bean_soup.jpg"),
+
+    //Desserts     new MenuItem("","","Dessert",,1,"../resources/images/menu_items/desserts/.jpg"),
+    new MenuItem("Cuban Peanut Nougat", "Traditional sweet treat made with only two ingredients; peanuts and sugar", "Dessert", 4.99, 1,"../resources/images/menu_items/desserts/cuban_peanut_nougat.jpg"),
+    new MenuItem("Tres Leches", "Moist sponge cake soaked in three milks", "Dessert", 5.99, 1,"../resources/images/menu_items/desserts/tres_leches.jpg"),
+    new MenuItem("Rice Pudding","","Dessert",3.75,1,"../resources/images/menu_items/desserts/rice_pudding.jpg"),
+
+
+    //Drinks
+
+    //Non Alchoholic Drinks       new MenuItem("","","Drink_NA",,1,"../resources/images/menu_items/drinks/.jpg"), 
+
+    //Smoothies
+    new MenuItem("Strawberry Smoothie","Fresh strawberry smoothie","Drink_NA",5.50,1,"../resources/images/menu_items/drinks/strawberry_smoothie.jpg"), 
+    new MenuItem("Mango Smoothie", "Fresh mango smoothie", "Drink_NA", 5.50, 1),
+    new MenuItem("Guava Smoothie", "Fresh guava smoothie", "Drink_NA", 5.99, 1),
+    new MenuItem("Banana Smoothie", "Fresh banana smoothie", "Drink_NA", 5.99, 1),
+
+    //Bottled Drinks
+    new MenuItem("Materva","","Drink_NA",1.50,1,"../resources/images/menu_items/drinks/materva.jpg"),
+    new MenuItem("Mango Juice","","Drink_NA",2.00,1,"../resources/images/menu_items/drinks/mango_juice.jpg"),
+    new MenuItem("Guava Juice","","Drink_NA",2.00,1,"../resources/images/menu_items/drinks/guava_juice.jpg"),
+    new MenuItem("Malta INDIA","","Drink_NA",2.00,1,"../resources/images/menu_items/drinks/malta_india.jpg"),
+    new MenuItem("Sunny D","","Drink_NA",1.50,1,"../resources/images/menu_items/drinks/sunnyd.jpg"),
+    new MenuItem("Raspberry Country Club Soda","","Drink_NA",2.00,1,"../resources/images/menu_items/drinks/country_club_soda_raspberry.jpg"),
+    new MenuItem("Merengue Country Club Soda","","Drink_NA",2.00,1,"../resources/images/menu_items/drinks/country_club_soda_merengue.jpg"),
+
+    //Alchoholic Drinks       new MenuItem("","","Drink_A",,1,"../resources/images/menu_items/drinks/.jpg"), 
+
+    //Beer
+    new MenuItem("Corona Extra","","Drink_A",4.00,1),
+    new MenuItem("SOL","","Drink_A",4.00,1),
+    new MenuItem("Modelo","","Drink_A",4.00,1),
+    new MenuItem("Stella Artois","","Drink_A",4.00,1),
+
+    //Cocktails
+    new MenuItem("Pina Colada","","Drink_A",7.50,1),
+    new MenuItem("Daiquiri","","Drink_A",7.50,1),
+    new MenuItem("Screwdriver","","Drink_A",7.50,1),
+
+
+    //Kids      new MenuItem("","","Kid",,1), 
+
+    new MenuItem("Chicken Tenders","Comes with french fries","Kid",9.99,1),
+    new MenuItem("Mozzarella","5 Mozzarella Sticks","Kid",9.99,1),
+];
 
 //initializes menu items with defaults if none are detected to be saved to local storage Ex First page load
 function initializeMenuItems() {
