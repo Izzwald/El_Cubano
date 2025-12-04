@@ -3,17 +3,10 @@ console.log(Auth.getUsers());
 console.log(Auth.getActiveUser());
 console.log(Auth.getActiveType());
 
-
-
 if (Auth.getActiveType()!="guest"){
     let user = Auth.getActiveUser();
     console.log(user.firstname);
 }
-
-
-
-
-
 
 const topSellers = [
     {
@@ -33,12 +26,6 @@ const topSellers = [
         title: "Chicken and Cheese Empanada",
         text: "Savory pastries filled with shredded chicken and cheese.",
         price: "$3.50"
-    },
-    {
-        img: "resources/images/menu_items/entrees/cuban_pizza.jpg",
-        title: "Cuban Pizza",
-        text: "Traditional cuban pizza with shredded beef and olives baked under a blend of mozzarella and gouda cheese.",
-        price: "$9.50"
     }
 ];
 

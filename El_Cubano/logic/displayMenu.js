@@ -5,10 +5,11 @@ Menu.initializeMenuItems()
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    
     //  Add items listed in menu.js to respective menu sections
-    
-    const entreeSection=document.getElementById("entree_menu_section")
+
+    const entreeSandwichSection=document.getElementById("sandwiches_menu_section")
+    const entreeMeatSection=document.getElementById("meats_menu_section")
+    const entreeEmpanadaSection=document.getElementById("empanadas_menu_section")
     const sideSection=document.getElementById("side_menu_section")
     const dessertSection=document.getElementById("dessert_menu_section")
     const drinkNaSection=document.getElementById("alcohol_free_menu_section")
@@ -50,8 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
             newItem.appendChild(addToCart)
         }
 
-        if (menuItem.type=="Entree"){
-            entreeSection.appendChild(newItem)
+        if (menuItem.type=="Entree_Sandwich"){
+            entreeSandwichSection.appendChild(newItem)
+        }
+        else if (menuItem.type=="Entree_Meat"){
+            entreeMeatSection.appendChild(newItem)
+        }
+        else if (menuItem.type=="Entree_Empanada"){
+            entreeEmpanadaSection.appendChild(newItem)
         }
         else if (menuItem.type=="Side"){
             sideSection.appendChild(newItem)
