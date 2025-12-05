@@ -1,19 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-
-:root{
-    --color-primary:         #F25C54;         /* Primary brand color — use for headers, buttons, and key highlights */
-    --color-secondary:       #3BB273;         /* Secondary accent — great for call-to-action buttons, badges, or icons */
-    --color-accent:          #00A8C6;         /* Tropical accent — use for links, hover states, or decorative elements */
-    --color-highlight:       #F9C80E;         /* Highlight color — perfect for promotions, special offers, or kids' sections */
-    --color-background:      #FFF5E1;         /* Main background — apply to body, sections, and cards for a warm, inviting feel */
-    --color-text:            #3E3E3E;         /* Base text color — use for paragraphs, menus, and general content */
-    --color-footer-legal:    rgba(255,255,255,.7);
-    --color-login-background:#FAD4D1;
+:root{ --color-primary:      #F25C54;         /* Primary brand color — use for headers, buttons, and key highlights */ 
+    --color-secondary:       #3BB273;         /* Secondary accent — great for call-to-action buttons, badges, or icons */ 
+    --color-accent:          #00A8C6;         /* Tropical accent — use for links, hover states, or decorative elements */ 
+    --color-highlight:       #F9C80E;         /* Highlight color — perfect for promotions, special offers, or kids' sections */ 
+    --color-background:      #FFF5E1;         /* Main background — apply to body, sections, and cards for a warm, inviting feel */ 
+    --color-text:            #3E3E3E;         /* Base text color — use for paragraphs, menus, and general content */ 
+    --color-footer-legal:    rgba(255,255,255,.7); 
+    --color-login-background:#FAD4D1; 
 }
-/* color scheme
-to use a color: var(color name)
-*/
 
 *{margin:0;
 padding:0;
@@ -185,12 +180,6 @@ nav button:hover{
 .signup{
     display:none;
 }
-
-
-
-
-/*From Here*/
-
 
 #main_container1{
     /* padding-top: 120px; */
@@ -408,7 +397,7 @@ nav button:hover{
 }
 
 .menu_section_header span{                  /* sets color to menu item section header title */
-    color:var(--color-accent)
+    color:var(--color-text)
 }
 
 .menu_section_title{
@@ -670,23 +659,32 @@ input[type="text"], input[type="email"]{
 }
 
 .footer_content{
-    display:flex;
-    flex-direction:row;
-    width:100%;
-    justify-content:space-evenly;
-    color: var(--color-background);              /* Light text */
-    padding: 10px 0px;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    padding: 10px 0;
+    color: var(--color-background);
+    text-align:center;
 }
+
+.footer_child:nth-child(1) {
+  grid-column: 1 / 2; /* occupies first track */
+  justify-self: center;
+}
+.footer_child:nth-child(2) {
+  grid-column: 2 / 3; /* second track */
+  justify-self: center;
+}
+.footer_child:nth-child(3) {
+  grid-column: 3 / 4; /* third track */
+  justify-self: center;
+}
+
 
 .footer_child_item_list{
     display:flex;
     flex-direction:column;
     list-style-type: none;
-}
-
-.footer_child{
-    display:block;
 }
 
 .footer_child_heading{
@@ -862,16 +860,20 @@ input[type="text"], input[type="email"]{
     }
 
     .footer_content{
-        flex-direction:column;
-        justify-content:space-between;
-        gap:10px;
+        grid-template-columns: 1fr; /* switch to single column */
+        row-gap: 10px;         /* add spacing between rows */
     }
     .footer_child{
+        grid-column:auto; 
         word-wrap: break-word;
+    }
+    .footer_child:nth-child(1),
+    .footer_child:nth-child(2),
+    .footer_child:nth-child(3) {
+        grid-column: auto !important;
     }
     .footer_child_1{
         order:3;
-        display:block;
     }
     .footer_child_2{
         order:1;

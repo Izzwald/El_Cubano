@@ -218,8 +218,7 @@ window.updateFinalTotalDisplay = function() {
 /* Order confirmation delivery/payment display*/
 
 document.getElementById("delivery").addEventListener("change", function() {
-    document.getElementById("addressRow").style.display =
-        this.checked ? "block" : "none";
+    document.getElementById("addressRow").style.display = this.checked ? "block" : "none";
 });
 
 document.getElementById("payment").addEventListener("change", function() {
