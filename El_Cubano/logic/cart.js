@@ -203,7 +203,6 @@ window.updateTipAmountDisplay = function() {
 }
 
 
-
 function calculateFinalTotal() {
     const cartTotal = parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$', ''));
     const tipPercentage = parseFloat(document.getElementById("tip").value) || 0;

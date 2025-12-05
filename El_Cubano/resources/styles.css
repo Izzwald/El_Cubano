@@ -602,12 +602,14 @@ nav button:hover{
     text-align: end;
     margin-top: 10px;
     margin-right: 10px;
+    text-align: right;
+
 }
 
 .cart-total-title {
     font-size: 1.5em;
     color: black;
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 .cart-total-price {
@@ -654,6 +656,56 @@ input[type="text"], input[type="email"]{
     padding: 3px;
     width: 178px;
     margin-bottom: 10px;
+}
+
+.account_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin:0px 5px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    min-height: 400px;
+    background-color: var(--color-login-background);
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.account_container h2{
+    padding-bottom: 15px;
+}
+
+.account_container form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    min-width: 0;
+    width:fit-content;
+    color:var(--color-text)
+}
+.account_container label{
+    padding: 10px 0;
+}
+.account_container input{
+    width: 175px;
+}
+.button_Password{
+    margin: 15px 0;
+    padding: 7px;
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 5px;
+    color: var(--color-background);
+    font-size: 18px;
+    width: 175px;
+}
+.button_Password:hover{
+    color: var(--color-highlight);
+    cursor: pointer;
 }
 #tip_style{
         font-size: 18px;
@@ -737,7 +789,6 @@ input[type="text"], input[type="email"]{
   grid-column: 3 / 4; /* third track */
   justify-self: center;
 }
-
 
 .footer_child_item_list{
     display:flex;
@@ -916,7 +967,9 @@ input[type="text"], input[type="email"]{
     .cart_contents{
         width: 95%;
     }
-    #fishPic{
+    .account_container{
+        padding:10px;
+    }    #fishPic{
         width:100%;
         height:auto;
         margin: 10px 0;
@@ -1019,4 +1072,12 @@ input[type="text"], input[type="email"]{
     #about_contact_info{
     text-align: center;
 }
+    .account_container{
+        padding:5px;
+    }
+    .account_item h2{
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        white-space: normal;
+    }
 }
