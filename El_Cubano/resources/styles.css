@@ -158,6 +158,9 @@ nav button:hover{
     border-radius:8px;
     border: 2px solid var(--color-primary);  
 }
+.login_signup input[type="text"], .login_signup input[type="password"], .login_signup input[type="email"]{
+    width: 150px;
+}
 .login_signup .button, .login_switcher{
     padding: 5px;
     margin-bottom: 10px;

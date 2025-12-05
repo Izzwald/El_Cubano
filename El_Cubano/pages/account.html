@@ -17,6 +17,8 @@
             min-height: 400px;
             background-color: #FAD4D1;
             padding: 20px;
+            box-sizing: border-box;
+            flex-direction: column;
         }
         .account_container h2{
             padding-bottom: 15px;
@@ -80,7 +82,8 @@
             <div class="account_item change_password">
                 <form action="/change-password" method="POST">
                     <h2>Change Your Password</h2>
-
+                    
+                    <!-- Current password field -->
                     <label for="current-password">Current Password</label>
                     <input type="password" id="current-password" placeholder="Current Password" name="password" required>
 
