@@ -149,7 +149,10 @@ function updateCartTotal() {
     }
 
     total = Math.round(total * 100) / 100;
-    document.getElementsByClassName('cart-total-price')[0].innerText = `$${total.toFixed(2)}`;
+    document.getElementsByClassName('cart-total-price')[0].innerText = `$${total.toFixed(2)}`
+    updateCartTotal;
+    updateTipAmountDisplay();
+    updateFinalTotalDisplay();
 }
 
 // PURCHASE CLICKED
@@ -225,3 +228,21 @@ document.getElementById("payment").addEventListener("change", function() {
     document.getElementById("cardFields").style.display =
         this.value === "Card" ? "block" : "none";
 });
+
+
+const deliveryCheckbox = document.getElementById('delivery');
+    const pickUpCheckbox = document.getElementById('pickUp');
+
+    // When 'delivery' changes, make sure 'pickUp' is unchecked
+    deliveryCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            pickUpCheckbox.checked = false;
+        }
+    });
+
+    // When 'pickUp' changes, make sure 'delivery' is unchecked
+    pickUpCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            deliveryCheckbox.checked = false;
+        }
+    });

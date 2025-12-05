@@ -605,7 +605,6 @@ nav button:hover{
 }
 
 .cart-total-title {
-    font-weight: bold;
     font-size: 1.5em;
     color: black;
     margin-right: 20px;
@@ -656,7 +655,63 @@ input[type="text"], input[type="email"]{
     width: 178px;
     margin-bottom: 10px;
 }
+#tip_style{
+        font-size: 18px;
+}
 
+/* About page Styles */
+
+.about_Container{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    background-color:var(--color-login-background);
+    min-height: 400px;
+    box-sizing: border-box;
+    color: var(--color-text);
+}
+.about_Container h2{
+    text-align: center;
+    padding-bottom: 15px;
+}
+.about_Container p{
+    padding: 10px 0;
+    line-height: 1.6;
+}
+#about_footing{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     border-top: 2px solid var(--color-primary);
+    padding-top: 20px;
+}
+#about_contact_info{
+    font-size: 14px;
+    text-align: right;
+}
+#about_contact_info ul{
+    list-style-type: none;
+    padding: 0;
+    margin-left: 5px;
+    font-size: 14px;
+}
+#aboutLogo{
+    display: block;
+    width: 150px;
+    height: auto;
+ }
+#fishPic{
+    float:right;
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+}
+
+/* Footer Styles */
 .footer{
     background-color: var(--color-text);         /* Dark anchor */
 }
@@ -861,7 +916,12 @@ input[type="text"], input[type="email"]{
     .cart_contents{
         width: 95%;
     }
-
+    #fishPic{
+        width:100%;
+        height:auto;
+        margin: 10px 0;
+        float:none;
+    }
     .footer_content{
         grid-template-columns: 1fr; /* switch to single column */
         row-gap: 10px;         /* add spacing between rows */
@@ -950,4 +1010,13 @@ input[type="text"], input[type="email"]{
     .cart_page{
         margin:10px 5px;
     }
+    #about_footing{
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        display: flex;
+    }
+    #about_contact_info{
+    text-align: center;
+}
 }
