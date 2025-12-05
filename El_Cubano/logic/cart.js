@@ -149,7 +149,7 @@ function updateCartTotal() {
     }
 
     total = Math.round(total * 100) / 100;
-    document.getElementsByClassName('cart-total-price')[0].innerText = `$${total.toFixed(2)}`;
+    document.getElementsByClassName('cart-total-price')[0].innerText = `$${total.toFixed(2)}`;  
 }
 
 // PURCHASE CLICKED
@@ -198,7 +198,6 @@ window.updateTipAmountDisplay = function() {
     document.getElementById("tip_Amount").innerText =
         "$" + tipAmountValue;
 }
-
 
 
 function calculateFinalTotal() {
