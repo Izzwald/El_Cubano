@@ -1,13 +1,12 @@
 import * as Message from "./message.js";
 import * as Auth from "./auth.js";
 
-// Wait until DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const removeCartItemButtons = document.getElementsByClassName('btn-danger');
     const quantityInputs = document.getElementsByClassName('cart-quantity-input');
     const purchaseButton = document.getElementsByClassName('getInfo')[0];
     const confirmPurchase = document.getElementsByClassName('confirmInfo')[0];
-
+     
     // Remove item buttons
     for (let button of removeCartItemButtons) {
         button.addEventListener('click', removeCartItem);
@@ -22,8 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (purchaseButton) {
         purchaseButton.addEventListener('click', purchaseClicked);
     }
+
     if (confirmPurchase) {
-        confirmPurchase.addEventListener('click', purchaseSuccess);
+        
+        let cardExperationValue = "";
+        const cardExperation = document.getElementById("exp"); // always an element
+        const cardFields = document.getElementById("cardFields");
+
+        cardExperation.addEventListener("input", (e) => {
+            cardExperationValue = e.target.value;
+            console.log(cardExperationValue);
+        });
+
+        confirmPurchase.addEventListener('click', () => {
+
+            //console.log(getComputedStyle(cardFields).display)
+            //console.log(cardExperationValue)
+            if(!cardExperationValue&&( getComputedStyle(cardFields).display=="none")){      //cash will return empty value
+                purchaseSuccess()
+            }
+            else if(experationChecker(cardExperationValue)){
+                purchaseSuccess()
+            }
+        });       
     }
 
     // Event delegation for Add to Cart buttons (works for existing and future buttons)
@@ -33,6 +53,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function experationChecker(input){
+    const str = String(input);
+    let valid=true
+    let month, year, currentMonth, currentYear;    
+
+    if ((str.length)==4){
+        month = Number(str.slice(0, 2));
+        year = Number(str.slice(2));
+
+        const today = new Date();
+        currentMonth = today.getMonth()+1
+        currentYear = Number(String(today.getFullYear()).slice(-2));
+    }
+    else{
+        valid=false
+    }
+    if (valid){
+        if (month<1||month>12){
+            valid=false
+        }
+        else if (year>(currentYear+5)){
+            valid=false
+        }
+        else if ((year==(currentYear+5))&&(month>currentMonth)){
+            valid=false
+        }
+    }
+    let expired=false
+    if (valid){
+        if (year<=currentYear){
+            if (year<currentYear){
+                expired=true
+            }
+            else if ((year==currentYear)&&(month<currentMonth)){
+                expired=true
+            }
+        }
+    }
+
+    if (valid&&(!expired)){
+        return true
+    }
+    else if (!valid){
+        Message.showBanner("Card experation date not valid",{type:'error',duration:5000,position:'top'})
+        return false
+    }
+    else{
+        Message.showBanner("Card is expired",{type:'error',duration:5000,position:'top'})
+        return false
+    }
+}
+
+
 
 // REMOVE ITEM
 function removeCartItem(event) {
@@ -170,12 +244,12 @@ function purchaseClicked() {
 // PURCHASE Prossessed
 function purchaseSuccess() {
     Message.showBanner("Thank you for your purchase!",{type:'success',duration:3000,position:'top'})
-    console.log(`Thank you ${(Auth.getActiveUser()).firstname} for your purchase!`);
-    console.log("Your order has been placed.");
-    console.log("Order Total: " + document.getElementsByClassName('cart-total-price')[0].innerText);
-    console.log(`plus a tip of ${document.getElementById("tip").value}%`);
-    console.log(`for a final total of $${(parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$','')) * (1 + parseFloat(document.getElementById("tip").value)/100)).toFixed(2)}`);
-    console.log("Your order will be ready in 15-20 minutes.");
+    // console.log(`Thank you ${(Auth.getActiveUser()).firstname} for your purchase!`);
+    // console.log("Your order has been placed.");
+    // console.log("Order Total: " + document.getElementsByClassName('cart-total-price')[0].innerText);
+    // console.log(`plus a tip of ${document.getElementById("tip").value}%`);
+    // console.log(`for a final total of $${(parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$','')) * (1 + parseFloat(document.getElementById("tip").value)/100)).toFixed(2)}`);
+    // console.log("Your order will be ready in 15-20 minutes.");
     const cartItems = document.getElementsByClassName('cart-items')[0];
     cartItems.innerHTML = '';
     checkEmptyCart();

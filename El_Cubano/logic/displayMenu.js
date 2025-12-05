@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isCartPage = window.location.pathname.endsWith('cart.html');   
 
         if (width <= 500) {
-            console.log("phone")
+            // console.log("phone")
             if (isMenuPage){
                 menuContainer.style.width="100%"
                 menuContainer.style.margin="10px 5px"
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
         else if (width <= 800) {
-            console.log("tablet")
+            // console.log("tablet")
             if (isMenuPage){
                 menuContainer.style.width="100%"
                 menuContainer.style.maxWidth="565px"
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } 
         else if (width > 800) {
-            console.log("desktop")
+            // console.log("desktop")
             if (isMenuPage){
                 menuContainer.style.width="565px"
                 menuContainer.style.margin="15px"
