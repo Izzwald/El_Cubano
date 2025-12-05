@@ -17,11 +17,9 @@
                 <ul id="menu_link_ul">
                     <li class="nav_item"><a href="../index.html">Home</a></li>
                     <li class="nav_item"><a href="menu.html">Menu</a></li>
-                    <li id="menu_management_link" class="nav_item"><a href="management.html">Management</a></li>
-                    <li id="menu_orders_link" class="nav_item"><a href="orders.html">Orders</a></li>
-                    <li id="menu_cart_link" class="nav_item"><a href="cart.html">Order Now</a></li>                   
-                    <li id="menu_about_link" class="nav_item"><a href="about.html">About</a></li>
-                    <li class="nav_item current_tab"><a href="#page">Account</a></li>
+                    <li id="menu_cart_link" class="nav_item"><a href="cart.html">Order Now</a></li>
+                    <li id="menu_about_link" class="nav_item current_tab"><a href="#page">About</a></li>
+                    <li class="nav_item"><a href="account.html">Account</a></li>
                     <li id="login_menu_link" class="nav_item"><a href="login.html">Login</a></li>
                 </ul>
             </nav>
@@ -32,26 +30,37 @@
     </header>
 
     <div class="main_page_content">
-        <div class="account_item change_password">
-            <form action="/change-password" method="POST">
-                <h2>Change Your Password</h2>
-
-                <label for="current-password">Current Password</label>
-                <input type="password" id="current-password" name="password" required>
-
-                <!-- New password field -->
-                <label for="new-password">New Password</label>
-                <input type="password" id="new-password" name="new-password" required minlength="8">
-
-                <!-- Confirm password field -->
-                <label for="confirm-password">Confirm New Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" required minlength="8">
-
-                <button type="submit">Change Password</button>
-            </form>
+        <div class="about_Container">
+             <h2>A little about us!</h2>           
+            <p>Welcome to El Cubano Restaurant, where we bring the vibrant flavors of Cuba to your table! 
+                Established in 2010, our restaurant has been dedicated to providing an authentic Cuban dining 
+                experience in the heart of Lancaster, PA.</p>
+            <p>At El Cubano, we pride ourselves on using traditional recipes passed down through generations, 
+                combined with fresh, locally sourced ingredients. Our menu features a variety of classic Cuban 
+                dishes, including Ropa Vieja (Stewed Beef), Lechón Asado (Roast Pork), and our locally famous 
+                Empanadas, all crafted to perfection by our skilled chefs.</p>
+            <img src="../resources/images/menu_items/entrees/fish.jpg" alt="Fish Entrée" id="fishPic">
+            <p>Our warm and inviting atmosphere is perfect for family gatherings, romantic dinners, or casual 
+                outings with friends. We are committed to delivering exceptional service and ensuring that every 
+                guest leaves satisfied and eager to return.</p>
+            <p>Thank you for choosing El Cubano Restaurant. We look forward to serving you and sharing the rich 
+                culinary heritage of Cuba!</p>
+            
+            <div id="about_footing">
+                <div><img src="../resources/images/el_cubano_restaurant_logo.png" alt="El Cubano Restaurant Logo" id="aboutLogo"></div>
+                <div id="about_contact_info">
+                    <ul>
+                        <li><strong>Business Hours:</strong></li>
+                        <li>Mon-Sun 10am - 10pm</li>
+                        <li>Closed on all major holidays</li>
+                        <li>Phone: (717) 493-8783</li>                    
+                    </ul>
+                </div>
+            </div>
         </div>
+        
     </div>
-    
+
     <footer class="footer">
         <div class="footer_content">
             <div class="footer_child footer_child_1">
@@ -84,8 +93,7 @@
     </footer>
 
     <button id="backToTop"></button>
-
-    <script type="module" src="../logic/account.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
     <script type="module" src="../logic/ui.js"></script>
     <script type="module" src="../logic/tempUserTracker.js"></script>

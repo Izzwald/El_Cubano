@@ -6,7 +6,6 @@
     <title>El Cubano</title>
     <link rel="stylesheet" href="../resources/styles.css">
 </head>
-
 <body id="page" class="page">
     <header class="header">
         <div class="header_child header_child_1">
@@ -157,7 +156,7 @@
                         <strong class="cart-total-title">Total:</strong>
                         <span class="cart-total-price">-</span>
                     </div>
-                    <button class="btn btn-purchase getInfo" type="button">Place Order</button>
+                    <button class="btn btn-purchase getInfo" type="button">Checkout</button>
                     
                     
                     <!-- Form for payment method -->
@@ -165,12 +164,14 @@
                     <div class="formContainer">
                         <form action="" method="POST" class="paymentForm" autocomplete="off">
 
+                        <h3>Payment Information</h3>
                             <div class="formRow formRow0">
                                 <div class="labels">
-                                    <label for="delivery">Order for delivery?</label>
+                                    <label for="delivery">Is the order for delivery?</label>
                                 </div>
                                 <div class="inputs">
-                                    <input id="delivery" name="delivery" type="checkbox">
+                                    <input id="delivery" name="delivery" type="checkbox"><span> Yes</span>
+                                    <input id="pickUp" name="pickUp" type="checkbox" checked><span> No</span>
                                 </div>
                             </div>
 
@@ -179,7 +180,7 @@
                                     <label for="name">Name</label>
                                 </div>
                                 <div class="inputs">
-                                    <input id="name" name="name" type="text">
+                                    <input id="name" name="name" type="text" placeholder="Name">
                                 </div>
                             </div>
 
@@ -188,16 +189,16 @@
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="inputs">
-                                    <input id="email" name="email" type="email">
+                                    <input id="email" name="email" type="email" placeholder="Email">
                                 </div>
                             </div>
 
-                            <div class="formRow" id="addressRow" style="display:none;">
+                            <div class="formRow" id="addressRow">
                                 <div class="labels">
                                     <label for="address">Address <em>(only if delivery)</em></label>
                                 </div>
                                 <div class="inputs">
-                                    <input id="address" name="address" type="text">
+                                    <input id="address" name="address" type="text" placeholder="Address">
                                 </div>
                             </div>
 
@@ -213,13 +214,13 @@
                                 </div>
                             </div>
 
-                            <div id="cardFields" style="display:none;">
-                                <div class="formRow">
+                            <div id="cardFields" style="display: none;">
+                                <div class="formRow" >
                                     <div class="labels">
                                         <label for="cardNumber">Card Number</label>
                                     </div>
                                     <div class="inputs">
-                                        <input id="cardNumber" name="cardNumber" type="text" autocomplete="off">
+                                        <input id="cardNumber" name="cardNumber" type="tel" autocomplete="off" minlength="13" maxlength="19" inputmode="numeric" pattern="[0-9]*" placeholder="Credit Card Number" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
                                 </div>
 
@@ -228,18 +229,35 @@
                                         <label for="exp">Exp Date</label>
                                     </div>
                                     <div class="inputs">
-                                        <input id="exp" name="exp" type="text" autocomplete="off">
+                                        <input id="exp" name="exp" type="tel" autocomplete="off" minlength="4" maxlength="4" inputmode="numeric" pattern="[0-9]*"placeholder="MMYY" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
                                 </div>
-
+                            
                                 <div class="formRow">
                                     <div class="labels">
                                         <label for="cvc">CVC</label>
                                     </div>
                                     <div class="inputs">
-                                        <input id="cvc" name="cvc" type="text" autocomplete="off">
+                                        <input id="cvc" name="cvc" type="tel" autocomplete="off" minlength="3" maxlength="3" inputmode="numeric" pattern="[0-9]*" placeholder="CVC" oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
                                     </div>
+                                </div> 
+                            </div>
+                    
+                            <div class="formRow">
+                                <div class="labels">
+                                    <label for="tip">Would you like to add a tip?</label>
                                 </div>
+                                <div class="inputs">
+                                    <input id="tip" name="tip" type="number" autocomplete="off" maxlength="2" min="0" max="30" placeholder="Tip" oninput="updateFinalTotalDisplay(), updateTipAmountDisplay()">
+                                    <span>%</span> <span class="tip-note"> (0-30%)</span>
+                                </div>
+                            </div>
+
+                            <div class="cart-total">
+                                <span class="cart-total-title" id="tip_style">Tip amount:</span>
+                                <span id="tip_Amount"></span><br>
+                                <span><strong class="cart-total-title" >Final Total:</strong></span>
+                                <span class="" id="final-total-display"></span>
                             </div>
 
                             <div class="formRow">

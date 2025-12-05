@@ -4,10 +4,10 @@
     --color-secondary:       #3BB273;         /* Secondary accent — great for call-to-action buttons, badges, or icons */ 
     --color-accent:          #00A8C6;         /* Tropical accent — use for links, hover states, or decorative elements */ 
     --color-highlight:       #F9C80E;         /* Highlight color — perfect for promotions, special offers, or kids' sections */ 
-    --color-background:      #FFF5E1;         /* Main background — apply to body, sections, and cards for a warm, inviting feel */ 
-    --color-text:            #3E3E3E;         /* Base text color — use for paragraphs, menus, and general content */ 
+    --color-background:      #FAF3DD;         /* Main background — apply to body, sections, and cards for a warm, inviting feel */ 
+    --color-text:            #2F3E46;         /* Base text color — use for paragraphs, menus, and general content */ 
     --color-footer-legal:    rgba(255,255,255,.7); 
-    --color-login-background:#FAD4D1; 
+    --color-login-background:#FFD166; 
 }
 
 *{margin:0;
@@ -157,6 +157,9 @@ nav button:hover{
     padding:20px;
     border-radius:8px;
     border: 2px solid var(--color-primary);  
+}
+.login_signup input[type="text"], .login_signup input[type="password"], .login_signup input[type="email"]{
+    width: 150px;
 }
 .login_signup .button, .login_switcher{
     padding: 5px;
@@ -516,6 +519,11 @@ nav button:hover{
     align-self: flex-start;
     width:fit-content;
     margin:0 auto;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    padding: 10px;
+    color: var(--color-text);
+    background-color: var(--color-login-background);
 }
 
 .cart_contents .btn{
@@ -594,13 +602,14 @@ nav button:hover{
     text-align: end;
     margin-top: 10px;
     margin-right: 10px;
+    text-align: right;
+
 }
 
 .cart-total-title {
-    font-weight: bold;
     font-size: 1.5em;
     color: black;
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 .cart-total-price {
@@ -616,17 +625,146 @@ nav button:hover{
     display: block;
     margin: 40px auto 80px auto;
     font-size: 18px;
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
 }
 .btn-purchase:hover{
-    color: rgb(172, 182, 0);
+    color: var(--color-highlight);
 }
 .formContainer{
     width: fit-content;
     margin: auto;
     padding: 10px;
+    padding-top: 40px;
     display: none;
 }
+.formContainer label{
+    display: block;
+    margin-bottom: 10px;
+}
+.formContainer #pickUp{
+    margin-left: 20px;
+}
+.formContainer input{
+    margin-bottom: 10px;
+}
+input[type="text"], input[type="email"]{
+    width: 175px;
+}
+.formContainer select{
+    padding: 3px;
+    width: 178px;
+    margin-bottom: 10px;
+}
 
+.account_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin:0px 5px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    min-height: 400px;
+    background-color: var(--color-login-background);
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.account_container h2{
+    padding-bottom: 15px;
+}
+
+.account_container form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    min-width: 0;
+    width:fit-content;
+    color:var(--color-text)
+}
+.account_container label{
+    padding: 10px 0;
+}
+.account_container input{
+    width: 175px;
+}
+.button_Password{
+    margin: 15px 0;
+    padding: 7px;
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 5px;
+    color: var(--color-background);
+    font-size: 18px;
+    width: 175px;
+}
+.button_Password:hover{
+    color: var(--color-highlight);
+    cursor: pointer;
+}
+#tip_style{
+        font-size: 18px;
+}
+
+/* About page Styles */
+
+.about_Container{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    background-color:var(--color-login-background);
+    min-height: 400px;
+    box-sizing: border-box;
+    color: var(--color-text);
+}
+.about_Container h2{
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-primary);
+}
+.about_Container p{
+    padding: 10px 0;
+    line-height: 1.6;
+}
+#about_footing{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     border-top: 2px solid var(--color-primary);
+    padding-top: 20px;
+}
+#about_contact_info{
+    font-size: 14px;
+    text-align: right;
+}
+#about_contact_info ul{
+    list-style-type: none;
+    padding: 0;
+    margin-left: 5px;
+    font-size: 14px;
+}
+#aboutLogo{
+    display: block;
+    width: 150px;
+    height: auto;
+ }
+#fishPic{
+    float:right;
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+}
+
+/* Footer Styles */
 .footer{
     background-color: var(--color-text);         /* Dark anchor */
 }
@@ -652,7 +790,6 @@ nav button:hover{
   grid-column: 3 / 4; /* third track */
   justify-self: center;
 }
-
 
 .footer_child_item_list{
     display:flex;
@@ -689,7 +826,7 @@ nav button:hover{
 }
 
 .social_media_link{
-    color:var(--color-secondary);
+    color: #1877F2;
     transition: fill 0.3s ease;
 }
 
@@ -828,6 +965,17 @@ nav button:hover{
     .cart_container{
         width:100%;
     }
+    .cart_contents{
+        width: 95%;
+    }
+    .account_container{
+        padding:10px;
+    }    #fishPic{
+        width:100%;
+        height:auto;
+        margin: 10px 0;
+        float:none;
+    }
     .footer_content{
         grid-template-columns: 1fr; /* switch to single column */
         row-gap: 10px;         /* add spacing between rows */
@@ -915,5 +1063,22 @@ nav button:hover{
     }
     .cart_page{
         margin:10px 5px;
+    }
+    #about_footing{
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        display: flex;
+    }
+    #about_contact_info{
+    text-align: center;
+}
+    .account_container{
+        padding:5px;
+    }
+    .account_item h2{
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        white-space: normal;
     }
 }
