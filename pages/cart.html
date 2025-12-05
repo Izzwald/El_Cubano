@@ -220,7 +220,7 @@
                                         <label for="cardNumber">Card Number</label>
                                     </div>
                                     <div class="inputs">
-                                        <input id="cardNumber" name="cardNumber" type="tel" autocomplete="off" maxlength="16" inputmode="numeric" pattern="[0-9]*" placeholder="Credit Card Number" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                        <input id="cardNumber" name="cardNumber" type="tel" autocomplete="off" minlength="13" maxlength="19" inputmode="numeric" pattern="[0-9]*" placeholder="Credit Card Number" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
                                 </div>
 
@@ -229,7 +229,7 @@
                                         <label for="exp">Exp Date</label>
                                     </div>
                                     <div class="inputs">
-                                        <input id="exp" name="exp" type="tel" autocomplete="off" maxlength="4" inputmode="numeric" pattern="[0-9]*"placeholder="MMYY" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                        <input id="exp" name="exp" type="tel" autocomplete="off" minlength="4" maxlength="4" inputmode="numeric" pattern="[0-9]*"placeholder="MMYY" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
                                 </div>
                             
@@ -238,7 +238,7 @@
                                         <label for="cvc">CVC</label>
                                     </div>
                                     <div class="inputs">
-                                        <input id="cvc" name="cvc" type="tel" autocomplete="off" maxlength="3" inputmode="numeric" pattern="[0-9]*" placeholder="CVC" oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
+                                        <input id="cvc" name="cvc" type="tel" autocomplete="off" minlength="3" maxlength="3" inputmode="numeric" pattern="[0-9]*" placeholder="CVC" oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
                                     </div>
                                 </div> 
                             </div>
