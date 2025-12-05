@@ -522,6 +522,11 @@ nav button:hover{
     align-self: flex-start;
     width:fit-content;
     margin:0 auto;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    padding: 25px;
+    color: var(--color-text);
+    background-color: var(--color-login-background);
 }
 
 .cart_contents .btn{
@@ -622,17 +627,38 @@ nav button:hover{
     display: block;
     margin: 40px auto 80px auto;
     font-size: 18px;
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
 }
 .btn-purchase:hover{
-    color: rgb(172, 182, 0);
+    color: var(--color-highlight);
 }
 .formContainer{
     width: fit-content;
     margin: auto;
     padding: 10px;
+    padding-top: 40px;
     display: none;
 }
-
+.formContainer label{
+    display: block;
+    margin-bottom: 10px;
+}
+.formContainer #pickUp{
+    margin-left: 20px;
+}
+.formContainer input{
+    margin-bottom: 10px;
+}
+input[type="text"], input[type="email"]{
+    width: 175px;
+}
+.formContainer select{
+    padding: 3px;
+    width: 178px;
+    margin-bottom: 10px;
+}
 
 .footer{
     background-color: var(--color-text);         /* Dark anchor */
@@ -826,7 +852,9 @@ nav button:hover{
     .cart_container{
         width:100%;
     }
-
+    .cart_contents{
+        width: 95%;
+    }
 
     .footer_content{
         flex-direction:column;

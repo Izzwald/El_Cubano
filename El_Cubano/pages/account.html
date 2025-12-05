@@ -5,6 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Cubano</title>
     <link rel="stylesheet" href="../resources/styles.css">
+    <style>
+        .account_container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            margin: 0 auto;
+            border: 2px solid var(--color-primary);
+            border-radius: 10px;
+            min-height: 400px;
+            background-color: #FAD4D1;
+            padding: 20px;
+        }
+        .account_container h2{
+            padding-bottom: 15px;
+        }
+        .account_container form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+        }
+        .account_container label{
+            padding: 10px 0;
+        }
+        .account_container input{
+            width: 175px;
+        }
+        .button_Password{
+            margin: 15px 0;
+            padding: 7px;
+            background-color: #00A8C6;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            width: 175px;
+        }
+        .button_Password:hover{
+            color: #F9C80E;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body id="page" class="page">
     <header class="header">
@@ -32,23 +76,25 @@
     </header>
 
     <div class="main_page_content">
-        <div class="account_item change_password">
-            <form action="/change-password" method="POST">
-                <h2>Change Your Password</h2>
+        <div class="account_container">
+            <div class="account_item change_password">
+                <form action="/change-password" method="POST">
+                    <h2>Change Your Password</h2>
 
-                <label for="current-password">Current Password</label>
-                <input type="password" id="current-password" name="password" required>
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" placeholder="Current Password" name="password" required>
 
-                <!-- New password field -->
-                <label for="new-password">New Password</label>
-                <input type="password" id="new-password" name="new-password" required minlength="8">
+                    <!-- New password field -->
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" placeholder="New Password" name="new-password" required minlength="8">
 
-                <!-- Confirm password field -->
-                <label for="confirm-password">Confirm New Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" required minlength="8">
+                    <!-- Confirm password field -->
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm New Password" name="confirm-password" required minlength="8">
 
-                <button type="submit">Change Password</button>
-            </form>
+                    <button class="button_Password" type="submit">Change Password</button>
+                </form>
+            </div>
         </div>
     </div>
     

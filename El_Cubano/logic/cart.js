@@ -1,4 +1,5 @@
 import * as Message from "./message.js";
+import * as Auth from "./auth.js";
 
 // Wait until DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -157,11 +158,21 @@ function purchaseClicked() {
     if (form) {
         form.style.display = 'block'; // Show the form
     }
+    const checkout = document.querySelector('.getInfo');
+    if (checkout) {
+        checkout.style.display = 'none'; // Hide button
+    }
 }
 
 // PURCHASE Prossessed
 function purchaseSuccess() {
     Message.showBanner("Thank you for your purchase!",{type:'success',duration:3000,position:'top'})
+    console.log(`Thank you ${(Auth.getActiveUser()).firstname} for your purchase!`);
+    console.log("Your order has been placed.");
+    console.log("Order Total: " + document.getElementsByClassName('cart-total-price')[0].innerText);
+    console.log(`plus a tip of ${document.getElementById("tip").value}%`);
+    console.log(`for a final total of $${(parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$','')) * (1 + parseFloat(document.getElementById("tip").value)/100)).toFixed(2)}`);
+    console.log("Your order will be ready in 15-20 minutes.");
     const cartItems = document.getElementsByClassName('cart-items')[0];
     cartItems.innerHTML = '';
     checkEmptyCart();
@@ -170,11 +181,38 @@ function purchaseSuccess() {
     if (form) {
         form.style.display = 'none'; // hide the form
     }
+    const checkout = document.querySelector('.getInfo');
+    if (checkout) {
+        checkout.style.display = 'block'; // Show button
+    }
 };
 
+function tipAmount() {
+    const cartTotal = parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$', ''));
+    const tipPercentage = parseFloat(document.getElementById("tip").value) || 0;
+    const tipAmount = cartTotal * (tipPercentage / 100);
+    return tipAmount.toFixed(2);
+}
+window.updateTipAmountDisplay = function() {
+    const tipAmountValue = tipAmount();
+    document.getElementById("tip_Amount").innerText =
+        "$" + tipAmountValue;
+}
 
 
 
+function calculateFinalTotal() {
+    const cartTotal = parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$', ''));
+    const tipPercentage = parseFloat(document.getElementById("tip").value) || 0;
+    const finalTotal = cartTotal * (1 + tipPercentage / 100);
+    return finalTotal.toFixed(2);
+}
+
+window.updateFinalTotalDisplay = function() {
+    const finalTotal = calculateFinalTotal();
+    document.getElementById("final-total-display").innerText =
+        "$" + finalTotal;
+}
 
 
 /* Order confirmation delivery/payment display*/

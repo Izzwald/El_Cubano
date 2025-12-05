@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Cubano</title>
     <link rel="stylesheet" href="../resources/styles.css">
+    <style>
+        #tip{
+            width: 50px ;
+        }
+    </style>
 </head>
 
 <body id="page" class="page">
@@ -122,7 +127,7 @@
                 <strong class="cart-total-title">Total:</strong>
                 <span class="cart-total-price">-</span>
             </div>
-            <button class="btn btn-purchase getInfo" type="button">Place Order</button>
+            <button class="btn btn-purchase getInfo" type="button">Checkout</button>
             
             
             <!-- Form for payment method -->
@@ -130,12 +135,14 @@
             <div class="formContainer">
                 <form action="" method="POST" class="paymentForm" autocomplete="off">
 
+                    <h3>Payment Information</h3>
                     <div class="formRow formRow0">
                         <div class="labels">
-                            <label for="delivery">Order for delivery?</label>
+                            <label for="delivery">Is the order for delivery?</label>
                         </div>
                         <div class="inputs">
-                            <input id="delivery" name="delivery" type="checkbox">
+                            <input id="delivery" name="delivery" type="checkbox"><span> Yes</span>
+                            <input id="pickUp" name="pickUp" type="checkbox"><span> No</span>
                         </div>
                     </div>
 
@@ -144,7 +151,7 @@
                             <label for="name">Name</label>
                         </div>
                         <div class="inputs">
-                            <input id="name" name="name" type="text">
+                            <input id="name" name="name" type="text" placeholder="Name">
                         </div>
                     </div>
 
@@ -153,7 +160,7 @@
                             <label for="email">Email</label>
                         </div>
                         <div class="inputs">
-                            <input id="email" name="email" type="email">
+                            <input id="email" name="email" type="email" placeholder="Email">
                         </div>
                     </div>
 
@@ -162,7 +169,7 @@
                             <label for="address">Address <em>(only if delivery)</em></label>
                         </div>
                         <div class="inputs">
-                            <input id="address" name="address" type="text">
+                            <input id="address" name="address" type="text" placeholder="Address">
                         </div>
                     </div>
 
@@ -184,7 +191,7 @@
                                 <label for="cardNumber">Card Number</label>
                             </div>
                             <div class="inputs">
-                                <input id="cardNumber" name="cardNumber" type="text" autocomplete="off">
+                                <input id="cardNumber" name="cardNumber" type="text" autocomplete="off" maxlength="16" placeholder="Credit Card Number">
                             </div>
                         </div>
 
@@ -193,7 +200,7 @@
                                 <label for="exp">Exp Date</label>
                             </div>
                             <div class="inputs">
-                                <input id="exp" name="exp" type="text" autocomplete="off">
+                                <input id="exp" name="exp" type="text" autocomplete="off" maxlength="5" placeholder="MM/YY">
                             </div>
                         </div>
 
@@ -202,10 +209,26 @@
                                 <label for="cvc">CVC</label>
                             </div>
                             <div class="inputs">
-                                <input id="cvc" name="cvc" type="text" autocomplete="off">
+                                <input id="cvc" name="cvc" type="text" autocomplete="off" maxlength="3" placeholder="CVC">
+                            </div>
+                        </div> 
+                    </div>
+                    
+                    <div class="formRow">
+                            <div class="labels">
+                                <label for="tip">Would you like to add a tip?</label>
+                            </div>
+                            <div class="inputs">
+                                <input id="tip" name="tip" type="number" autocomplete="off" maxlength="2" min="0" max="30" placeholder="Tip" oninput="updateFinalTotalDisplay(), updateTipAmountDisplay()">
+                                <span>%</span> <span class="tip-note"> (0-30%)</span>
                             </div>
                         </div>
-                    </div>
+                        <div class="cart-total">
+                            <span>Tip amount:</span>
+                            <span id="tip_Amount"></span><br>
+                            <strong class="cart-total-title" >Final Total:</strong>
+                            <span class="" id="final-total-display">-</span>
+                        </div>
 
                     <div class="formRow">
                         <button class="btn btn-purchase confirmInfo" type="button">Confirm order</button>
