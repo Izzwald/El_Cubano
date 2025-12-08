@@ -147,7 +147,7 @@
                     <div class="cart-items">
                         <div class="cart-row">
                             <div class="cart-item cart-column">
-                                <span class="cart-item-title">Empty</span>
+                                <span id="emptyCart" class="cart-item-title">Empty</span>
                             </div>
                             <span class="cart-price cart-column">-</span>                   
                         </div>
@@ -238,7 +238,7 @@
                                         <label for="cvc">CVC</label>
                                     </div>
                                     <div class="inputs">
-                                        <input id="cvc" name="cvc" type="tel" autocomplete="off" minlength="3" maxlength="3" inputmode="numeric" pattern="[0-9]*" placeholder="CVC" oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
+                                        <input id="cvc" name="cvc" type="tel" autocomplete="off" minlength="3" maxlength="4" inputmode="numeric" pattern="[0-9]*" placeholder="CVC" oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
                                     </div>
                                 </div> 
                             </div>
@@ -264,6 +264,14 @@
                                 <button class="btn btn-purchase confirmInfo" type="button">Confirm order</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <div id="receiptPopup" class="popup"><!-- Popup for receipt -->
+                            <div class="popup-content">
+                            <h2>Receipt</h2>
+                            <p>Item:</p>
+                            <p>Total: </p>
+                        <button id="closePopupBtn">Close</button>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const quantityInputs = document.getElementsByClassName('cart-quantity-input');
     const purchaseButton = document.getElementsByClassName('getInfo')[0];
     const confirmPurchase = document.getElementsByClassName('confirmInfo')[0];
-     
+    const tipInput = document.getElementById("tip");
+
+
     // Remove item buttons
     for (let button of removeCartItemButtons) {
         button.addEventListener('click', removeCartItem);
@@ -19,29 +21,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // PURCHASE button
     if (purchaseButton) {
-        purchaseButton.addEventListener('click', purchaseClicked);
+        purchaseButton.addEventListener('click', () => {
+            let emptyCart = document.getElementById("emptyCart");
+            if (emptyCart){
+                Message.showBanner("Your cart is empty!",{type:'warning',duration:5000,position:'top'})
+                return
+            }
+            else{
+                purchaseClicked();
+            }
+        });
     }
 
     if (confirmPurchase) {
+        const cardNumber = document.getElementById("cardNumber");
+        let cardNumberValue = "";
         
+        const cardExperation = document.getElementById("exp");
         let cardExperationValue = "";
-        const cardExperation = document.getElementById("exp"); // always an element
+        
+        const cardCVC = document.getElementById("cvc");
+        let cardCVCValue = "";
+
         const cardFields = document.getElementById("cardFields");
+
+        cardNumber.addEventListener("input", (e) => {
+            cardNumberValue = e.target.value;
+            console.log(cardNumberValue);
+        });
 
         cardExperation.addEventListener("input", (e) => {
             cardExperationValue = e.target.value;
             console.log(cardExperationValue);
         });
 
+        cardCVC.addEventListener("input", (e) => {
+            cardCVCValue = e.target.value;
+            console.log(cardCVCValue);
+        });
+
         confirmPurchase.addEventListener('click', () => {
 
-            //console.log(getComputedStyle(cardFields).display)
-            //console.log(cardExperationValue)
-            if(!cardExperationValue&&( getComputedStyle(cardFields).display=="none")){      //cash will return empty value
+            if(( getComputedStyle(cardFields).display=="none")){      
                 purchaseSuccess()
             }
-            else if(experationChecker(cardExperationValue)){
+            else if(isValidCardNum(cardNumberValue)&&experationChecker(cardExperationValue)&&cvcChecker(cardCVCValue)){
                 purchaseSuccess()
+            }
+            else {
+                let wronginfo=""
+                if (!isValidCardNum(cardNumberValue)){
+                    cardNumber.value=""    
+                    wronginfo+="Card Number "
+                }
+                if (!experationChecker(cardExperationValue)){
+                    cardExperation.value=""
+                    wronginfo+="Experation Date "
+                }
+                if (!cvcChecker(cardCVCValue)){
+                    cardCVC.value=""
+                    wronginfo+="CVC "
+                }
+                Message.showBanner("Playment field(s) Invalid: "+wronginfo,{type:'error',duration:5000,position:'top'})
             }
         });       
     }
@@ -53,6 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function cvcChecker(input){
+    const str = String(input);
+    if ((str.length==3)||(str.length==4)){
+        return true
+    }
+    else{
+        //Message.showBanner("CVC not valid",{type:'error',duration:5000,position:'top'})
+        return false
+    }
+}
 
 function experationChecker(input){
     const str = String(input);
@@ -97,16 +149,89 @@ function experationChecker(input){
         return true
     }
     else if (!valid){
-        Message.showBanner("Card experation date not valid",{type:'error',duration:5000,position:'top'})
+        //Message.showBanner("Card experation date not valid",{type:'error',duration:5000,position:'top'})
         return false
     }
     else{
-        Message.showBanner("Card is expired",{type:'error',duration:5000,position:'top'})
+        //Message.showBanner("Card is expired",{type:'error',duration:5000,position:'top'})
         return false
     }
 }
 
+function isValidCardNum(cardnumber){
+    let isvalid = false
+    let cardnumberlist=String(cardnumber).replace(/\s+/g, "").split("");
+    let reversedcardnumberlist = cardnumberlist
+    reversedcardnumberlist.reverse()
+    let cardnumlength=reversedcardnumberlist.length
+    let sum=0
+    for (let i=0;i<cardnumlength;i++){
+        let number = reversedcardnumberlist[i]
+        number = Number(number)
+        if ((i+1)%2==0){
+            number*=2
+            if (number>9){
+                number-=9
+            }
+        }
+        sum+=number
+    }
 
+    let passesLuhn=(sum%10==0)
+
+    if (passesLuhn&&((cardnumlength>=13)&&(cardnumlength<=19))){
+        function startsWith(startnum, cardnum) {
+            return String(cardnum).startsWith(String(startnum));
+        }
+
+        function matchesRange(start, end, cardnum) {
+            const prefix = Number(String(cardnum).substring(0, String(start).length));
+            return prefix >= start && prefix <= end;
+        }
+
+        //Visa
+        if (startsWith(4, cardnumber)) {
+            if ((cardnumlength === 13) || (cardnumlength === 16) || (cardnumlength === 19)) {
+                isvalid = true;
+            }
+        }
+        //MasterCard
+        else if (matchesRange(51, 55, cardnumber) || matchesRange(2221, 2720, cardnumber)) {
+            if (cardnumlength === 16) {
+                isvalid = true;
+            }
+        }
+        //AmEx
+        else if (startsWith(34, cardnumber) || startsWith(37, cardnumber)) {
+            if (cardnumlength === 15) {
+                isvalid = true;
+            }
+        }
+        //Discover
+        else if (startsWith(6011, cardnumber) || startsWith(65, cardnumber) || matchesRange(644, 649, cardnumber) || matchesRange(622126, 622925, cardnumber)) {
+            if (cardnumlength === 16 || cardnumlength === 19) {
+                isvalid = true;
+            }
+        }
+        //Diners Club
+        else if (matchesRange(300, 305, cardnumber) || startsWith(36, cardnumber) || startsWith(38, cardnumber) || startsWith(39, cardnumber)) {
+            if (cardnumlength === 14) {
+                isvalid = true;
+            }
+        }
+        //JCB
+        else if (matchesRange(3528, 3589, cardnumber)) {
+            if (cardnumlength === 16 || cardnumlength === 17 || cardnumlength === 18 || cardnumlength === 19) { 
+                isvalid = true;
+            }
+        }
+    }
+    // if (!isvalid){
+    //     Message.showBanner("Card number not valid",{type:'error',duration:5000,position:'top'})
+    // }
+
+    return isvalid
+}
 
 // REMOVE ITEM
 function removeCartItem(event) {
@@ -125,7 +250,7 @@ function checkEmptyCart() {
         emptyRow.classList.add('cart-row');
         emptyRow.innerHTML = `
             <div class="cart-item cart-column">
-                <span class="cart-item-title">Empty</span>
+                <span id="emptyCart" class="cart-item-title">Empty</span>
             </div>
             <span class="cart-price cart-column">$0.00</span>
         `;
@@ -243,13 +368,20 @@ function purchaseClicked() {
 
 // PURCHASE Prossessed
 function purchaseSuccess() {
-    Message.showBanner("Thank you for your purchase!",{type:'success',duration:3000,position:'top'})
-    // console.log(`Thank you ${(Auth.getActiveUser()).firstname} for your purchase!`);
+    // Message.showBanner("Thank you for your purchase!",{type:'success',duration:3000,position:'top'});
+    Message.showBanner(`Thank you ${(Auth.getActiveUser()).firstname} for your purchase! \n Your order has been placed. Your order will be ready in 15-20 minutes.`,{type:'success',duration:5000,position:'top'});
     // console.log("Your order has been placed.");
     // console.log("Order Total: " + document.getElementsByClassName('cart-total-price')[0].innerText);
     // console.log(`plus a tip of ${document.getElementById("tip").value}%`);
     // console.log(`for a final total of $${(parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$','')) * (1 + parseFloat(document.getElementById("tip").value)/100)).toFixed(2)}`);
     // console.log("Your order will be ready in 15-20 minutes.");
+    
+    buildReceipt();
+
+    // Show receipt popup
+    const receiptPopup = document.getElementById("receiptPopup");
+    receiptPopup.style.display = "flex";
+    
     const cartItems = document.getElementsByClassName('cart-items')[0];
     cartItems.innerHTML = '';
     checkEmptyCart();
@@ -264,12 +396,75 @@ function purchaseSuccess() {
     }
 };
 
+function buildReceipt() {
+    let receiptHTML = "<h2>Receipt</h2>";
+
+    // Fetch items
+    const cartRows = document.querySelectorAll(".cart-items .cart-row");
+    receiptHTML += "<h3>Items:</h3>";
+
+    cartRows.forEach(row => {
+        const title = row.querySelector(".cart-item-title")?.innerText;
+        const price = row.querySelector(".cart-price")?.innerText;
+        const qtyInput = row.querySelector(".cart-quantity-input");
+        if (!qtyInput) return; // Skip empty row
+        const qty = qtyInput.value;
+
+        receiptHTML += `<p>${title} — ${qty} × ${price}</p>`;
+    });
+
+    // Totals
+    const subtotal = document.querySelector(".cart-total-price").innerText;
+    const tipAmount = document.getElementById("tip_Amount").innerText;
+    const finalTotal = document.getElementById("final-total-display").innerText;
+
+    receiptHTML += `
+        <hr>
+        <p><strong>Subtotal:</strong> ${subtotal}</p>
+        <p><strong>Tip:</strong> ${tipAmount}</p>
+        <p><strong>Final Total:</strong> ${finalTotal}</p>
+        <hr>
+    `;
+
+    // Customer Info
+    const name = document.getElementById("name").value || "-";
+    const email = document.getElementById("email").value || "-";
+    const address = 
+        document.getElementById("delivery").checked 
+        ? document.getElementById("address").value || "(no address)" 
+        : "Pickup";
+
+    receiptHTML += `
+        <h3>Customer Info</h3>
+        <p>Name: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Order Type: ${document.getElementById("delivery").checked ? "Delivery" : "Pickup"}</p>
+        <p>Address: ${address}</p>
+    `;
+
+    // Inject into popup
+    const content = document.querySelector("#receiptPopup .popup-content");
+    content.innerHTML = receiptHTML + `<button id="closePopupBtn">Close</button>`;
+
+    // Wire close button
+    document.getElementById("closePopupBtn").addEventListener("click", () => {
+        document.getElementById("receiptPopup").style.display = "none";
+    });
+}
+
 function tipAmount() {
     const cartTotal = parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$', ''));
-    const tipPercentage = parseFloat(document.getElementById("tip").value) || 0;
+    let tipPercentage = parseFloat(document.getElementById("tip").value) || 0;
+    if (tipPercentage > 30) {
+        tipPercentage = 30
+    }
+    tipPercentage = Math.floor(tipPercentage);
+    document.getElementById("tip").value = tipPercentage;
     const tipAmount = cartTotal * (tipPercentage / 100);
+    window.updateFinalTotalDisplay();
     return tipAmount.toFixed(2);
 }
+
 window.updateTipAmountDisplay = function() {
     const tipAmountValue = tipAmount();
     document.getElementById("tip_Amount").innerText =
