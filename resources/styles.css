@@ -492,7 +492,9 @@ nav button:hover{
     display:flex;
     flex-direction:row;
     justify-content:space-between;
+    gap:15px;
     width:100%;
+    height: calc(100vh - 90px);
 }
 
 .addToCart{
@@ -509,22 +511,34 @@ nav button:hover{
     color:var(--color-highlight)
 }
 
-.cart_container{
-    width:50%;
+.scrollbar{
+    overflow:auto;
 }
 
-.cart_contents{
-    position: sticky;
-    top: 75px;              /* stick to top */
-    align-self: flex-start;
-    width:fit-content;
-    margin:0 auto;
+.scrollbar::-webkit-scrollbar{
+    display:none;
+}
+
+.cart_container{
+
+    padding: 20px;
     border: 2px solid var(--color-primary);
+    background-color: var(--color-login-background);
     border-radius: 10px;
-    padding: 10px;
+    height:fit-content;
+}
+
+
+.cart_contents{
+    
+    align-self: flex-start;
+    /* max-width:565px; */
+    /* margin:0 auto; */
     color: var(--color-text);
     background-color: var(--color-login-background);
+    width:100%
 }
+
 
 .cart_contents .btn{
     padding: 10px;
@@ -544,7 +558,7 @@ nav button:hover{
 }
 
 .cart-item {
-    width: 45%;
+    width: 35%;
 }
 
 .cart-price {
@@ -623,7 +637,7 @@ nav button:hover{
 
 .btn-purchase {
     display: block;
-    margin: 40px auto 80px auto;
+    margin: 40px auto 55px auto;
     font-size: 18px;
     background-color: var(--color-accent);
     color: white;
@@ -633,10 +647,11 @@ nav button:hover{
     color: var(--color-highlight);
 }
 .formContainer{
+    height:fit-content;
     width: fit-content;
     margin: auto;
     padding: 10px;
-    padding-top: 40px;
+    padding-top: 30px;
     display: none;
 }
 .formContainer label{
@@ -983,11 +998,29 @@ input[type="text"], input[type="email"]{
         flex-direction: column;
         gap:10px;
     }
-    .cart_container{
-        width:100%;
-    }
     .cart_contents{
+        max-height:fit-content;
+        overflow:visible;
         width: 95%;
+    }
+    
+    .cart_page{
+        height:fit-content;
+    }
+    .cart-header{
+        margin-right:5px;
+    }
+    .cart-item{
+        margin-right:5px;
+    }
+    .cart-quantity input{
+        margin-right:5px;
+    }
+    .cart-price{
+        margin-right:5px;
+    }
+    .cart-quantity{
+        padding-left:10px;
     }
     .account_container{
         padding:10px;
@@ -1082,8 +1115,14 @@ input[type="text"], input[type="email"]{
     .Menu_Item_Image{
         width:100%;
     }
+    .cart_container{
+        padding:10px;
+    }
     .cart_page{
         margin:10px 5px;
+    }
+    .cart-row{
+        font-size:12px;
     }
     #about_footing{
         flex-direction: column;

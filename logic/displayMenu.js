@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //changes menu appearance based on window width during resizes
         const width= window.innerWidth
         const menuContainer= document.getElementsByClassName("menu_container")[0]
-        const cartContainer = document.getElementsByClassName("cart_container")[0]
+        const cartContents = document.getElementsByClassName("cart_container")[0]
         const cartPage = document.getElementsByClassName("cart_page")[0]
         const isMenuPage = window.location.pathname.endsWith('menu.html');
         const isCartPage = window.location.pathname.endsWith('cart.html');   
@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             else if (isCartPage){
                 menuContainer.style.width=`${cartPage.offsetWidth-34}px`
+                cartContents.style.width=`${cartPage.offsetWidth-34}px`
             }
         } 
         else if (width <= 800) {
@@ -120,6 +121,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuContainer.style.maxWidth="565px"
                 menuContainer.style.margin="0 auto"
                 menuContainer.style.width=`${cartPage.offsetWidth-54}px`
+
+                cartContents.style.maxWidth="565px"
+                cartContents.style.margin="0 auto"
+                cartContents.style.width=`${cartPage.offsetWidth-54}px`
+
+                menuContainer.classList.remove("scrollbar")
+                menuContainer.style.height="fit-content"
+                menuContainer.style.maxHeight="none"
+                cartContents.classList.remove("scrollbar")
+                cartContents.style.height="fit-content"
+                menuContainer.style.maxHeight="none"
             }
         } 
         else if (width > 800) {
@@ -129,9 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuContainer.style.margin="15px"
             }
             else if (isCartPage){
+                menuContainer.style.maxHeight=`${cartPage.offsetHeight-45}px`
                 menuContainer.style.maxWidth="565px"
                 menuContainer.style.margin="0 auto"
                 menuContainer.style.width="50%"
+                cartContents.style.maxHeight=`${cartPage.offsetHeight-45}px`
+                cartContents.style.maxWidth="565px"
+                cartContents.style.margin="0 auto"
+                cartContents.style.width="50%"
+
+                menuContainer.classList.add("scrollbar")
+                cartContents.classList.add("scrollbar")
             }
         }
         //console.log(cartPage.offsetWidth)
