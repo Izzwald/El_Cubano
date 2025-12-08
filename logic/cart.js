@@ -243,13 +243,20 @@ function purchaseClicked() {
 
 // PURCHASE Prossessed
 function purchaseSuccess() {
-    Message.showBanner("Thank you for your purchase!",{type:'success',duration:3000,position:'top'})
-    // console.log(`Thank you ${(Auth.getActiveUser()).firstname} for your purchase!`);
+    // Message.showBanner("Thank you for your purchase!",{type:'success',duration:3000,position:'top'});
+    Message.showBanner(`Thank you ${(Auth.getActiveUser()).firstname} for your purchase! \n Your order has been placed. Your order will be ready in 15-20 minutes.`,{type:'success',duration:5000,position:'top'});
     // console.log("Your order has been placed.");
     // console.log("Order Total: " + document.getElementsByClassName('cart-total-price')[0].innerText);
     // console.log(`plus a tip of ${document.getElementById("tip").value}%`);
     // console.log(`for a final total of $${(parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$','')) * (1 + parseFloat(document.getElementById("tip").value)/100)).toFixed(2)}`);
     // console.log("Your order will be ready in 15-20 minutes.");
+    
+    buildReceipt();
+
+    // Show receipt popup
+    const receiptPopup = document.getElementById("receiptPopup");
+    receiptPopup.style.display = "flex";
+
     const cartItems = document.getElementsByClassName('cart-items')[0];
     cartItems.innerHTML = '';
     checkEmptyCart();
@@ -264,6 +271,63 @@ function purchaseSuccess() {
     }
 };
 
+function buildReceipt() {
+    let receiptHTML = "<h2>Receipt</h2>";
+
+    // Fetch items
+    const cartRows = document.querySelectorAll(".cart-items .cart-row");
+    receiptHTML += "<h3>Items:</h3>";
+
+    cartRows.forEach(row => {
+        const title = row.querySelector(".cart-item-title")?.innerText;
+        const price = row.querySelector(".cart-price")?.innerText;
+        const qtyInput = row.querySelector(".cart-quantity-input");
+        if (!qtyInput) return; // Skip empty row
+        const qty = qtyInput.value;
+
+        receiptHTML += `<p>${title} — ${qty} × ${price}</p>`;
+    });
+
+    // Totals
+    const subtotal = document.querySelector(".cart-total-price").innerText;
+    const tipAmount = document.getElementById("tip_Amount").innerText;
+    const finalTotal = document.getElementById("final-total-display").innerText;
+
+    receiptHTML += `
+        <hr>
+        <p><strong>Subtotal:</strong> ${subtotal}</p>
+        <p><strong>Tip:</strong> ${tipAmount}</p>
+        <p><strong>Final Total:</strong> ${finalTotal}</p>
+        <hr>
+    `;
+
+    // Customer Info
+    const name = document.getElementById("name").value || "-";
+    const email = document.getElementById("email").value || "-";
+    const address = 
+        document.getElementById("delivery").checked 
+        ? document.getElementById("address").value || "(no address)" 
+        : "Pickup";
+
+    receiptHTML += `
+        <h3>Customer Info</h3>
+        <p>Name: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Order Type: ${document.getElementById("delivery").checked ? "Delivery" : "Pickup"}</p>
+        <p>Address: ${address}</p>
+    `;
+
+    // Inject into popup
+    const content = document.querySelector("#receiptPopup .popup-content");
+    content.innerHTML = receiptHTML + `<button id="closePopupBtn">Close</button>`;
+
+    // Wire close button
+    document.getElementById("closePopupBtn").addEventListener("click", () => {
+        document.getElementById("receiptPopup").style.display = "none";
+    });
+}
+
+// TIP CALCULATION
 function tipAmount() {
     const cartTotal = parseFloat(document.getElementsByClassName('cart-total-price')[0].innerText.replace('$', ''));
     const tipPercentage = parseFloat(document.getElementById("tip").value) || 0;
