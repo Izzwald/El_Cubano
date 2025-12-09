@@ -203,7 +203,7 @@
                                     <label for="name">Name</label>
                                 </div>
                                 <div class="inputs">
-                                    <input id="name" name="name" type="text" placeholder="Name">
+                                    <input id="name" name="name" type="text" oninput="this.value=this.value.replace(/[^A-Za-z]/g,'')" placeholder="Name">
                                 </div>
                             </div>
 
@@ -286,6 +286,7 @@
                             <div class="formRow">
                                 <button class="btn btn-purchase confirmInfo" type="button">Confirm order</button>
                             </div>
+                            <p style="font-size:10px;text-align:center;">*All alcohol purchases will be verified with ID</p>
                         </form>
                     </div>
                 </div>
