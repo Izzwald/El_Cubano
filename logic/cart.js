@@ -34,6 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (confirmPurchase) {
+
+        const customerName = document.getElementById("name");
+        let customerNameValue = "";
+
+        const customerEmail = document.getElementById("email");
+        let customerEmailValue = "";
+
+        const customerAdress = document.getElementById("address");
+        let customerAdressValue = "";
+
+        const isDelivery = document.getElementById("delivery");
+        let isDeliveryValue = false;
+
+        const isPickUp = document.getElementById("pickUp");
+
         const cardNumber = document.getElementById("cardNumber");
         let cardNumberValue = "";
         
@@ -44,6 +59,37 @@ document.addEventListener('DOMContentLoaded', () => {
         let cardCVCValue = "";
 
         const cardFields = document.getElementById("cardFields");
+
+        customerName.value = Auth.getActiveUser().firstname
+        customerNameValue = Auth.getActiveUser().firstname
+        customerName.addEventListener("input", (e) => {
+            customerNameValue = e.target.value;
+            console.log(customerNameValue);
+        });
+
+        customerEmail.addEventListener("input", (e) => {
+            customerEmailValue = e.target.value;
+            console.log(customerEmailValue);
+        });
+
+        customerAdress.addEventListener("input", (e) => {
+            customerAdressValue = e.target.value;
+            console.log(customerAdressValue);
+        });
+
+        isDelivery.addEventListener("input", (e) => {
+            if (e.target.checked){
+                isDeliveryValue = true;
+            }
+            console.log(isDeliveryValue);
+        });
+
+        isPickUp.addEventListener("input", (e) => {
+            if (e.target.checked){
+                isDeliveryValue = false;
+            }
+            console.log(isDeliveryValue);
+        });
 
         cardNumber.addEventListener("input", (e) => {
             cardNumberValue = e.target.value;
@@ -62,14 +108,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         confirmPurchase.addEventListener('click', () => {
 
-            if(( getComputedStyle(cardFields).display=="none")){      
-                purchaseSuccess()
+            if((getComputedStyle(cardFields).display=="none")){      
+                if(nameChecker(customerNameValue)&&emailChecker(customerEmailValue)&&deliveryChecker(customerAdressValue,isDeliveryValue)){
+                    purchaseSuccess()
+                }
+                else {
+                    let wronginfo=""
+                    if (!nameChecker(customerNameValue)){
+                        customerName.value=""
+                        wronginfo+="Name "
+                    }
+                    if (!emailChecker(customerEmailValue)){
+                        customerEmail.value=""
+                        wronginfo+="Email "
+                    }
+                    if (!deliveryChecker(customerAdressValue,isDeliveryValue)){
+                        customerAdress.value=""
+                        wronginfo+="Delivery Address "
+                    }
+                    Message.showBanner("Payment field(s) Invalid: "+wronginfo,{type:'error',duration:10000,position:'top'})
+                }
             }
-            else if(isValidCardNum(cardNumberValue)&&experationChecker(cardExperationValue)&&cvcChecker(cardCVCValue)){
+            else if(nameChecker(customerNameValue)&&emailChecker(customerEmailValue)&&deliveryChecker(customerAdressValue,isDeliveryValue)&&isValidCardNum(cardNumberValue)&&experationChecker(cardExperationValue)&&cvcChecker(cardCVCValue)){
                 purchaseSuccess()
             }
             else {
                 let wronginfo=""
+                if (!nameChecker(customerNameValue)){
+                    customerName.value=""
+                    wronginfo+="Name "
+                }
+                if (!emailChecker(customerEmailValue)){
+                    customerEmail.value=""
+                    wronginfo+="Email "
+                }
+                if (!deliveryChecker(customerAdressValue,isDeliveryValue)){
+                    customerAdress.value=""
+                    wronginfo+="Delivery Address "
+                }
                 if (!isValidCardNum(cardNumberValue)){
                     cardNumber.value=""    
                     wronginfo+="Card Number "
@@ -82,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cardCVC.value=""
                     wronginfo+="CVC "
                 }
-                Message.showBanner("Playment field(s) Invalid: "+wronginfo,{type:'error',duration:5000,position:'top'})
+                Message.showBanner("Payment field(s) Invalid: "+wronginfo,{type:'error',duration:10000,position:'top'})
             }
         });       
     }
@@ -94,6 +170,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function deliveryChecker(address, isDelivery){
+    const str = String(address);
+    if(isDelivery){
+        if (str.length>=1){
+            return true
+        }
+        else{
+            return false
+        }   
+    }
+    else{
+        return true
+    } 
+}
+
+function emailChecker(email){
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email);
+}
+
+function nameChecker(input){
+    const str = String(input);
+    if (str.length>=1){
+        return true
+    }
+    else{
+        return false
+    }
+}
 
 function cvcChecker(input){
     const str = String(input);
@@ -255,6 +361,7 @@ function checkEmptyCart() {
             <span class="cart-price cart-column">$0.00</span>
         `;
         cartItems.appendChild(emptyRow);
+        reversePurchaseClicked();
     }
 }
 
@@ -366,6 +473,20 @@ function purchaseClicked() {
     }
 }
 
+//for when a user removes all items from cart after clicking purchase
+function reversePurchaseClicked() {
+    const form = document.querySelector('.formContainer');
+    if (form) {
+        form.style.display = 'none'; // hide the form
+    }
+    const checkout = document.querySelector('.getInfo');
+    if (checkout) {
+        checkout.style.display = 'block'; // Show button
+    }
+}
+
+
+
 // PURCHASE Prossessed
 function purchaseSuccess() {
     // Message.showBanner("Thank you for your purchase!",{type:'success',duration:3000,position:'top'});
@@ -433,14 +554,24 @@ function buildReceipt() {
         document.getElementById("delivery").checked 
         ? document.getElementById("address").value || "(no address)" 
         : "Pickup";
+    if (document.getElementById("delivery").checked){
+        receiptHTML += `
+            <h3>Customer Info</h3>
+            <p>Name: ${name}</p>
+            <p>Email: ${email}</p>
+            <p>Order Type: ${document.getElementById("delivery").checked ? "Delivery" : "Pickup"}</p>
+            <p>Address: ${address}</p>
+        `;
+    }
+    else{
+        receiptHTML += `
+            <h3>Customer Info</h3>
+            <p>Name: ${name}</p>
+            <p>Email: ${email}</p>
+            <p>Order Type: ${document.getElementById("delivery").checked ? "Delivery" : "Pickup"}</p>
+        `;
+    }
 
-    receiptHTML += `
-        <h3>Customer Info</h3>
-        <p>Name: ${name}</p>
-        <p>Email: ${email}</p>
-        <p>Order Type: ${document.getElementById("delivery").checked ? "Delivery" : "Pickup"}</p>
-        <p>Address: ${address}</p>
-    `;
 
     // Inject into popup
     const content = document.querySelector("#receiptPopup .popup-content");
