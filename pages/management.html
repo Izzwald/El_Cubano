@@ -5,6 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Cubano</title>
     <link rel="stylesheet" href="../resources/styles.css">
+    <style>
+        .management_page_content{
+            text-align: center;
+            width: 60%;
+            padding: 10px;
+            min-height: 300px;
+            margin: 0 auto;
+            border: 2px solid var(--color-primary);
+            border-radius: 10px;
+            background-color:var(--color-login-background);
+
+        }
+        .management_buttons{
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 20px;
+            }
+        .management_btn{
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: var(--color-accent);
+            color: white;
+            
+        }
+        .management_btn:hover{
+            color: var(--color-highlight);
+            cursor: pointer;
+        }
+        #addItemForm{
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body id="page" class="page">
     <header class="header">
@@ -32,7 +72,28 @@
     </header>
 
     <div class="main_page_content">
-
+        <div class="management_page_content">
+            <h2>Management Page</h2>
+            <p>Welcome to the management page. Here you can manage menu items.</p>  
+            <div class="management_buttons">
+                <button id="addItemBtn" class="management_btn">Add Item</button>
+                <button id="editItemBtn" class="management_btn">Edit Item</button>
+                <button id="removeItemBtn" class="management_btn">Remove Item</button>
+            </div>
+            <div class="edit_menu">
+                <input type="hidden" id="itemIdInput" value="">
+                <div id="addItemForm">
+                    <h3>Add New Menu Item</h3>
+                    <label for="addItemName">Name:</label>
+                    <input type="text" id="addItemName"><br>
+                    <label for="addItemDescription">Description:</label>
+                    <input type="text" id="addItemDescription"><br>
+                    <label for="addItemPrice">Price:</label>
+                    <input type="number" id="addItemPrice" min="0" max="100" placeholder="0.00"><br>
+                    <button id="submitAddItem" class="management_btn">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="footer">
