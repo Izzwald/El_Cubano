@@ -17,6 +17,19 @@
             background-color:var(--color-login-background);
 
         }
+        .form_row{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form_row label {
+            width: 120px; 
+        }
+
+        .form_row input {
+            flex: 1; 
+        }
         .management_buttons{
             display: flex;
             justify-content: center;
@@ -24,6 +37,7 @@
             gap: 20px;
             }
         .management_btn{
+            margin-top: 10px;
             padding: 5px;
             border: none;
             border-radius: 5px;
@@ -38,11 +52,10 @@
         }
         #addItemForm{
             padding: 0;
-            margin: 0;
+            max-width: 400px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            border: 1px solid black;
         }
     </style>
 </head>
@@ -77,20 +90,60 @@
             <p>Welcome to the management page. Here you can manage menu items.</p>  
             <div class="management_buttons">
                 <button id="addItemBtn" class="management_btn">Add Item</button>
-                <button id="editItemBtn" class="management_btn">Edit Item</button>
                 <button id="removeItemBtn" class="management_btn">Remove Item</button>
+                <button id="resetMenuBtn" class="management_btn">Restore Default Menu</button>
             </div>
             <div class="edit_menu">
                 <input type="hidden" id="itemIdInput" value="">
-                <div id="addItemForm">
+                <form id="addItemForm">
                     <h3>Add New Menu Item</h3>
-                    <label for="addItemName">Name:</label>
-                    <input type="text" id="addItemName"><br>
-                    <label for="addItemDescription">Description:</label>
-                    <input type="text" id="addItemDescription"><br>
-                    <label for="addItemPrice">Price:</label>
-                    <input type="number" id="addItemPrice" min="0" max="100" placeholder="0.00"><br>
-                    <button id="submitAddItem" class="management_btn">Submit</button>
+                    <div class="form_row">
+                        <label for="itemNameInput">Name:</label>
+                        <input type="text" id="itemNameInput">
+                    </div>
+                    <div class="form_row">
+                        <label for="itemDescriptionInput">Description:</label>
+                        <input type="text" id="itemDescriptionInput">
+                    </div>
+                    <div class="form_row">
+                        <label for="itemPriceInput">Price:</label>
+                        <input type="number" id="itemPriceInput" min="0" max="99.99" step="0.01"placeholder="0.00">
+                    </div>
+                    <div class="form_row">
+                        <label for="itemQuantityInput">Quantity:</label>
+                        <input type="number" id="itemQuantityInput" min="1" max="100" value="1"placeholder="1">
+                    </div>
+                    <div class="form_row">
+                        <label for="itemImgSrcInput">Image URL:</label>
+                        <input type="text" id="itemImgSrcInput" placeholder="Optional">
+                    </div>
+                    <div class="form_row">
+                        <label for="itemTypeSelect">Type:</label>
+                        <select id="itemTypeSelect">
+                            <option value="" disabled selected>Choose an option</option>
+                            <option value="Entree_Sandwich">Entree_Sandwich</option>
+                            <option value="Entree_Meat">Entree_Meat</option>
+                            <option value="Entree_Empanada">Entree_Empanada</option>
+                            <option value="Side">Side</option>
+                            <option value="Dessert">Dessert</option>
+                            <option value="Drink_NA">Non-Alcoholic Drink</option>
+                            <option value="Drink_A">Alcoholic Drink</option>
+                            <option value="Kid">Kid</option>
+                        </select>
+                    </div>
+                    <div class="form_buttons">
+                        <button type="submit" id="submitAddItem" class="management_btn">Submit</button>
+                        
+                    </div>
+                </form>
+                <div id="removeItemForm">
+                    <h3>Remove Menu Item</h3>
+                    <label for="removeItemId">Menu Item:</label>
+                    <select id="removeItemIdSelect">
+                        <option value="" disabled selected>Choose an option</option>
+                        <!-- Options will be populated here -->
+                    </select><br>
+                    <button id="submitRemoveItem" class="management_btn" onclick="handleRemoveItem()">Submit</button>
                 </div>
             </div>
         </div>
@@ -128,9 +181,24 @@
     </footer>
 
     <button id="backToTop"></button>
-    
+    <!-- <script>
+        document.getElementById('addItemForm').style.display = 'none';
+        document.getElementById('removeItemForm').style.display = 'none';
+
+        document.getElementById('addItemBtn').addEventListener('click', function() {
+            document.getElementById('addItemForm').style.display = 'block';
+            document.getElementById('removeItemForm').style.display = 'none';
+        });
+
+        document.getElementById('removeItemBtn').addEventListener('click', function() {
+            document.getElementById('removeItemForm').style.display = 'block';
+            document.getElementById('addItemForm').style.display = 'none';
+            populateRemoveItemOptions();
+        });
+    </script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
     <script type="module" src="../logic/ui.js"></script>
     <script type="module" src="../logic/tempUserTracker.js"></script>
+    <script type="module" src="../logic/menu.js"></script>
 </body>
 </html>

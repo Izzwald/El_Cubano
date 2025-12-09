@@ -1,3 +1,5 @@
+import * as Message from "./message.js";
+
 class MenuItem{
     constructor(name,description,type,price,quantity,imgSrc=""){
         this.name=name
@@ -42,15 +44,60 @@ class MenuItem{
 let menuItems = [];
 
 // Add a new item
+function handleAddItem(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('itemNameInput').value.trim();
+    const description = document.getElementById('itemDescriptionInput').value.trim();
+    const type = document.getElementById('itemTypeSelect').value;
+    const price = parseFloat(document.getElementById('itemPriceInput').value);
+    const quantity = parseInt(document.getElementById('itemQuantityInput').value);
+    const imgSrcInput = document.getElementById('itemImgSrcInput');
+    const imgSrc = imgSrcInput ? imgSrcInput.value.trim() : "";
+    if (!name || isNaN(price) || isNaN(quantity) || quantity < 1) {
+        alert("Please fill in all required fields correctly.");
+        return;
+    }
+
+    const exists = menuItems.some(item => item.name.toLowerCase() === name.toLowerCase());
+    if (exists) {
+        alert(`A menu item with the name "${name}" already exists.`);
+        return;
+    }
+
+    const newItem = new MenuItem(name, description, type, price, quantity, imgSrc);
+    addMenuItem(newItem);
+    Message.showBanner(`Menu item "${name}" has been added.`, { type: 'success', duration: 10000 }); 
+    document.getElementById('addItemForm').reset();
+}
 function addMenuItem(item) {
     menuItems.push(item);
     saveMenuItems();
+    populateRemoveItemOptions();
 }
 
-// Remove an item by name
+function handleRemoveItem() {
+    const select = document.getElementById('removeItemIdSelect');
+    const name = select.value;
+
+    if (!name) {
+        alert("Please select an item to remove.");
+        return;
+    }
+
+    removeMenuItem(name);
+    populateRemoveItemOptions();
+    Message.showBanner(`Menu item "${name}" has been removed.`, { type: 'success', duration: 10000 });
+
+    // Reset dropdown to default
+    select.value = "";
+}
+
+// Remove an item
 function removeMenuItem(name) {
     menuItems = menuItems.filter(item => item.name !== name);
     saveMenuItems();
+    
 }
 
 // Save to localStorage
@@ -172,21 +219,91 @@ const defaultItems = [
 //initializes menu items with defaults if none are detected to be saved to local storage Ex First page load
 function initializeMenuItems() {
     const data = localStorage.getItem("menuItems");
+
     if (!data) {
-        menuItems = defaultItems;
+        menuItems = defaultItems.map(obj => new MenuItem(
+            obj.name,
+            obj.description,
+            obj.type,
+            obj.price,
+            obj.quantity,
+            obj.imgSrc
+        ));
         saveMenuItems();
     } else {
         loadMenuItems();
     }
 }
 initializeMenuItems();
-
 //Sets all menu Items back to default
 function resetMenuItems() {
     localStorage.removeItem("menuItems");
-    menuItems = defaultItems;
+
+    menuItems = defaultItems.map(obj => new MenuItem(
+        obj.name,
+        obj.description,
+        obj.type,
+        obj.price,
+        obj.quantity,
+        obj.imgSrc
+    ));
+
     saveMenuItems();
     console.log("Menu reset to defaults:", menuItems);
 }
 
+
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    const addForm = document.getElementById('addItemForm');
+    const removeForm = document.getElementById('removeItemForm');
+    const addBtn = document.getElementById('addItemBtn');
+    const removeBtn = document.getElementById('removeItemBtn');
+    const submitAddBtn = document.getElementById('submitAddItem'); // <-- your submit button
+
+    if (!addForm || !removeForm || !addBtn || !removeBtn || !submitAddBtn) return; // safeguard
+
+    addForm.style.display = 'none';
+    removeForm.style.display = 'none';
+
+    // Toggle add/remove forms
+    addBtn.addEventListener('click', () => {
+        addForm.style.display = 'block';
+        removeForm.style.display = 'none';
+    });
+
+    removeBtn.addEventListener('click', () => {
+        removeForm.style.display = 'block';
+        addForm.style.display = 'none';
+        populateRemoveItemOptions();
+    });
+
+    // **Attach the handler to the Add Item submit button**
+    addForm.addEventListener('submit', handleAddItem);
+
+    // Reset menu
+    document.getElementById('resetMenuBtn').addEventListener('click', () => {
+        resetMenuItems();
+        alert("Menu has been restored to defaults!");
+        populateRemoveItemOptions();
+    });
+});
+
+function populateRemoveItemOptions() {
+    const select = document.getElementById('removeItemIdSelect');
+    
+    select.innerHTML = '<option value="" disabled selected>Choose an option</option>';
+    menuItems.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.name;
+        option.textContent = item.name;
+        select.appendChild(option);
+    });
+}
+
+
+window.handleAddItem = handleAddItem;
+window.handleRemoveItem = handleRemoveItem;
+window.populateRemoveItemOptions = populateRemoveItemOptions;
 export {MenuItem,menuItems,defaultItems,addMenuItem,removeMenuItem,saveMenuItems,loadMenuItems,initializeMenuItems,resetMenuItems};
